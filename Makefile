@@ -19,7 +19,7 @@ status:
 	ls -lt ~/.emacs.d | head -n 5
 
 watch:
-	watch -n 0.5 'ls -l ~/.emacs.d'
+	watch -n 0.5 'tree -L 3 ~/.emacs.d'
 
 destory:
 	rm -rf ~/.emacs.d
