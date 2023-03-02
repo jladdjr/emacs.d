@@ -2,16 +2,16 @@ test:
 	emacs -q -l init.el
 
 copy:
-	@./copy.sh
+	@./scripts/copy.sh
 
 backup:
-	@./backup.sh
+	@./scripts/backup.sh
 
 install:
-	@./install.sh
+	@./scripts/install.sh
 
 uninstall:
-	@./uninstall.sh
+	@./scripts/uninstall.sh
 
 status:
 	ls -al ~ | grep emacs
