@@ -2,7 +2,7 @@
 
 # Abort if emacs is running
 if pgrep emacs > /dev/null; then 
-	echo "️🛑 Cannot install .emacs.d directory while emacs is running"; 
+	echo "️🛑 Cannot install $HOME/.emacs.d directory while emacs is running"; 
 	exit 1
 fi
 
@@ -15,7 +15,7 @@ if [ -d "$HOME/.emacs.d" ]; then
 	fi
 	# Moving existing .emacs.d to .emacs.d.bak
 	echo "⏩️️️️ Moving $HOME/.emacs.d to $HOME/.emacs.d.bak"
-	mv $HOME/.emacs.d $HOME/.emacs.d.bak;
+	mv $HOME/.emacs.d $HOME/.emacs.d.bak
 else
 	echo "👻 No existing $HOME/.emacs.d"
 fi 
