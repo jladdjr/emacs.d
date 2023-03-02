@@ -15,3 +15,6 @@ settings.el
 
 # src directory for org-mode
 src
+
+# generated files
+readme.el
