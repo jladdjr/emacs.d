@@ -6,3 +6,8 @@ install:
 
 uninstall:
 	@./uninstall.sh
+
+status:
+	ls -al ~ | grep emacs
+	echo ""
+	ls -l ~/.emacs.d
