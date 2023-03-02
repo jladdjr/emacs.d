@@ -2,11 +2,13 @@
 
 * Bootstrap Package Manager
 
-Using straight.el and use-package.
+Using [[https://github.com/jwiegley/use-package#getting-started][straight.el]] and use-package.
 
-See [this article](https://jeffkreeftmeijer.com/emacs-straight-use-package/) for benefits of using straight.el.
+See [[https://jeffkreeftmeijer.com/emacs-straight-use-package/][this article]] for benefits of using straight.el.
 
-#+BEGIN_SRC emacs-lisp
+** Bootstrap straight
+
+#+begin_src emacs-lisp
 (message "bootstrapping straight.el")
 
 (defvar bootstrap-version)
@@ -21,4 +23,40 @@ See [this article](https://jeffkreeftmeijer.com/emacs-straight-use-package/) for
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
-#+END_SRC
+#+end_src
+
+** Disable package.el in favor of straight.el
+
+#+begin_src emacs-lisp
+(setq package-enable-at-startup nil)
+#+end_src
+
+** Install use-package
+
+use-package allows for you to install and configure a package in one step.
+
+#+begin_src emacs-lisp
+(straight-use-package 'use-package)
+#+end_src
+
+*** Configure use-package to use straight.el by default
+
+#+begin_src emacs-lisp
+(use-package straight
+             :custom (straight-use-package-by-default t))
+#+end_src
+
+Now in order to install a package, all we need to do is:
+
+#+begin_src emacs-lisp
+; (use-package evil-commentary)
+#+end_src
+
+There are options for configurang packages with straight.el, too:
+- `:init` - code that will be run before installing the package
+- `:config` - code that will be run right after the package is installed
+- `:bind` - adds key bindings after a module has been installed
+- `:custom:` - set customizable variables
+
+See the straight.el [[https://github.com/jwiegley/use-package#getting-started][getting started guide]] for more documentation on how to load and configure packages with straight.el.
+
