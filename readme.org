@@ -60,3 +60,9 @@ There are options for configurang packages with straight.el, too:
 
 See the straight.el [[https://github.com/jwiegley/use-package#getting-started][getting started guide]] for more documentation on how to load and configure packages with straight.el.
 
+* Install evil
+
+#+begin_src emacs-lisp
+(use-package evil
+             :config (evil-mode))
+#+end_src
