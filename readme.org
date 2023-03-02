@@ -62,6 +62,8 @@ See the straight.el [[https://github.com/jwiegley/use-package#getting-started][g
 
 * Install evil
 
+See [[https://evil.readthedocs.io/en/latest/index.html][this page]] for information on how to get started with evil mode.
+
 #+begin_src emacs-lisp
 (use-package evil
              :config (evil-mode))
