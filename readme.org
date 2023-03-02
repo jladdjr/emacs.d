@@ -1,3 +1,3 @@
 #+BEGIN_SRC emacs-lisp
-(message "loaded settings.org")
+(message "loaded readme.org")
 #+END_SRC
