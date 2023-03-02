@@ -16,7 +16,7 @@ uninstall:
 status:
 	ls -al ~ | grep emacs
 	echo ""
-	ls -l ~/.emacs.d
+	ls -lt ~/.emacs.d | head -n 5
 
 watch:
 	watch -n 0.5 'ls -l ~/.emacs.d'
