@@ -53,10 +53,10 @@ Now in order to install a package, all we need to do is:
 #+end_src
 
 There are options for configurang packages with straight.el, too:
-- `:init` - code that will be run before installing the package
-- `:config` - code that will be run right after the package is installed
-- `:bind` - adds key bindings after a module has been installed
-- `:custom:` - set customizable variables
+- ~:init~ - code that will be run before installing the package
+- ~:config~ - code that will be run right after the package is installed
+- ~:bind~ - adds key bindings after a module has been installed
+- ~:custom:~ - set customizable variables
 
 See the straight.el [[https://github.com/jwiegley/use-package#getting-started][getting started guide]] for more documentation on how to load and configure packages with straight.el.
 
