@@ -8,6 +8,8 @@ fi
 
 if [ -d "$HOME/.emacs.d" ]; then 
 	echo "📂 Found existing $HOME/.emacs.d"
+	echo "🔥 Deleting generated readme.el"
+	rm $HOME/.emacs.d/readme.el
 	echo "⏩️️️️ ️Copying development files into $HOME/.emacs.d"
 	cp init.el readme.org $HOME/.emacs.d
 else
