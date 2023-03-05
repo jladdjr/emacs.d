@@ -68,3 +68,20 @@ See [[https://evil.readthedocs.io/en/latest/index.html][this page]] for informat
 (use-package evil
              :config (evil-mode))
 #+end_src
+
+* Global Keybindings
+
+On a Dvorak keyboard, ~C-x~ is a stretch. Literally.
+Globally replace ~C-x~ with ~C-t~ (and vice-versa).
+
+#+begin_src emacs-lisp
+(keyboard-translate ?\C-t ?\C-x)
+(keyboard-translate ?\C-x ?\C-t)
+#+end_src
+
+~Alt-m~ is frequently used, but not as convenient to enter as a Control command.
+Globally replace ~Alt-m~ with ~C-m~.
+
+#+begin_src emacs-lisp
+(keyboard-translate ?\C-m ?\M-x)
+#+end_src
