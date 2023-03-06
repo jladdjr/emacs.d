@@ -34,4 +34,10 @@
 ;;; load up all literate org-mode files in this directory
 (mapc #'org-babel-load-file (directory-files dotfiles-dir t "\\.org$"))
 
+;;; load up all literate org-mode files in the private directory
+(setq private-dotfiles-dir (expand-file-name "private/" dotfiles-dir))
+
+(if (file-directory-p private-dotfiles-dir)
+	(mapc #'org-babel-load-file (directory-files private-dotfiles-dir t "\\.org$")))
+
 ;;; init.el ends here
