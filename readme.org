@@ -79,6 +79,14 @@ See [[https://evil.readthedocs.io/en/latest/index.html][this page]] for informat
              :config (evil-mode))
 #+end_src
 
+* Install magit
+
+We can't go anywhere without [[https://magit.vc/][Magit]]!
+
+#+begin_src emacs-lisp
+(use-package magit)
+#+end_src
+
 * Global Keybindings
 
 On a Dvorak keyboard, ~C-x~ is a stretch. Literally.
