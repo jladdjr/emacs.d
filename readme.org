@@ -99,6 +99,25 @@ Include a hook that drops the user into emacs mode when prompted for a Git commi
   (add-hook 'git-commit-mode-hook 'evil-emacs-state))
 #+end_src
 
+* Install perspective
+
+[[https://github.com/nex3/perspective-el][Perspective]] offers the ability to:
+- Create (named) window layouts, refered to as perspectives
+- Save perspectives to disk
+- Only list buffers used by current perspective
+
+Key Perspective commands are outlined [[https://github.com/nex3/perspective-el#usage][here]].
+
+The Perspective prefix key is set to ~C-c~ ~C-z~ below.
+
+#+begin_src emacs-lisp
+(use-package perspective
+  :custom
+  (persp-mode-prefix-key (kbd "C-c C-z"))
+  :init
+  (persp-mode))
+#+end_src
+
 * Install helm
 
 [[https://emacs-helm.github.io/helm/][Helm]] is invaluable when it comes to incremental completion and narrowing.
