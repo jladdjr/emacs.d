@@ -52,7 +52,7 @@ Now in order to install a package, all we need to do is:
 ; (use-package evil-commentary)
 #+end_src
 
-There are options for configurang packages with straight.el, too:
+There are options for configuring packages with straight.el, too:
 - ~:init~ - code that will be run before installing the package
 - ~:config~ - code that will be run right after the package is installed
 - ~:bind~ - adds key bindings after a module has been installed
@@ -91,8 +91,12 @@ See [[https://evil.readthedocs.io/en/latest/index.html][this page]] for informat
 
 We can't go anywhere without [[https://magit.vc/][Magit]]!
 
+Include a hook that drops the user into emacs mode when prompted for a Git commit message.
+
 #+begin_src emacs-lisp
-(use-package magit)
+(use-package magit
+  :config
+  (add-hook 'git-commit-mode-hook 'evil-emacs-state))
 #+end_src
 
 * Install helm
