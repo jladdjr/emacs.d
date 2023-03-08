@@ -91,8 +91,13 @@ We can't go anywhere without [[https://magit.vc/][Magit]]!
 
 [[https://emacs-helm.github.io/helm/][Helm]] is invaluable when it comes to incremental completion and narrowing.
 
+After installing Helm, remap selected commands to use the corresponding helm function.
+
 #+begin_src emacs-lisp
-(use-package helm)
+(use-package helm
+    :config (progn
+             (define-key (current-global-map) [remap list-buffers] 'helm-buffers-list)
+             (define-key (current-global-map) [remap bookmark-jump] 'helm-filtered-bookmarks)))
 #+end_src
 
 * Install Base16 Theme
