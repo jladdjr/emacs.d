@@ -87,6 +87,14 @@ We can't go anywhere without [[https://magit.vc/][Magit]]!
 (use-package magit)
 #+end_src
 
+* Install helm
+
+[[https://emacs-helm.github.io/helm/][Helm]] is invaluable when it comes to incremental completion and narrowing.
+
+#+begin_src emacs-lisp
+(use-package helm)
+#+end_src
+
 * Install Base16 Theme
 
 Use base16-eighties from the [[https://github.com/tinted-theming/base16-emacs][base16-theme]] package.
