@@ -70,6 +70,14 @@ Disable GUI elements. Will rely on key bindings.
 (menu-bar-mode -1)
 #+end_src
 
+* Disable tabs
+
+Never, ever use [[https://www.emacswiki.org/emacs/IndentationBasics#h5o-1][tabs]].
+
+#+begin_src emacs-lisp
+(setq-default indent-tabs-mode nil)
+#+end_src
+
 * Install evil
 
 See [[https://evil.readthedocs.io/en/latest/index.html][this page]] for information on how to get started with evil mode.
