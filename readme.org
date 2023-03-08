@@ -43,7 +43,7 @@ use-package allows for you to install and configure a package in one step.
 
 #+begin_src emacs-lisp
 (use-package straight
-             :custom (straight-use-package-by-default t))
+    :custom (straight-use-package-by-default t))
 #+end_src
 
 Now in order to install a package, all we need to do is:
@@ -76,7 +76,7 @@ See [[https://evil.readthedocs.io/en/latest/index.html][this page]] for informat
 
 #+begin_src emacs-lisp
 (use-package evil
-             :config (evil-mode))
+    :config (evil-mode))
 #+end_src
 
 * Install magit
@@ -85,6 +85,15 @@ We can't go anywhere without [[https://magit.vc/][Magit]]!
 
 #+begin_src emacs-lisp
 (use-package magit)
+#+end_src
+
+* Install Base16 Theme
+
+Use base16-eighties from the [[https://github.com/tinted-theming/base16-emacs][base16-theme]] package.
+
+#+begin_src emacs-lisp
+(use-package base16-theme
+    :config (load-theme 'base16-eighties t))
 #+end_src
 
 * Global Keybindings
