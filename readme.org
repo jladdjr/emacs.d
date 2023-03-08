@@ -100,6 +100,17 @@ After installing Helm, remap selected commands to use the corresponding helm fun
              (define-key (current-global-map) [remap bookmark-jump] 'helm-filtered-bookmarks)))
 #+end_src
 
+* Install company
+
+[[https://company-mode.github.io/][company-mode]] offers very helpful auto-completion.
+
+#+begin_src emacs-lisp
+
+(use-package company
+    :config (add-hook 'after-init-hook 'global-company-mode))
+
+#+end_src
+
 * Install Base16 Theme
 
 Use base16-eighties from the [[https://github.com/tinted-theming/base16-emacs][base16-theme]] package.
