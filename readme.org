@@ -231,10 +231,11 @@ Requesting this behavior is as easy as setting ~help-window-select~. Perfect.
 
 ** Automatically Switch to Opened Window After Splitting Windows
 
-When emacs splits the current window (horizontally or vertically)
-move point to the new window.
+When emacs splits the current window (horizontally or vertically),
+point remains in the current window.
+I almost always want to hop over to the new window.
 
-Unfortunately, to make this tweak we can't set a global variable or pass in an argument.
+Unfortunately, to make this change we can't set a global variable or pass in an argument.
 Instead, we replace the default function with a lambda
 that calls the original function and then calls ~other-window~.
 
