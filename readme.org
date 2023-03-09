@@ -151,7 +151,9 @@ Use base16-eighties from the [[https://github.com/tinted-theming/base16-emacs][b
     :config (load-theme 'base16-eighties t))
 #+end_src
 
-* Global Keybindings
+* Dvorak Tweaks
+
+** Swap C-x and C-t
 
 On a Dvorak keyboard, ~C-x~ is a stretch. Literally.
 Globally replace ~C-x~ with ~C-t~ (and vice-versa).
@@ -161,9 +163,24 @@ Globally replace ~C-x~ with ~C-t~ (and vice-versa).
 (keyboard-translate ?\C-x ?\C-t)
 #+end_src
 
-~Alt-m~ is frequently used, but not as convenient to enter as a Control command.
-Globally replace ~Alt-m~ with ~C-m~.
+** Replace M-x with C-m
+
+~M-x~ is frequently used, but not as convenient to enter as a Control command.
+Globally replace ~M-x~ with ~C-m~.
 
 #+begin_src emacs-lisp
 (keyboard-translate ?\C-m ?\M-x)
+#+end_src
+
+* Automatically Switch to Opened Window
+
+When emacs splits the current window (horizontally or vertically)
+move point to the new window.
+
+For more thougths on this tweak -- including reasons why ~advice-add~ should not be used --
+check out [[https://stackoverflow.com/questions/6464738/how-can-i-switch-focus-after-buffer-split-in-emacs][this Stackoverflow question]].
+
+#+begin_src emacs-lisp
+(global-set-key "\C-x2" (lambda () (interactive)(split-window-below) (other-window 1)))
+(global-set-key "\C-x3" (lambda () (interactive)(split-window-right) (other-window 1)))
 #+end_src
