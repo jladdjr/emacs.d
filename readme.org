@@ -93,10 +93,15 @@ Never, ever use [[https://www.emacswiki.org/emacs/IndentationBasics#h5o-1][tabs]
 
 See [[https://evil.readthedocs.io/en/latest/index.html][this page]] for information on how to get started with evil mode.
 
+In the ~config~ section, set ~evil-want-C-i-jump~ to ~nil~ since ~C-i~ is tab and we want to preserve tab's default behavior.
+(If we don't set this to ~nil~, tab will invoke ~evil-jump-forward~ instead of ~org-cycle~ in org-mode, for example,
+preventing us from cycling through the different folding options for a node).
+
 #+begin_src emacs-lisp
 (use-package evil
   :config
   (evil-mode)
+  (setq evil-want-C-i-jump nil)
   (evil-set-initial-state 'help-mode 'emacs)
   (evil-set-initial-state 'Info-mode 'emacs))
 #+end_src
