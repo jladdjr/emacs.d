@@ -131,6 +131,17 @@ After installing Helm, remap selected commands to use the corresponding helm fun
              (define-key (current-global-map) [remap bookmark-jump] 'helm-filtered-bookmarks)))
 #+end_src
 
+* Install helm-swoop
+
+While it looks like an [[https://github.com/emacsorphanage/helm-swoop][orphaned project]] at this point,
+[[https://www.emacswiki.org/emacs/HelmSwoop][helm-swoop]] still seems like a helpful (and, for the moment, stable) improvement on Emacs' built-in
+[[https://www.gnu.org/software/emacs/manual/html_node/emacs/Basic-Isearch.html][isearch]].
+
+#+begin_src emacs-lisp
+(use-package helm-swoop)
+(global-set-key "\C-s" 'helm-swoop-without-pre-input)
+#+end_src
+
 * Install company
 
 [[https://company-mode.github.io/][company-mode]] offers very helpful auto-completion.
