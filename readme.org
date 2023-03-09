@@ -60,7 +60,8 @@ There are options for configuring packages with straight.el, too:
 
 See the straight.el [[https://github.com/jwiegley/use-package#getting-started][getting started guide]] for more documentation on how to load and configure packages with straight.el.
 
-* Disable GUI elements
+* Global Preferences
+** Disable GUI elements
 
 Disable GUI elements. Will rely on key bindings.
 
@@ -70,12 +71,22 @@ Disable GUI elements. Will rely on key bindings.
 (menu-bar-mode -1)
 #+end_src
 
-* Disable tabs
+** Disable tabs
 
 Never, ever use [[https://www.emacswiki.org/emacs/IndentationBasics#h5o-1][tabs]].
 
 #+begin_src emacs-lisp
 (setq-default indent-tabs-mode nil)
+#+end_src
+
+** Misc
+
+#+begin_src emacs-lisp
+(show-paren-mode 1)
+(setq initial-scratch-message nil)
+(setq confirm-kill-emacs 'y-or-n-p)
+(setq inhibit-startup-message t)
+(setq initial-scratch-message "")
 #+end_src
 
 * Install evil
