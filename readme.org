@@ -97,13 +97,18 @@ In the ~config~ section, set ~evil-want-C-i-jump~ to ~nil~ since ~C-i~ is tab an
 (If we don't set this to ~nil~, tab will invoke ~evil-jump-forward~ instead of ~org-cycle~ in org-mode, for example,
 preventing us from cycling through the different folding options for a node).
 
+For some reason, the above approach works in Debian, but not Mac OSX.
+Taking things a step further, we also use ~with-eval-after-load~ to forcefully unset tab in ~evil-motion-state-map~.
+(Found this approach [[https://github.com/emacs-evil/evil/issues/1604][here]].)
+
 #+begin_src emacs-lisp
 (use-package evil
   :config
   (evil-mode)
-  (setq evil-want-C-i-jump nil)
   (evil-set-initial-state 'help-mode 'emacs)
-  (evil-set-initial-state 'Info-mode 'emacs))
+  (evil-set-initial-state 'Info-mode 'emacs)
+  (setq evil-want-C-i-jump nil)
+  (with-eval-after-load 'evil-maps (define-key evil-motion-state-map (kbd "TAB") nil)))
 #+end_src
 
 * Install magit
