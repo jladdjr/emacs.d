@@ -84,7 +84,10 @@ See [[https://evil.readthedocs.io/en/latest/index.html][this page]] for informat
 
 #+begin_src emacs-lisp
 (use-package evil
-    :config (evil-mode))
+  :config
+  (evil-mode)
+  (evil-set-initial-state 'help-mode 'emacs)
+  (evil-set-initial-state 'Info-mode 'emacs))
 #+end_src
 
 * Install magit
