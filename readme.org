@@ -183,6 +183,20 @@ While it looks like an [[https://github.com/emacsorphanage/helm-swoop][orphaned 
   (global-set-key (kbd "M-l") 'avy-goto-char-timer))
 #+end_src
 
+* Install flycheck
+
+While we won't enable flycheck globally (via ~(global-flycheck-mode)~),
+we don't want the ability to check syntax across various modes.
+[[https://www.flycheck.org][Flycheck]] - a replacement for [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Flymake.html][Flymake]] - should do the trick.
+
+The quickstart guide for Flycheck is available [[https://www.flycheck.org/en/latest/user/quickstart.html][here]].
+
+#+begin_src emacs-lisp
+(use-package flycheck)
+#+end_src
+
+To enable flycheck in a buffer, call ~M-x flycheck-mode~.
+
 * Install company
 
 [[https://company-mode.github.io/][company-mode]] offers very helpful auto-completion.
