@@ -196,8 +196,22 @@ Globally replace ~M-x~ with ~C-m~.
 
 * Automatically Switch to Opened Window
 
+** Automatically Switch to Help Window
+
+Requesting this behavior is as easy as setting ~help-window-select~. Perfect.
+
+#+begin_src emacs-lisp
+(setq help-window-select t)
+#+end_src
+
+** Automatically Switch to Opened Window After Splitting Windows
+
 When emacs splits the current window (horizontally or vertically)
 move point to the new window.
+
+Unfortunately, to make this tweak we can't set a global variable or pass in an argument.
+Instead, we replace the default function with a lambda
+that calls the original function and then calls ~other-window~.
 
 For more thougths on this tweak -- including reasons why ~advice-add~ should not be used --
 check out [[https://stackoverflow.com/questions/6464738/how-can-i-switch-focus-after-buffer-split-in-emacs][this Stackoverflow question]].
