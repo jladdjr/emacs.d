@@ -167,6 +167,17 @@ While it looks like an [[https://github.com/emacsorphanage/helm-swoop][orphaned 
 (global-set-key "\C-s" 'helm-swoop-without-pre-input)
 #+end_src
 
+* Install avy
+
+[[https://github.com/abo-abo/avy][Avy]] provides an efficient, character / tree-based approach to jumping to a line or matching substring.
+
+#+begin_src emacs-lisp
+(use-package avy
+  :config
+  (global-set-key (kbd "C-l") 'avy-goto-line)
+  (global-set-key (kbd "M-l") 'avy-goto-char-timer))
+#+end_src
+
 * Install company
 
 [[https://company-mode.github.io/][company-mode]] offers very helpful auto-completion.
