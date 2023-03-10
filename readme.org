@@ -311,6 +311,9 @@ Information on mode line variables can be found [[https://www.gnu.org/software/e
 This is especially helpful when running Emacs on Mac OSX,
 where Brew apps are otherwise not visible to Emacs.
 
+When running ZSH on Mac, make sure that ~export PATH=...~ statements
+are placed in ~.zprofile~; ~.zshrc~ is not sourced by the function below!
+
 #+begin_src emacs-lisp
 (defun set-exec-path-from-shell-PATH ()
   "Set up Emacs' `exec-path' and PATH environment variable to match
