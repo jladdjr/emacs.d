@@ -123,6 +123,18 @@ Include a hook that drops the user into emacs mode when prompted for a Git commi
   (add-hook 'git-commit-mode-hook 'evil-emacs-state))
 #+end_src
 
+* Install yaml-mode
+
+Install [[https://github.com/yoshiki/yaml-mode][yaml-mode]].
+
+More information on yaml-mode is available [[https://www.emacswiki.org/emacs/YamlMode][here]].
+
+#+begin_src emacs-lisp
+(use-package yaml-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
+#+end_src
+
 * Install perspective
 
 [[https://github.com/nex3/perspective-el][Perspective]] offers the ability to:
