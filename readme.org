@@ -270,3 +270,26 @@ check out [[https://stackoverflow.com/questions/6464738/how-can-i-switch-focus-a
 (global-set-key "\C-x2" (lambda () (interactive)(split-window-below) (other-window 1)))
 (global-set-key "\C-x3" (lambda () (interactive)(split-window-right) (other-window 1)))
 #+end_src
+
+* Configure mode line
+
+The default mode line is long and gets cut off when the frame is split.
+Update the default mode line to be shorter.
+
+Information on mode line variables can be found [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Mode-Line-Variables.html][here]].
+
+#+begin_src emacs-lisp
+(setq-default mode-line-format
+  '("%e"
+    evil-mode-line-tag
+    mode-line-mule-info
+    mode-line-modified
+    " "
+    mode-line-buffer-identification
+    " "
+    mode-line-position
+    mode-line-misc-info
+    (vc-mode vc-mode)
+    " "
+    mode-line-end-spaces))
+#+end_src
