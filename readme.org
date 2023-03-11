@@ -161,6 +161,7 @@ The Perspective prefix key is set to ~C-c~ ~C-z~ below.
 #+begin_src emacs-lisp
 (use-package projectile
   :init
+  (setq projectile-project-search-path '("~/git/" "~/org/" "~/.emacs.d"))
   (projectile-mode)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 #+end_src
