@@ -165,6 +165,12 @@ The Perspective prefix key is set to ~C-c~ ~C-z~ below.
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 #+end_src
 
+Install the ag package as well so that projectile can make ag searches. (e.g. ~C-c p s s~)
+
+#+begin_src emacs-lisp
+(use-package ag)
+#+end_src
+
 * Install helm
 
 [[https://emacs-helm.github.io/helm/][Helm]] is invaluable when it comes to incremental completion and narrowing.
