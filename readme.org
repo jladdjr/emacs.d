@@ -107,6 +107,7 @@ Taking things a step further, we also use ~with-eval-after-load~ to forcefully u
   (evil-mode)
   (evil-set-initial-state 'help-mode 'emacs)
   (evil-set-initial-state 'Info-mode 'emacs)
+  (evil-set-initial-state 'ivy-occur-mode 'emacs)
   (setq evil-want-C-i-jump nil)
   (with-eval-after-load 'evil-maps (define-key evil-motion-state-map (kbd "TAB") nil)))
 #+end_src
