@@ -109,7 +109,8 @@ Taking things a step further, we also use ~with-eval-after-load~ to forcefully u
   (evil-set-initial-state 'Info-mode 'emacs)
   (evil-set-initial-state 'ivy-occur-mode 'emacs)
   (setq evil-want-C-i-jump nil)
-  (with-eval-after-load 'evil-maps (define-key evil-motion-state-map (kbd "TAB") nil)))
+  (with-eval-after-load 'evil-maps (define-key evil-motion-state-map (kbd "TAB") nil))
+  (with-eval-after-load 'evil-maps (define-key evil-normal-state-map (kbd "C-n") 'projectile-command-map)))
 #+end_src
 
 * Install magit
@@ -163,8 +164,7 @@ The Perspective prefix key is set to ~C-c~ ~C-z~ below.
 (use-package projectile
   :init
   (setq projectile-project-search-path '("~/git/" "~/org/" "~/.emacs.d"))
-  (projectile-mode)
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+  (projectile-mode))
 #+end_src
 
 Install the ag package as well so that projectile can make ag searches. (e.g. ~C-c p s s~)
