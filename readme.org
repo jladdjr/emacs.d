@@ -235,7 +235,6 @@ Adopting suggested keybindings from [[https://oremacs.com/swiper/#global-key-bin
 (global-set-key (kbd "C-c F") 'counsel-org-file)
 #+end_src
 
-
 * Install avy
 
 [[https://github.com/abo-abo/avy][Avy]] provides an efficient, character / tree-based approach to jumping to a line or matching substring.
@@ -270,6 +269,22 @@ To enable flycheck in a buffer, call ~M-x flycheck-mode~.
 (use-package company
     :config (add-hook 'after-init-hook 'global-company-mode))
 
+#+end_src
+
+* Install vimish-fold
+
+[[https://github.com/matsievskiysv/vimish-fold][vimish-fold]] lets you fold a region, or lets you fold down to a point specified using avy.
+It calls out the folded region using the left sidebar (instead of ellipses)
+which feels a little cleaner.
+
+#+begin_src emacs-lisp
+(use-package vimish-fold
+  :config
+  (vimish-fold-global-mode 1)
+  (global-set-key (kbd "C-c @ a") #'vimish-fold-avy)
+  (global-set-key (kbd "C-c @ f") #'vimish-fold)
+  (global-set-key (kbd "C-c @ v") #'vimish-fold-delete)
+  (global-set-key (kbd "C-c @ U") #'vimish-fold-unfold-all))
 #+end_src
 
 * Install Base16 Theme
