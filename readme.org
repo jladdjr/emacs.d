@@ -153,7 +153,9 @@ The Perspective prefix key is set to ~C-c~ ~C-z~ below.
   :custom
   (persp-mode-prefix-key (kbd "C-c C-z"))
   :init
-  (persp-mode))
+  (persp-mode)
+  :config
+  (setq persp-state-default-file "~/.emacs.d/persp-"))
 #+end_src
 
 * Install projectile
