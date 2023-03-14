@@ -296,6 +296,15 @@ Use base16-eighties from the [[https://github.com/tinted-theming/base16-emacs][b
     :config (load-theme 'base16-eighties t))
 #+end_src
 
+* Install dockerfile-mode
+
+Use [[https://github.com/spotify/dockerfile-mode][dockerfile-mode]]
+to enable Dockerfile syntax highlighting.
+
+#+begin_src emacs-lisp
+(use-package dockerfile-mode)
+#+end_src
+
 * Dvorak Tweaks
 
 ** Swap C-x and C-t
