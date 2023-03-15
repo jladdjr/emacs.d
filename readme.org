@@ -162,11 +162,19 @@ The Perspective prefix key is set to ~C-c~ ~C-z~ below.
 
 [[https://projectile.mx/][Projectile]] offers several commands for interacting with files within the scope of a project.
 
+As a convenience, wrap ~projectile-ag~ in a lambda function
+that automatically switches us over to the other window.
+(Did not find any way to configure this behavior
+using projectile variables or function arguments).
+
 #+begin_src emacs-lisp
 (use-package projectile
   :init
   (setq projectile-project-search-path '("~/git/" "~/org/" "~/.emacs.d"))
-  (projectile-mode))
+  (projectile-mode)
+  :bind
+  (:map projectile-command-map
+    ("s s" . (lambda () (interactive) (call-interactively 'projectile-ag) (other-window 1)))))
 #+end_src
 
 Install the ag package as well so that projectile can make ag searches. (e.g. ~C-c p s s~)
