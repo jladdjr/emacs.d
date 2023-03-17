@@ -162,25 +162,38 @@ The Perspective prefix key is set to ~C-c~ ~C-z~ below.
 
 [[https://projectile.mx/][Projectile]] offers several commands for interacting with files within the scope of a project.
 
-As a convenience, wrap ~projectile-ag~ in a lambda function
-that automatically switches us over to the other window.
-(Did not find any way to configure this behavior
-using projectile variables or function arguments).
+Map ~projectile-find-file~ to ~C-f~ in the ~evil-normal-state-map~
+because of how frequently this gets called.
+We map this in ~evil-normal-state-map~ specifically so that ~C-f~ is not shadowed in other modes
+where it is less likely to be used anyways.
 
 #+begin_src emacs-lisp
 (use-package projectile
   :init
   (setq projectile-project-search-path '("~/git/" "~/org/" "~/.emacs.d"))
   (projectile-mode)
+  (with-eval-after-load 'evil-maps (define-key evil-normal-state-map (kbd "C-f") 'projectile-find-file))
   :bind
   (:map projectile-command-map
     ("s s" . (lambda () (interactive) (call-interactively 'projectile-ag) (other-window 1)))))
 #+end_src
 
-Install the ag package as well so that projectile can make ag searches. (e.g. ~C-c p s s~)
+Install the ag package as well so that projectile can make ag searches.
+
+Map ~projectile-ag~ to ~C-n~ in the ~evil-normal-state-map~
+because of how frequently this gets called.
+We map this in ~evil-normal-state-map~ specifically so that ~C-n~ is not shadowed in other modes
+where it is less likely to be used anyways.
+
+As a convenience, wrap ~projectile-ag~ in a lambda function
+that automatically switches us over to the other window.
+(Did not find any way to configure this behavior
+using projectile variables or function arguments).
 
 #+begin_src emacs-lisp
-(use-package ag)
+(use-package ag
+  :init
+  (with-eval-after-load 'evil-maps (define-key evil-normal-state-map (kbd "C-n") (lambda () (interactive) (call-interactively 'projectile-ag) (other-window 1)))))
 #+end_src
 
 * Install counsel, ivy, swiper
