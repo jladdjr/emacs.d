@@ -326,6 +326,20 @@ to enable Dockerfile syntax highlighting.
 (use-package dockerfile-mode)
 #+end_src
 
+* Install multiple-cursors
+
+Add support for [[https://github.com/magnars/multiple-cursors.el#readme][multiple cursors]].
+
+An overview video of multiple-cursors is available
+[[https://emacsrocks.com/e13.html][here]].
+
+#+begin_src emacs-lisp
+(use-package multiple-cursors
+  :init
+  (global-unset-key (kbd "M-<down-mouse-1>"))
+  (global-set-key (kbd "M-<mouse-1>") 'mc/add-cursor-on-click))
+#+end_src
+
 * Dvorak Tweaks
 
 ** Swap C-x and C-t
