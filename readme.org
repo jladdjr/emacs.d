@@ -334,6 +334,17 @@ Globally replace ~M-x~ with ~C-m~.
 (keyboard-translate ?\C-m ?\M-x)
 #+end_src
 
+* Nyan-Mode
+
+An analog indicator of your position in the buffer.
+With a little help from [[https://github.com/TeMPOraL/nyan-mode][Nyan Cat]].
+
+Use ~M-x nyan-mode~ to enable.
+
+#+begin_src emacs-lisp
+(use-package nyan-mode)
+#+end_src
+
 * Automatically Switch to Opened Window
 
 ** Automatically Switch to Help Window
