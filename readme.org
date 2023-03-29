@@ -137,6 +137,19 @@ More information on yaml-mode is available [[https://www.emacswiki.org/emacs/Yam
   (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 #+end_src
 
+* Install csharp-mode
+
+Installs [[https://github.com/emacs-csharp/csharp-mode][csharp-mode]].
+
+Note that this mode has been [[https://github.com/emacs-csharp/csharp-mode#obsoletion-warning][moved into Emacs core]].
+Once Emacs 29 is generally available in most package managers,
+this should be dropped.
+
+#+begin_src emacs-lisp
+(use-package csharp-mode)
+#+end_src
+
+
 * Install perspective
 
 [[https://github.com/nex3/perspective-el][Perspective]] offers the ability to:
