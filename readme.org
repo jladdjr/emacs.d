@@ -149,6 +149,13 @@ this should be dropped.
 (use-package csharp-mode)
 #+end_src
 
+* Install groovy-mode
+
+Installs [[https://github.com/Groovy-Emacs-Modes/groovy-emacs-modes][groovy-mode]].
+
+#+begin_src emacs-lisp
+(use-package groovy-mode)
+#+end_src
 
 * Install perspective
 
