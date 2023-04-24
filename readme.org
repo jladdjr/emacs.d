@@ -125,6 +125,14 @@ Include a hook that drops the user into emacs mode when prompted for a Git commi
   (add-hook 'git-commit-mode-hook 'evil-emacs-state))
 #+end_src
 
+* Install markdown-mode
+
+Install [[https://github.com/jrblevin/markdown-mode][markdown-mode]].
+
+#+begin_src emacs-lisp
+(use-package markdown-mode)
+#+end_src
+
 * Install yaml-mode
 
 Install [[https://github.com/yoshiki/yaml-mode][yaml-mode]].
