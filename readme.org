@@ -89,6 +89,12 @@ Never, ever use [[https://www.emacswiki.org/emacs/IndentationBasics#h5o-1][tabs]
 (setq initial-scratch-message "")
 #+end_src
 
+Allow [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html][narrowing]] to a region (~C-x n n~)
+
+#+begin_src emacs-lisp
+(put 'narrow-to-region 'disabled nil)
+#+end_src
+
 * Install evil
 
 See [[https://evil.readthedocs.io/en/latest/index.html][this page]] for information on how to get started with evil mode.
