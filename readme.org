@@ -98,6 +98,7 @@ Allow [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html
 * Configure org-mode
 
 Add support for TODO, DOING, and DONE states when working with [[https://orgmode.org/manual/TODO-Basics.html][TODO items]].
+
 #+begin_src emacs-lisp
 (setq org-todo-keywords
       '((sequence
@@ -105,6 +106,13 @@ Add support for TODO, DOING, and DONE states when working with [[https://orgmode
          "DOING"
          "DONE"
          )))
+
+(setq org-todo-keyword-faces
+      '(
+        ("TODO" . "light pink")
+        ("DOING" . "yellow")
+        ("DONE" . "light green")
+        ))
 #+end_src
 * Install evil
 
