@@ -95,6 +95,17 @@ Allow [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html
 (put 'narrow-to-region 'disabled nil)
 #+end_src
 
+* Configure org-mode
+
+Add support for TODO, DOING, and DONE states when working with [[https://orgmode.org/manual/TODO-Basics.html][TODO items]].
+#+begin_src emacs-lisp
+(setq org-todo-keywords
+      '((sequence
+         "TODO"
+         "DOING"
+         "DONE"
+         )))
+#+end_src
 * Install evil
 
 See [[https://evil.readthedocs.io/en/latest/index.html][this page]] for information on how to get started with evil mode.
