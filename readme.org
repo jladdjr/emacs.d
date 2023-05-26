@@ -150,6 +150,17 @@ Include a hook that drops the user into emacs mode when prompted for a Git commi
   (add-hook 'git-commit-mode-hook 'evil-emacs-state))
 #+end_src
 
+Make the Magit status window the only window in view when it opens.
+
+#+begin_src emacs-lisp
+(defun jl/magit-status ()
+  "Open magit-status window by itself"
+  (interactive)
+  (magit-status)
+  (delete-other-windows))
+(define-key (current-global-map) [remap magit-status] 'jl/magit-status)
+#+end_src
+
 * Install markdown-mode
 
 Install [[https://github.com/jrblevin/markdown-mode][markdown-mode]].
