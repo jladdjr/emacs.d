@@ -170,6 +170,20 @@ Make the Magit status window the only window in view when it opens.
 (define-key (current-global-map) [remap magit-status] 'jl/magit-status)
 #+end_src
 
+* Install YASnippet
+
+Install [[https://www.emacswiki.org/emacs/Yasnippet][YASnippet]].
+
+Snippet examples available [[https://github.com/AndreaCrotti/yasnippet-snippets/tree/master/snippets][here]].
+
+Walkthrough of using snippets available [[https://blog.alex-miller.co/emacs/spacemacs/2017/05/28/yasnippets.html][here]].
+
+#+begin_src emacs-lisp
+(use-package yasnippet
+  :config
+  (yas-global-mode))
+#+end_src
+
 * Install markdown-mode
 
 Install [[https://github.com/jrblevin/markdown-mode][markdown-mode]].
