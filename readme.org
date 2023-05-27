@@ -114,6 +114,15 @@ Add support for TODO, DOING, and DONE states when working with [[https://orgmode
         ("DONE" . "light green")
         ))
 #+end_src
+
+Enable auto-fill-mode for org-mode.
+Set ~fill-column~ to ~80~.
+
+#+begin_src emacs-lisp
+(setq fill-column 80)
+(add-hook 'org-mode-hook 'turn-on-auto-fill)
+#+end_src
+
 * Install evil
 
 See [[https://evil.readthedocs.io/en/latest/index.html][this page]] for information on how to get started with evil mode.
