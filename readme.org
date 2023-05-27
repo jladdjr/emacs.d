@@ -115,7 +115,7 @@ Add support for TODO, DOING, and DONE states when working with [[https://orgmode
         ))
 #+end_src
 
-Enable auto-fill-mode for org-mode.
+Enable [[https://www.emacswiki.org/emacs/AutoFillMode][auto-fill-mode]] for org-mode.
 Set ~fill-column~ to ~80~.
 
 #+begin_src emacs-lisp
