@@ -181,7 +181,8 @@ Walkthrough of using snippets available [[https://blog.alex-miller.co/emacs/spac
 #+begin_src emacs-lisp
 (use-package yasnippet
   :config
-  (yas-global-mode))
+  (yas-global-mode)
+  (setq yas-indent-line 'fixed))
 #+end_src
 
 * Install markdown-mode
