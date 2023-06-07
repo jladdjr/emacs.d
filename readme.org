@@ -132,7 +132,10 @@ Include org files in agenda if they are in ~\~/org/agenda~.
 
 #+begin_src emacs-lisp
 (setq org-directory (expand-file-name "~/org"))
-(setq org-agenda-files (list (expand-file-name "agenda" org-directory)))
+
+(let ((agenda-dir (expand-file-name "agenda" org-directory)))
+    (setq org-agenda-files (list agenda-dir))
+    (setq org-default-notes-file (expand-file-name "notes.org" agenda-dir)))
 #+end_src
 
 Enable [[https://www.emacswiki.org/emacs/AutoFillMode][auto-fill-mode]] for org-mode.
