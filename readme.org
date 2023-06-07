@@ -102,9 +102,13 @@ Add support for TODO, DOING, and DONE states when working with [[https://orgmode
 #+begin_src emacs-lisp
 (setq org-todo-keywords
       '((sequence
+         ;; open items
          "TODO"
          "DOING"
+         "|"  ; entries after pipe are considered completed in [%] and [/]
+         ;; closed items
          "DONE"
+         "BLOCKED"
          )))
 
 (setq org-todo-keyword-faces
@@ -112,6 +116,7 @@ Add support for TODO, DOING, and DONE states when working with [[https://orgmode
         ("TODO" . "light pink")
         ("DOING" . "yellow")
         ("DONE" . "light green")
+        ("BLOCKED" . "red")
         ))
 #+end_src
 
