@@ -558,3 +558,15 @@ apps are not started from a shell."
 
 (set-exec-path-from-shell-PATH)
 #+end_src
+* Disable auto-save files
+
+In practice, not sure that I have ever used [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Auto-Save.html][auto-save files]] to recover any data.
+And in the meantime, they can form cruft that trips up other applications working with the file tree I'm working with.
+
+Note that this does not affect [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Backup.html][backup files]]; these are not created in directories managed by a version control system.
+
+See [[https://emacshints.wordpress.com/2013/09/19/disabling-auto-save-and-backup/][this page]] for a comparison of backup and auto-save files.
+
+#+begin_src emacs-lisp
+(setq auto-save-default nil)
+#+end_src
