@@ -120,6 +120,13 @@ Add support for TODO, DOING, and DONE states when working with [[https://orgmode
         ))
 #+end_src
 
+Include org files in agenda if they are in ~\~/org/agenda~.
+
+#+begin_src emacs-lisp
+(setq org-directory (expand-file-name "~/org"))
+(setq org-agenda-files (list (expand-file-name "agenda" org-directory)))
+#+end_src
+
 Enable [[https://www.emacswiki.org/emacs/AutoFillMode][auto-fill-mode]] for org-mode.
 Set ~fill-column~ to ~80~.
 
