@@ -97,6 +97,14 @@ Allow [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html
 
 * Configure org-mode
 
+Create [[https://orgmode.org/manual/Activation.html#Activation][recommended]] keybindings for org-mode.
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-c l") #'org-store-link)
+(global-set-key (kbd "C-c a") #'org-agenda)
+(global-set-key (kbd "C-c c") #'org-capture)
+#+end_src
+
 Add support for TODO, DOING, and DONE states when working with [[https://orgmode.org/manual/TODO-Basics.html][TODO items]].
 
 #+begin_src emacs-lisp
