@@ -95,6 +95,17 @@ Allow [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html
 (put 'narrow-to-region 'disabled nil)
 #+end_src
 
+* Global Keybinding Tweaks
+
+** Replace M-x with C-m
+
+~M-x~ is frequently used, but not as convenient to enter as a Control command.
+Globally replace ~M-x~ with ~C-m~.
+
+#+begin_src emacs-lisp
+(keyboard-translate ?\C-m ?\M-x)
+#+end_src
+
 * Configure org-mode
 
 Create [[https://orgmode.org/manual/Activation.html#Activation][recommended]] keybindings for org-mode.
@@ -457,27 +468,6 @@ An overview video of multiple-cursors is available
   :init
   (global-unset-key (kbd "M-<down-mouse-1>"))
   (global-set-key (kbd "M-<mouse-1>") 'mc/add-cursor-on-click))
-#+end_src
-
-* Dvorak Tweaks
-
-** Swap C-x and C-t
-
-On a Dvorak keyboard, ~C-x~ is a stretch. Literally.
-Globally replace ~C-x~ with ~C-t~ (and vice-versa).
-
-#+begin_src emacs-lisp
-(keyboard-translate ?\C-t ?\C-x)
-(keyboard-translate ?\C-x ?\C-t)
-#+end_src
-
-** Replace M-x with C-m
-
-~M-x~ is frequently used, but not as convenient to enter as a Control command.
-Globally replace ~M-x~ with ~C-m~.
-
-#+begin_src emacs-lisp
-(keyboard-translate ?\C-m ?\M-x)
 #+end_src
 
 * Nyan-Mode
