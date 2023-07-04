@@ -23,7 +23,7 @@ fi
 # Install development version of .emacs.d
 echo "️️️️️️️🤘 Creating $HOME/.emacs.d with development files"
 mkdir $HOME/.emacs.d; 
-cp init.el readme.org $HOME/.emacs.d; 
+cp init.el readme.org jim.org steph.org $HOME/.emacs.d;
 
 echo "🎉 Installed!"; 
 echo ""

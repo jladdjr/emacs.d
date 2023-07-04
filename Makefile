@@ -8,7 +8,7 @@
 test:
 	emacs -q -l init.el
 
-# Copy the init.el and readme.org file into $HOME/.emacs.d
+# Copy the init.el, readme.org, jim.org and steph.org  files into $HOME/.emacs.d
 copy:
 	@./scripts/copy.sh
 

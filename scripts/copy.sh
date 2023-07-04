@@ -11,7 +11,7 @@ if [ -d "$HOME/.emacs.d" ]; then
 	echo "🔥 Deleting generated readme.el"
 	rm $HOME/.emacs.d/readme.el
 	echo "⏩️️️️ ️Copying development files into $HOME/.emacs.d"
-	cp init.el readme.org $HOME/.emacs.d
+	cp init.el readme.org jim.org steph.org $HOME/.emacs.d
 else
 	echo "👻 No existing $HOME/.emacs.d"
 fi 
