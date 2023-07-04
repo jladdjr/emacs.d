@@ -170,6 +170,15 @@ Taking things a step further, we also use ~with-eval-after-load~ to forcefully u
   (with-eval-after-load 'evil-maps (define-key evil-normal-state-map (kbd "C-p") 'projectile-command-map)))
 #+end_src
 
+* Install vterm
+
+Be sure to follow the [[https://github.com/akermu/emacs-libvterm#installation][installation instructions]] before using vterm.
+
+#+begin_src emacs-lisp
+(use-package vterm
+    :ensure t)
+#+end_src
+
 * Install magit
 
 We can't go anywhere without [[https://magit.vc/][Magit]]!
