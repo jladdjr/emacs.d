@@ -1,0 +1,7 @@
+# Steph's Private Emacs Configuration
+
+** Adjust Font Size
+
+#+begin_src emacs-lisp
+(set-frame-font "Menlo-20" t)
+#+end_src

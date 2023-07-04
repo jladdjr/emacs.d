@@ -1,0 +1,13 @@
+# Jim's Emacs Configuration
+
+* Dvorak Tweaks
+
+** Swap C-x and C-t
+
+On a Dvorak keyboard, ~C-x~ is a stretch. Literally.
+Globally replace ~C-x~ with ~C-t~ (and vice-versa).
+
+#+begin_src emacs-lisp
+(keyboard-translate ?\C-t ?\C-x)
+(keyboard-translate ?\C-x ?\C-t)
+#+end_src
