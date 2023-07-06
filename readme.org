@@ -176,6 +176,7 @@ Taking things a step further, we also use ~with-eval-after-load~ to forcefully u
   (evil-set-initial-state 'help-mode 'emacs)
   (evil-set-initial-state 'Info-mode 'emacs)
   (evil-set-initial-state 'ivy-occur-mode 'emacs)
+  (evil-set-undo-system 'undo-tree)
   (setq evil-want-C-i-jump nil)
   (with-eval-after-load 'evil-maps (define-key evil-motion-state-map (kbd "TAB") nil))
   (with-eval-after-load 'evil-maps (define-key evil-normal-state-map (kbd "C-p") 'projectile-command-map)))
@@ -463,6 +464,20 @@ to enable Dockerfile syntax highlighting.
 
 #+begin_src emacs-lisp
 (use-package dockerfile-mode)
+#+end_src
+
+* Install undo-tree
+
+[[https://www.emacswiki.org/emacs/UndoTree][Undo Tree]] provides a convenient tool for mapping out previous undo steps.
+It also restructures undos / redos as a tree, instead of as a linear series of events.
+
+#+begin_src emacs-lisp
+(use-package undo-tree
+  :defer t
+  :init
+  (global-undo-tree-mode)
+  :config
+  (evil-set-initial-state 'undo-tree-visualizer-mode 'emacs))
 #+end_src
 
 * Install multiple-cursors
