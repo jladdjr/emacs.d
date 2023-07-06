@@ -248,6 +248,15 @@ More information on yaml-mode is available [[https://www.emacswiki.org/emacs/Yam
   (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 #+end_src
 
+* Install typescript-mode
+
+A minimal setup for working with TypeScript.
+[[https://www.emacswiki.org/emacs/TypeScript][typescript-mode]] provides highlight modes for TypeScript.
+
+#+begin_src emacs-lisp
+(use-package typescript-mode)
+#+end_src
+
 * Install csharp-mode
 
 Installs [[https://github.com/emacs-csharp/csharp-mode][csharp-mode]].
