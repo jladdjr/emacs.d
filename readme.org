@@ -106,6 +106,14 @@ Globally replace ~M-x~ with ~C-m~.
 (keyboard-translate ?\C-m ?\M-x)
 #+end_src
 
+* Configure Dired
+
+Enabled [[https://www.emacswiki.org/emacs/DiredOmitMode][Dired Omit Mode]] to hide uninteresting files.
+
+#+begin_src emacs-lisp
+(add-hook 'dired-mode-hook (lambda () (dired-omit-mode)))
+#+end_src
+
 * Configure org-mode
 
 Create [[https://orgmode.org/manual/Activation.html#Activation][recommended]] keybindings for org-mode.
