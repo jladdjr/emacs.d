@@ -194,9 +194,15 @@ Taking things a step further, we also use ~with-eval-after-load~ to forcefully u
 
 Be sure to follow the [[https://github.com/akermu/emacs-libvterm#installation][installation instructions]] before using vterm.
 
+Start vterm-mode in Emacs mode;
+in Normal mode the user is limited to navigating a read-only buffer.
+Refer to Evil mode for an explanation of Emacs mode versus Vim modes.
+
 #+begin_src emacs-lisp
 (use-package vterm
-    :ensure t)
+  :ensure t
+  :config
+  (evil-set-initial-state 'vterm-mode 'emacs))
 #+end_src
 
 * Install magit
