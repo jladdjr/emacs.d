@@ -547,6 +547,45 @@ check out [[https://stackoverflow.com/questions/6464738/how-can-i-switch-focus-a
 (global-set-key "\C-x3" (lambda () (interactive)(split-window-right) (other-window 1)))
 #+end_src
 
+* Adjust Font Size for Frame
+
+Add convenience functions (and keybindings) for adjusting font size of
+entire frame while preserving frame's dimensions.
+
+Use ~C-x C-=~ to increase font size.
+Use ~C-x C--~ to decrease font size.
+
+Use ~C-u <number>~ before using either of the previous chords
+to set how much to increment / decrement font size.
+
+Alternatively, ~C-x z~ ([[https://www.gnu.org/software/emacs/manual/html_node/emacs/Repeating.html][repeat]]) can be used to repeat the previous command.
+Hitting ~z~ after the initial call to ~C-x z~ can be used as a
+shortcut for quickly repeating the previous command.
+
+#+begin_src emacs-lisp
+; Resize the whole frame, and not only a window
+;; Adapted from:
+;; https://stackoverflow.com/questions/24705984/increase-decrease-font-size-in-an-emacs-frame-not-just-buffer
+(defun jl/zoom-frame (&optional amt frame)
+  "Increaze FRAME font size by amount AMT. Defaults to selected
+frame if FRAME is nil, and to 1 if AMT is nil."
+  (interactive "p")
+  (let* ((frame (or frame (selected-frame)))
+         (font (face-attribute 'default :font frame))
+         (size (font-get font :size))
+         (amt (or amt 1))
+         (new-size (+ size amt)))
+    (set-frame-font (font-spec :size new-size) t `(,frame))
+    (message "Frame's font new size: %d" new-size)))
+
+(defun jl/zoom-frame-out (&optional amt frame)
+  "Call `jl/zoom-frame' with negative argument."
+  (interactive "p")
+  (jl/zoom-frame (- (or amt 1)) frame))
+
+(global-set-key (kbd "C-x C-=") 'jl/zoom-frame)
+(global-set-key (kbd "C-x C--") 'jl/zoom-frame-out)
+#+end_src
 * Configure mode line
 
 The default mode line is long and gets cut off when the frame is split.
