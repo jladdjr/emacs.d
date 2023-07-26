@@ -573,6 +573,7 @@ frame if FRAME is nil, and to 1 if AMT is nil."
   (let* ((frame (or frame (selected-frame)))
          (font (face-attribute 'default :font frame))
          (size (font-get font :size))
+         (size (if (eq size 0) 12 size))  ; hack to avoid case where font-get returns size of 0 on macs
          (amt (or amt 1))
          (new-size (+ size amt)))
     (set-frame-font (font-spec :size new-size) t `(,frame))
