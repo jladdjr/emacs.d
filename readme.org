@@ -403,7 +403,6 @@ Adopting suggested keybindings from [[https://oremacs.com/swiper/#global-key-bin
 #+begin_src emacs-lisp
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 (global-set-key (kbd "C-c b") 'counsel-bookmark)
-(global-set-key (kbd "C-c d") 'counsel-descbinds)
 (global-set-key (kbd "C-c g") 'counsel-git)
 (global-set-key (kbd "C-c o") 'counsel-outline)
 (global-set-key (kbd "C-c t") 'counsel-load-theme)
@@ -469,6 +468,16 @@ Use base16-eighties from the [[https://github.com/tinted-theming/base16-emacs][b
 #+begin_src emacs-lisp
 (use-package base16-theme
     :config (load-theme 'base16-eighties t))
+#+end_src
+
+* Install docker.el
+
+[[https://github.com/Silex/docker.el][docker.el]] provides support for managing docker containers, images, volumes, networks, contexts and docker-compose.
+
+#+begin_src emacs-lisp
+  (use-package docker
+  :ensure t
+  :bind ("C-c d" . docker))
 #+end_src
 
 * Install dockerfile-mode
