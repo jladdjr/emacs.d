@@ -228,6 +228,16 @@ Make the Magit status window the only window in view when it opens.
 (define-key (current-global-map) [remap magit-status] 'jl/magit-status)
 #+end_src
 
+* Install Git time machine
+
+[[https://github.com/emacsmirror/git-timemachine][Git time machine]] looks like a very useful way of walking through a file's version history.
+
+#+begin_src emacs-lisp
+(use-package git-timemachine
+  :config
+  (evil-set-initial-state 'git-timemachine-mode 'emacs))
+#+end_src
+
 * Install YASnippet
 
 Install [[https://www.emacswiki.org/emacs/Yasnippet][YASnippet]].
