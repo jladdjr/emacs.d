@@ -165,6 +165,21 @@ Set ~fill-column~ to ~80~.
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
 #+end_src
 
+Add support for links that open PDFs to a given page.
+(Retrieved from [[https://emacs.stackexchange.com/a/52920][this emacs.stackexchange.com answer]] on 2023-08-11).
+
+#+begin_src emacs-lisp
+(defun org-pdf-open (link)
+  "Where page number is 105, the link should look like:
+   [[pdf:/path/to/file.pdf#page=105][My description.]]"
+  (let* ((path+page (split-string link "#page="))
+         (pdf-file (car path+page))
+         (page (car (cdr path+page))))
+    (start-process "view-pdf" nil "evince" "--page-index" page pdf-file)))
+
+(org-add-link-type "pdf" 'org-pdf-open nil)
+#+end_src
+
 * Install evil
 
 See [[https://evil.readthedocs.io/en/latest/index.html][this page]] for information on how to get started with evil mode.
