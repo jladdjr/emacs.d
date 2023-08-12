@@ -1,4 +1,3 @@
-; -*- mode:org -*-
 #+STARTUP: OVERVIEW
 
 * Introduction
