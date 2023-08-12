@@ -1,3 +1,6 @@
+; -*- mode:org -*-
+#+STARTUP: OVERVIEW
+
 * Introduction
 
 * Bootstrap Package Manager
