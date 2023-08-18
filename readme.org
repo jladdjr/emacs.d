@@ -307,7 +307,8 @@ Install [[https://github.com/json-emacs/json-mode][json-mode]].
 Install [[https://github.com/DamienCassou/json-navigator][json-navigator]].
 
 #+begin_src emacs-lisp
-(use-package json-navigator)
+(use-package json-navigator
+  :requires hierarchy)
 #+end_src
 * Install typescript-mode
 
