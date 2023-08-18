@@ -319,7 +319,12 @@ there was the following definition:
 Deleting this file cleared up the errors I was seeing.
 
 The hierarchy package became a part of Emacs core, so dependency
-definitions like this should eventually be purged.
+definitions like this should eventually be purged
+or marked as only applying to older versions of Emacs.
+
+More specifically, it seems like [[https://github.com/melpa/melpa/blob/master/recipes/hierarchy][this recipe for hierarchy]]
+should either be removed or marked as only applying to older versions
+of Emacs.
 
 #+begin_src emacs-lisp
 (use-package json-navigator
