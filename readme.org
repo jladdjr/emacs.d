@@ -306,6 +306,21 @@ Install [[https://github.com/json-emacs/json-mode][json-mode]].
 
 Install [[https://github.com/DamienCassou/json-navigator][json-navigator]].
 
+Note:
+If Emacs complains about a void variable while trying to load the hierarchy package,
+it is likely due to a [[https://github.com/ahungry/md4rd/issues/32#issuecomment-1469697100][dependency pointing to the old version of hierarchy]].
+
+In my case, I noticed that in
+~.emacs.d/straight/repos/melpa/recipes/hierarchy~,
+there was the following definition:
+
+~(hierarchy :fetcher github :repo "DamienCassou/hierarchy")~.
+
+Deleting this file cleared up the errors I was seeing.
+
+The hierarchy package became a part of Emacs core, so dependency
+definitions like this should eventually be purged.
+
 #+begin_src emacs-lisp
 (use-package json-navigator
   :requires hierarchy)
