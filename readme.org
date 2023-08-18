@@ -294,6 +294,21 @@ More information on yaml-mode is available [[https://www.emacswiki.org/emacs/Yam
   (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 #+end_src
 
+* Install json-mode
+
+Install [[https://github.com/json-emacs/json-mode][json-mode]].
+
+#+begin_src emacs-lisp
+(use-package json-mode)
+#+end_src
+
+* Install json-navigator
+
+Install [[https://github.com/DamienCassou/json-navigator][json-navigator]].
+
+#+begin_src emacs-lisp
+(use-package json-navigator)
+#+end_src
 * Install typescript-mode
 
 A minimal setup for working with TypeScript.
