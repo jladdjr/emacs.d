@@ -453,12 +453,12 @@ Adopting suggested keybindings from [[https://oremacs.com/swiper/#global-key-bin
 
 Remap ~C-r~ to ~swiper-isearch-backward~.
 
-_Note_
+Note:
 
-/Attempting to remap ~C-r~ using ~global-set-key~ had no effect.
+Attempting to remap ~C-r~ using ~global-set-key~ had no effect.
 For now, going with [[https://stackoverflow.com/a/44480586][this approach]]
 where the change is applied specifically to ~evil-normal-state-map~.
-There is likely a better approach (as suggested [[https://stackoverflow.com/questions/44480585/how-to-rebind-c-r-undo-tree-redo-in-emacs-with-evil-mode#comment75966087_44480586][here]])./
+There is likely a better approach (as suggested [[https://stackoverflow.com/questions/44480585/how-to-rebind-c-r-undo-tree-redo-in-emacs-with-evil-mode#comment75966087_44480586][here]]).
 
 #+begin_src emacs-lisp
 (define-key evil-normal-state-map (kbd "C-r") 'swiper-isearch-backward)
