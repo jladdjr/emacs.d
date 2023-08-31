@@ -207,6 +207,53 @@ Taking things a step further, we also use ~with-eval-after-load~ to forcefully u
   (with-eval-after-load 'evil-maps (define-key evil-normal-state-map (kbd "C-p") 'projectile-command-map)))
 #+end_src
 
+* Install Hydra
+Collapse a series of keybindings into single keystrokes using [[https://github.com/abo-abo/hydra][Hydra]].
+
+Note that the [[https://github.com/abo-abo/hydra#color][:color]] key has a special meaning with hydras;
+red hydra heads do not exit,
+whereas blue hydra heads exit after executing their action.
+
+In the snippet below, all heads are red by default,
+but the ~C-w~ head is marked as blue.
+So to exit the hydra, the user can press ~C-w~.
+
+#+begin_src emacs-lisp
+(use-package hydra)
+
+; From https://blog.genenakagaki.com/en/my-emacs-life-is-better-with-hydra.html
+(defhydra hydra-window (global-map "C-c w" :color red)
+  "
+| Navigation^^      | Placement^^         | Create, Delete^^          | Adjustment^^         |
+|^^-----------------+^^-------------------+^^-------------------------+^^--------------------|
+| _h_: go left      | _H_: move to left   | _v_: split vertically     | _=_: balance windows |
+| _j_: go down      | _J_: move to bottom | _s_: split horizontally   | _+_: increase height |
+| _k_: go up        | _K_: move to top    | _q_: delete window        | _-_: decrease height |
+| _l_: go right     | _L_: move to right  | _Q_: delete other windows | _>_: increase width  |
+| _w_: go to next   | ^^                  | ^^                        | _<_: decrease width  |
+| _C-w_: go to next | ^^                  | ^^                        | ^^                   |
+"
+  ("+"   evil-window-increase-height)
+  ("-"   evil-window-decrease-height)
+  ("<"   evil-window-decrease-width)
+  (">"   evil-window-increase-width)
+  ("="   balance-windows)
+  ("C-w" evil-window-next nil :color blue)
+  ("H"   evil-window-move-far-left)
+  ("J"   evil-window-move-very-bottom)
+  ("K"   evil-window-move-very-top)
+  ("L"   evil-window-move-far-right)
+  ("h"   evil-window-left)
+  ("j"   evil-window-down)
+  ("k"   evil-window-up)
+  ("l"   evil-window-right)
+  ("q"   evil-window-delete)
+  ("Q"   delete-other-windows)
+  ("s"   evil-window-split)
+  ("v"   evil-window-vsplit)
+  ("w"   evil-window-next))
+#+end_src
+
 * Install vterm
 
 Be sure to follow the [[https://github.com/akermu/emacs-libvterm#installation][installation instructions]] before using vterm.
