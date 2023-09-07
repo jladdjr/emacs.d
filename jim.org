@@ -16,6 +16,7 @@ Globally replace ~C-x~ with ~C-t~ (and vice-versa).
 
 Enable Nerd Font for all frames.
 Attempt to preserve size of window when applying new font.
+
 Ignore any errors that occur (e.g. if font cannot be found).
 
 #+begin_src emacs-lisp
