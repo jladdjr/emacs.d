@@ -11,3 +11,14 @@ Globally replace ~C-x~ with ~C-t~ (and vice-versa).
 (keyboard-translate ?\C-t ?\C-x)
 (keyboard-translate ?\C-x ?\C-t)
 #+end_src
+
+** Enable Nerd Font
+
+Enable Nerd Font for all frames.
+Attempt to preserve size of window when applying new font.
+Ignore any errors that occur (e.g. if font cannot be found).
+
+#+begin_src emacs-lisp
+(ignore-errors
+  (set-frame-font "FiraMono Nerd Font Mono-14" t t))
+#+end_src
