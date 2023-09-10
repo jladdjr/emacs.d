@@ -36,8 +36,8 @@
                          "lisp" (expand-file-name
                                  "contrib" (expand-file-name
                                             ".." org-dir)))))
-       (add-to-list 'load-path org-dir)
-       (add-to-list 'load-path org-contrib-dir)
+  (add-to-list 'load-path org-dir)
+  (add-to-list 'load-path org-contrib-dir)
   ;; load up Org and Org-babel
   (require 'org)
   (require 'ob-tangle))
