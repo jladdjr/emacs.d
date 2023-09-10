@@ -274,12 +274,9 @@ Note that ~C-x g~ will still map to ~jl/magit-status~ (a wrapper for ~magit-stat
 
 Install [[https://www.orgroam.com/manual.html][Org-roam]].
 
-Note that we will first need to ensure that we are using the built-in version of org,
-otherwise we can run into [[https://emacs.stackexchange.com/a/73429][issues]].
-
-#+begin_src emacs-lisp
-(use-package org :straight (:type built-in))
-#+end_src
+Be aware that Org-roam tends to assume that
+newer versions of Emacs packages are installed
+(e.g. org-mode, magit).
 
 #+begin_src emacs-lisp
 (use-package org-roam
