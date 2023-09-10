@@ -11,26 +11,26 @@ See [[https://jeffkreeftmeijer.com/emacs-straight-use-package/][this article]] f
 ** Bootstrap straight
 
 #+begin_src emacs-lisp
-(message "bootstrapping straight.el")
+  (message "bootstrapping straight.el")
 
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 6))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
+  (defvar bootstrap-version)
+  (let ((bootstrap-file
+         (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+        (bootstrap-version 6))
+    (unless (file-exists-p bootstrap-file)
+      (with-current-buffer
+          (url-retrieve-synchronously
+           "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+           'silent 'inhibit-cookies)
+        (goto-char (point-max))
+        (eval-print-last-sexp)))
+    (load bootstrap-file nil 'nomessage))
 #+end_src
 
 ** Disable package.el in favor of straight.el
 
 #+begin_src emacs-lisp
-(setq package-enable-at-startup nil)
+  (setq package-enable-at-startup nil)
 #+end_src
 
 ** Install use-package
@@ -38,20 +38,20 @@ See [[https://jeffkreeftmeijer.com/emacs-straight-use-package/][this article]] f
 use-package allows for you to install and configure a package in one step.
 
 #+begin_src emacs-lisp
-(straight-use-package 'use-package)
+  (straight-use-package 'use-package)
 #+end_src
 
 *** Configure use-package to use straight.el by default
 
 #+begin_src emacs-lisp
-(use-package straight
-    :custom (straight-use-package-by-default t))
+  (use-package straight
+      :custom (straight-use-package-by-default t))
 #+end_src
 
 Now in order to install a package, all we need to do is:
 
 #+begin_src emacs-lisp
-; (use-package evil-commentary)
+  ; (use-package evil-commentary)
 #+end_src
 
 There are options for configuring packages with straight.el, too:
@@ -69,9 +69,9 @@ Add [[https://melpa.org/#/][Milkypostman's Emacs Lisp Package Archive (MELPA)]] 
 This was first introduced in order to install [[https://www.orgroam.com/manual.html#A-Brief-Introduction-to-the-Zettelkasten-Method][Org-roam]].
 
 #+begin_src emacs-lisp
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/") t)
+  (require 'package)
+  (add-to-list 'package-archives
+               '("melpa" . "http://melpa.org/packages/") t)
 #+end_src
 
 * Global Preferences
@@ -80,9 +80,9 @@ This was first introduced in order to install [[https://www.orgroam.com/manual.h
 Disable GUI elements. Will rely on key bindings.
 
 #+begin_src emacs-lisp
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
-(menu-bar-mode -1)
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  (menu-bar-mode -1)
 #+end_src
 
 ** Disable tabs
@@ -90,23 +90,23 @@ Disable GUI elements. Will rely on key bindings.
 Never, ever use [[https://www.emacswiki.org/emacs/IndentationBasics#h5o-1][tabs]].
 
 #+begin_src emacs-lisp
-(setq-default indent-tabs-mode nil)
+  (setq-default indent-tabs-mode nil)
 #+end_src
 
 ** Misc
 
 #+begin_src emacs-lisp
-(show-paren-mode 1)
-(setq initial-scratch-message nil)
-(setq confirm-kill-emacs 'y-or-n-p)
-(setq inhibit-startup-message t)
-(setq initial-scratch-message "")
+  (show-paren-mode 1)
+  (setq initial-scratch-message nil)
+  (setq confirm-kill-emacs 'y-or-n-p)
+  (setq inhibit-startup-message t)
+  (setq initial-scratch-message "")
 #+end_src
 
 Allow [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html][narrowing]] to a region (~C-x n n~)
 
 #+begin_src emacs-lisp
-(put 'narrow-to-region 'disabled nil)
+  (put 'narrow-to-region 'disabled nil)
 #+end_src
 
 * Global Keybinding Tweaks
@@ -117,7 +117,7 @@ Allow [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html
 Globally replace ~M-x~ with ~C-m~.
 
 #+begin_src emacs-lisp
-(keyboard-translate ?\C-m ?\M-x)
+  (keyboard-translate ?\C-m ?\M-x)
 #+end_src
 
 * Configure Dired
@@ -125,7 +125,7 @@ Globally replace ~M-x~ with ~C-m~.
 Enabled [[https://www.emacswiki.org/emacs/DiredOmitMode][Dired Omit Mode]] to hide uninteresting files.
 
 #+begin_src emacs-lisp
-(add-hook 'dired-mode-hook (lambda () (dired-omit-mode)))
+  (add-hook 'dired-mode-hook (lambda () (dired-omit-mode)))
 #+end_src
 
 * Configure org-mode
@@ -133,65 +133,65 @@ Enabled [[https://www.emacswiki.org/emacs/DiredOmitMode][Dired Omit Mode]] to hi
 Create [[https://orgmode.org/manual/Activation.html#Activation][recommended]] keybindings for org-mode.
 
 #+begin_src emacs-lisp
-(global-set-key (kbd "C-c l") #'org-store-link)
-(global-set-key (kbd "C-c a") #'org-agenda)
-(global-set-key (kbd "C-c c") #'org-capture)
+  (global-set-key (kbd "C-c l") #'org-store-link)
+  (global-set-key (kbd "C-c a") #'org-agenda)
+  (global-set-key (kbd "C-c c") #'org-capture)
 #+end_src
 
 Add support for TODO, DOING, and DONE states when working with [[https://orgmode.org/manual/TODO-Basics.html][TODO items]].
 
 #+begin_src emacs-lisp
-(setq org-todo-keywords
-      '((sequence
-         ;; open items
-         "TODO"
-         "DOING"
-         "|"  ; entries after pipe are considered completed in [%] and [/]
-         ;; closed items
-         "DONE"
-         "BLOCKED"
-         )))
+  (setq org-todo-keywords
+        '((sequence
+           ;; open items
+           "TODO"
+           "DOING"
+           "|"  ; entries after pipe are considered completed in [%] and [/]
+           ;; closed items
+           "DONE"
+           "BLOCKED"
+           )))
 
-(setq org-todo-keyword-faces
-      '(
-        ("TODO" . "light pink")
-        ("DOING" . "yellow")
-        ("DONE" . "light green")
-        ("BLOCKED" . "red")
-        ))
+  (setq org-todo-keyword-faces
+        '(
+          ("TODO" . "light pink")
+          ("DOING" . "yellow")
+          ("DONE" . "light green")
+          ("BLOCKED" . "red")
+          ))
 #+end_src
 
 Include org files in agenda if they are in ~\~/org/agenda~.
 
 #+begin_src emacs-lisp
-(setq org-directory (expand-file-name "~/org"))
+  (setq org-directory (expand-file-name "~/org"))
 
-(let ((agenda-dir (expand-file-name "agenda" org-directory)))
-    (setq org-agenda-files (list agenda-dir))
-    (setq org-default-notes-file (expand-file-name "notes.org" agenda-dir)))
+  (let ((agenda-dir (expand-file-name "agenda" org-directory)))
+      (setq org-agenda-files (list agenda-dir))
+      (setq org-default-notes-file (expand-file-name "notes.org" agenda-dir)))
 #+end_src
 
 Enable [[https://www.emacswiki.org/emacs/AutoFillMode][auto-fill-mode]] for org-mode.
 Set ~fill-column~ to ~80~.
 
 #+begin_src emacs-lisp
-(setq fill-column 80)
-(add-hook 'org-mode-hook 'turn-on-auto-fill)
+  (setq fill-column 80)
+  (add-hook 'org-mode-hook 'turn-on-auto-fill)
 #+end_src
 
 Add support for links that open PDFs to a given page.
 (Retrieved from [[https://emacs.stackexchange.com/a/52920][this emacs.stackexchange.com answer]] on 2023-08-11).
 
 #+begin_src emacs-lisp
-(defun org-pdf-open (link)
-  "Where page number is 105, the link should look like:
-   [[pdf:/path/to/file.pdf#page=105][My description.]]"
-  (let* ((path+page (split-string link "#page="))
-         (pdf-file (car path+page))
-         (page (car (cdr path+page))))
-    (start-process "view-pdf" nil "evince" "--page-index" page pdf-file)))
+  (defun org-pdf-open (link)
+    "Where page number is 105, the link should look like:
+     [[pdf:/path/to/file.pdf#page=105][My description.]]"
+    (let* ((path+page (split-string link "#page="))
+           (pdf-file (car path+page))
+           (page (car (cdr path+page))))
+      (start-process "view-pdf" nil "evince" "--page-index" page pdf-file)))
 
-(org-add-link-type "pdf" 'org-pdf-open nil)
+  (org-add-link-type "pdf" 'org-pdf-open nil)
 #+end_src
 
 * Install evil
@@ -207,16 +207,16 @@ Taking things a step further, we also use ~with-eval-after-load~ to forcefully u
 (Found this approach [[https://github.com/emacs-evil/evil/issues/1604][here]].)
 
 #+begin_src emacs-lisp
-(use-package evil
-  :config
-  (evil-mode)
-  (evil-set-initial-state 'help-mode 'emacs)
-  (evil-set-initial-state 'Info-mode 'emacs)
-  (evil-set-initial-state 'ivy-occur-mode 'emacs)
-  (evil-set-undo-system 'undo-tree)
-  (setq evil-want-C-i-jump nil)
-  (with-eval-after-load 'evil-maps (define-key evil-motion-state-map (kbd "TAB") nil))
-  (with-eval-after-load 'evil-maps (define-key evil-normal-state-map (kbd "C-p") 'projectile-command-map)))
+  (use-package evil
+    :config
+    (evil-mode)
+    (evil-set-initial-state 'help-mode 'emacs)
+    (evil-set-initial-state 'Info-mode 'emacs)
+    (evil-set-initial-state 'ivy-occur-mode 'emacs)
+    (evil-set-undo-system 'undo-tree)
+    (setq evil-want-C-i-jump nil)
+    (with-eval-after-load 'evil-maps (define-key evil-motion-state-map (kbd "TAB") nil))
+    (with-eval-after-load 'evil-maps (define-key evil-normal-state-map (kbd "C-p") 'projectile-command-map)))
 #+end_src
 
 * Install vterm
@@ -228,10 +228,10 @@ in Normal mode the user is limited to navigating a read-only buffer.
 Refer to Evil mode for an explanation of Emacs mode versus Vim modes.
 
 #+begin_src emacs-lisp
-(use-package vterm
-  :ensure t
-  :config
-  (evil-set-initial-state 'vterm-mode 'emacs))
+  (use-package vterm
+    :ensure t
+    :config
+    (evil-set-initial-state 'vterm-mode 'emacs))
 #+end_src
 
 * Install magit
@@ -241,20 +241,20 @@ We can't go anywhere without [[https://magit.vc/][Magit]]!
 Include a hook that drops the user into emacs mode when prompted for a Git commit message.
 
 #+begin_src emacs-lisp
-(use-package magit
-  :config
-  (add-hook 'git-commit-mode-hook 'evil-emacs-state))
+  (use-package magit
+    :config
+    (add-hook 'git-commit-mode-hook 'evil-emacs-state))
 #+end_src
 
 Make the Magit status window the only window in view when it opens.
 
 #+begin_src emacs-lisp
-(defun jl/magit-status ()
-  "Open magit-status window by itself"
-  (interactive)
-  (magit-status)
-  (delete-other-windows))
-(define-key (current-global-map) [remap magit-status] 'jl/magit-status)
+  (defun jl/magit-status ()
+    "Open magit-status window by itself"
+    (interactive)
+    (magit-status)
+    (delete-other-windows))
+  (define-key (current-global-map) [remap magit-status] 'jl/magit-status)
 #+end_src
 
 * Install Git time machine
@@ -265,10 +265,10 @@ Map ~git-timemachine-toggle~ to ~C-x G~.
 Note that ~C-x g~ will still map to ~jl/magit-status~ (a wrapper for ~magit-status~).
 
 #+begin_src emacs-lisp
-(use-package git-timemachine
-  :config
-  (evil-set-initial-state 'git-timemachine-mode 'emacs)
-  (global-set-key (kbd "C-x G") 'git-timemachine-toggle))
+  (use-package git-timemachine
+    :config
+    (evil-set-initial-state 'git-timemachine-mode 'emacs)
+    (global-set-key (kbd "C-x G") 'git-timemachine-toggle))
 #+end_src
 
 * Install org-roam
@@ -316,10 +316,10 @@ Snippet examples available [[https://github.com/AndreaCrotti/yasnippet-snippets/
 Walkthrough of using snippets available [[https://blog.alex-miller.co/emacs/spacemacs/2017/05/28/yasnippets.html][here]].
 
 #+begin_src emacs-lisp
-(use-package yasnippet
-  :config
-  (yas-global-mode)
-  (setq yas-indent-line 'fixed))
+  (use-package yasnippet
+    :config
+    (yas-global-mode)
+    (setq yas-indent-line 'fixed))
 #+end_src
 
 * Install markdown-mode
@@ -327,7 +327,7 @@ Walkthrough of using snippets available [[https://blog.alex-miller.co/emacs/spac
 Install [[https://github.com/jrblevin/markdown-mode][markdown-mode]].
 
 #+begin_src emacs-lisp
-(use-package markdown-mode)
+  (use-package markdown-mode)
 #+end_src
 
 * Install yaml-mode
@@ -337,9 +337,9 @@ Install [[https://github.com/yoshiki/yaml-mode][yaml-mode]].
 More information on yaml-mode is available [[https://www.emacswiki.org/emacs/YamlMode][here]].
 
 #+begin_src emacs-lisp
-(use-package yaml-mode
-  :config
-  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
+  (use-package yaml-mode
+    :config
+    (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 #+end_src
 
 * Install json-mode
@@ -347,7 +347,7 @@ More information on yaml-mode is available [[https://www.emacswiki.org/emacs/Yam
 Install [[https://github.com/json-emacs/json-mode][json-mode]].
 
 #+begin_src emacs-lisp
-(use-package json-mode)
+  (use-package json-mode)
 #+end_src
 
 * Install json-navigator
@@ -375,8 +375,8 @@ should either be removed or marked as only applying to older versions
 of Emacs.
 
 #+begin_src emacs-lisp
-(use-package json-navigator
-  :requires hierarchy)
+  (use-package json-navigator
+    :requires hierarchy)
 #+end_src
 * Install typescript-mode
 
@@ -384,7 +384,7 @@ A minimal setup for working with TypeScript.
 [[https://www.emacswiki.org/emacs/TypeScript][typescript-mode]] provides highlight modes for TypeScript.
 
 #+begin_src emacs-lisp
-(use-package typescript-mode)
+  (use-package typescript-mode)
 #+end_src
 
 * Install csharp-mode
@@ -396,7 +396,7 @@ Once Emacs 29 is generally available in most package managers,
 this should be dropped.
 
 #+begin_src emacs-lisp
-(use-package csharp-mode)
+  (use-package csharp-mode)
 #+end_src
 
 * Install groovy-mode
@@ -404,7 +404,7 @@ this should be dropped.
 Installs [[https://github.com/Groovy-Emacs-Modes/groovy-emacs-modes][groovy-mode]].
 
 #+begin_src emacs-lisp
-(use-package groovy-mode)
+  (use-package groovy-mode)
 #+end_src
 
 * Install perspective
@@ -419,13 +419,13 @@ Key Perspective commands are outlined [[https://github.com/nex3/perspective-el#u
 The Perspective prefix key is set to ~C-c~ ~C-z~ below.
 
 #+begin_src emacs-lisp
-(use-package perspective
-  :custom
-  (persp-mode-prefix-key (kbd "C-c C-z"))
-  :init
-  (persp-mode)
-  :config
-  (setq persp-state-default-file "~/.emacs.d/persp-"))
+  (use-package perspective
+    :custom
+    (persp-mode-prefix-key (kbd "C-c C-z"))
+    :init
+    (persp-mode)
+    :config
+    (setq persp-state-default-file "~/.emacs.d/persp-"))
 #+end_src
 
 * Install projectile
@@ -438,14 +438,14 @@ We map this in ~evil-normal-state-map~ specifically so that ~C-f~ is not shadowe
 where it is less likely to be used anyways.
 
 #+begin_src emacs-lisp
-(use-package projectile
-  :init
-  (setq projectile-project-search-path '("~/git/" "~/org/" "~/.emacs.d"))
-  (projectile-mode)
-  (with-eval-after-load 'evil-maps (define-key evil-normal-state-map (kbd "C-f") 'projectile-find-file))
-  :bind
-  (:map projectile-command-map
-    ("s s" . (lambda () (interactive) (call-interactively 'projectile-ag) (other-window 1)))))
+  (use-package projectile
+    :init
+    (setq projectile-project-search-path '("~/git/" "~/org/" "~/.emacs.d"))
+    (projectile-mode)
+    (with-eval-after-load 'evil-maps (define-key evil-normal-state-map (kbd "C-f") 'projectile-find-file))
+    :bind
+    (:map projectile-command-map
+      ("s s" . (lambda () (interactive) (call-interactively 'projectile-ag) (other-window 1)))))
 #+end_src
 
 Install the ag package as well so that projectile can make ag searches.
@@ -461,19 +461,19 @@ that automatically switches us over to the other window.
 using projectile variables or function arguments).
 
 #+begin_src emacs-lisp
-(use-package ag
-  :init
-  (with-eval-after-load 'evil-maps (define-key evil-normal-state-map (kbd "C-n") (lambda () (interactive) (call-interactively 'projectile-ag) (other-window 1)))))
+  (use-package ag
+    :init
+    (with-eval-after-load 'evil-maps (define-key evil-normal-state-map (kbd "C-n") (lambda () (interactive) (call-interactively 'projectile-ag) (other-window 1)))))
 #+end_src
 
 * Install counsel, ivy, swiper
 
 #+begin_src emacs-lisp
-(use-package counsel
-  :config
-  (ivy-mode 1)
-  (setq ivy-use-virtual-buffers t)
-  (setq ivy-count-format "(%d/%d) "))
+  (use-package counsel
+    :config
+    (ivy-mode 1)
+    (setq ivy-use-virtual-buffers t)
+    (setq ivy-count-format "(%d/%d) "))
 #+end_src
 
 ** Add Keybindings
@@ -483,20 +483,20 @@ using projectile variables or function arguments).
 Adopting suggested keybindings from [[https://oremacs.com/swiper/#global-key-bindings][here]].
 
 #+begin_src emacs-lisp
-(global-set-key (kbd "C-s") 'swiper-isearch)
-(global-set-key (kbd "C-r") 'swiper-isearch-backward)
-(global-set-key (kbd "M-x") 'counsel-M-x)
-(global-set-key (kbd "C-x C-f") 'counsel-find-file)
-(global-set-key (kbd "M-y") 'counsel-yank-pop)
-(global-set-key (kbd "<f1> f") 'counsel-describe-function)
-(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-(global-set-key (kbd "<f1> l") 'counsel-find-library)
-(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-(global-set-key (kbd "<f2> j") 'counsel-set-variable)
-(global-set-key (kbd "C-x b") 'ivy-switch-buffer)
-(global-set-key (kbd "C-c v") 'ivy-push-view)
-(global-set-key (kbd "C-c V") 'ivy-pop-view)
+  (global-set-key (kbd "C-s") 'swiper-isearch)
+  (global-set-key (kbd "C-r") 'swiper-isearch-backward)
+  (global-set-key (kbd "M-x") 'counsel-M-x)
+  (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+  (global-set-key (kbd "M-y") 'counsel-yank-pop)
+  (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+  (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+  (global-set-key (kbd "<f1> l") 'counsel-find-library)
+  (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+  (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+  (global-set-key (kbd "<f2> j") 'counsel-set-variable)
+  (global-set-key (kbd "C-x b") 'ivy-switch-buffer)
+  (global-set-key (kbd "C-c v") 'ivy-push-view)
+  (global-set-key (kbd "C-c V") 'ivy-pop-view)
 #+end_src
 
 Remap ~C-r~ to ~swiper-isearch-backward~.
@@ -509,33 +509,33 @@ where the change is applied specifically to ~evil-normal-state-map~.
 There is likely a better approach (as suggested [[https://stackoverflow.com/questions/44480585/how-to-rebind-c-r-undo-tree-redo-in-emacs-with-evil-mode#comment75966087_44480586][here]]).
 
 #+begin_src emacs-lisp
-(define-key evil-normal-state-map (kbd "C-r") 'swiper-isearch-backward)
+  (define-key evil-normal-state-map (kbd "C-r") 'swiper-isearch-backward)
 #+end_src
 
 *** Ivy-based interface to standard commands
 
 #+begin_src emacs-lisp
-(global-set-key (kbd "C-c g") 'counsel-git)
-(global-set-key (kbd "C-c j") 'counsel-git-grep)
-(global-set-key (kbd "C-c L") 'counsel-git-log)
-(global-set-key (kbd "C-c k") 'counsel-rg)
-(global-set-key (kbd "C-c m") 'counsel-linux-app)
-(global-set-key (kbd "C-c f") 'counsel-fzf)
-(global-set-key (kbd "C-x l") 'counsel-locate)
-(global-set-key (kbd "C-c J") 'counsel-file-jump)
-(global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
-(global-set-key (kbd "C-c w") 'counsel-wmctrl)
+  (global-set-key (kbd "C-c g") 'counsel-git)
+  (global-set-key (kbd "C-c j") 'counsel-git-grep)
+  (global-set-key (kbd "C-c L") 'counsel-git-log)
+  (global-set-key (kbd "C-c k") 'counsel-rg)
+  (global-set-key (kbd "C-c m") 'counsel-linux-app)
+  (global-set-key (kbd "C-c f") 'counsel-fzf)
+  (global-set-key (kbd "C-x l") 'counsel-locate)
+  (global-set-key (kbd "C-c J") 'counsel-file-jump)
+  (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+  (global-set-key (kbd "C-c w") 'counsel-wmctrl)
 #+end_src
 
 *** Ivy-based interface to standard commands
 
 #+begin_src emacs-lisp
-(global-set-key (kbd "C-c C-r") 'ivy-resume)
-(global-set-key (kbd "C-c b") 'counsel-bookmark)
-(global-set-key (kbd "C-c g") 'counsel-git)
-(global-set-key (kbd "C-c o") 'counsel-outline)
-(global-set-key (kbd "C-c t") 'counsel-load-theme)
-(global-set-key (kbd "C-c F") 'counsel-org-file)
+  (global-set-key (kbd "C-c C-r") 'ivy-resume)
+  (global-set-key (kbd "C-c b") 'counsel-bookmark)
+  (global-set-key (kbd "C-c g") 'counsel-git)
+  (global-set-key (kbd "C-c o") 'counsel-outline)
+  (global-set-key (kbd "C-c t") 'counsel-load-theme)
+  (global-set-key (kbd "C-c F") 'counsel-org-file)
 #+end_src
 
 * Install avy
@@ -543,10 +543,10 @@ There is likely a better approach (as suggested [[https://stackoverflow.com/ques
 [[https://github.com/abo-abo/avy][Avy]] provides an efficient, character / tree-based approach to jumping to a line or matching substring.
 
 #+begin_src emacs-lisp
-(use-package avy
-  :config
-  (global-set-key (kbd "C-l") 'avy-goto-line)
-  (global-set-key (kbd "M-l") 'avy-goto-char-timer))
+  (use-package avy
+    :config
+    (global-set-key (kbd "C-l") 'avy-goto-line)
+    (global-set-key (kbd "M-l") 'avy-goto-char-timer))
 #+end_src
 
 * Install Hydra
@@ -561,39 +561,39 @@ but the ~C-w~ head is marked as blue.
 So to exit the hydra, the user can press ~C-w~.
 
 #+begin_src emacs-lisp
-(use-package hydra)
+  (use-package hydra)
 
-; From https://blog.genenakagaki.com/en/my-emacs-life-is-better-with-hydra.html
-(defhydra hydra-window (global-map "C-c w" :color red)
+  ; From https://blog.genenakagaki.com/en/my-emacs-life-is-better-with-hydra.html
+  (defhydra hydra-window (global-map "C-c w" :color red)
+    "
+  | Navigation^^      | Placement^^         | Create, Delete^^          | Adjustment^^         |
+  |^^-----------------+^^-------------------+^^-------------------------+^^--------------------|
+  | _h_: go left      | _H_: move to left   | _v_: split vertically     | _=_: balance windows |
+  | _j_: go down      | _J_: move to bottom | _s_: split horizontally   | _+_: increase height |
+  | _k_: go up        | _K_: move to top    | _q_: delete window        | _-_: decrease height |
+  | _l_: go right     | _L_: move to right  | _Q_: delete other windows | _>_: increase width  |
+  | _w_: go to next   | ^^                  | ^^                        | _<_: decrease width  |
+  | _C-w_: go to next | ^^                  | ^^                        | ^^                   |
   "
-| Navigation^^      | Placement^^         | Create, Delete^^          | Adjustment^^         |
-|^^-----------------+^^-------------------+^^-------------------------+^^--------------------|
-| _h_: go left      | _H_: move to left   | _v_: split vertically     | _=_: balance windows |
-| _j_: go down      | _J_: move to bottom | _s_: split horizontally   | _+_: increase height |
-| _k_: go up        | _K_: move to top    | _q_: delete window        | _-_: decrease height |
-| _l_: go right     | _L_: move to right  | _Q_: delete other windows | _>_: increase width  |
-| _w_: go to next   | ^^                  | ^^                        | _<_: decrease width  |
-| _C-w_: go to next | ^^                  | ^^                        | ^^                   |
-"
-  ("+"   evil-window-increase-height)
-  ("-"   evil-window-decrease-height)
-  ("<"   evil-window-decrease-width)
-  (">"   evil-window-increase-width)
-  ("="   balance-windows)
-  ("C-w" evil-window-next nil :color blue)
-  ("H"   evil-window-move-far-left)
-  ("J"   evil-window-move-very-bottom)
-  ("K"   evil-window-move-very-top)
-  ("L"   evil-window-move-far-right)
-  ("h"   evil-window-left)
-  ("j"   evil-window-down)
-  ("k"   evil-window-up)
-  ("l"   evil-window-right)
-  ("q"   evil-window-delete)
-  ("Q"   delete-other-windows)
-  ("s"   evil-window-split)
-  ("v"   evil-window-vsplit)
-  ("w"   evil-window-next))
+    ("+"   evil-window-increase-height)
+    ("-"   evil-window-decrease-height)
+    ("<"   evil-window-decrease-width)
+    (">"   evil-window-increase-width)
+    ("="   balance-windows)
+    ("C-w" evil-window-next nil :color blue)
+    ("H"   evil-window-move-far-left)
+    ("J"   evil-window-move-very-bottom)
+    ("K"   evil-window-move-very-top)
+    ("L"   evil-window-move-far-right)
+    ("h"   evil-window-left)
+    ("j"   evil-window-down)
+    ("k"   evil-window-up)
+    ("l"   evil-window-right)
+    ("q"   evil-window-delete)
+    ("Q"   delete-other-windows)
+    ("s"   evil-window-split)
+    ("v"   evil-window-vsplit)
+    ("w"   evil-window-next))
 #+end_src
 
 * Install flycheck
@@ -605,7 +605,7 @@ we don't want the ability to check syntax across various modes.
 The quickstart guide for Flycheck is available [[https://www.flycheck.org/en/latest/user/quickstart.html][here]].
 
 #+begin_src emacs-lisp
-(use-package flycheck)
+  (use-package flycheck)
 #+end_src
 
 To enable flycheck in a buffer, call ~M-x flycheck-mode~.
@@ -615,10 +615,8 @@ To enable flycheck in a buffer, call ~M-x flycheck-mode~.
 [[https://company-mode.github.io/][company-mode]] offers very helpful auto-completion.
 
 #+begin_src emacs-lisp
-
-(use-package company
-    :config (add-hook 'after-init-hook 'global-company-mode))
-
+  (use-package company
+      :config (add-hook 'after-init-hook 'global-company-mode))
 #+end_src
 
 * Install vimish-fold
@@ -628,13 +626,13 @@ It calls out the folded region using the left sidebar (instead of ellipses)
 which feels a little cleaner.
 
 #+begin_src emacs-lisp
-(use-package vimish-fold
-  :config
-  (vimish-fold-global-mode 1)
-  (global-set-key (kbd "C-c @ a") #'vimish-fold-avy)
-  (global-set-key (kbd "C-c @ f") #'vimish-fold)
-  (global-set-key (kbd "C-c @ v") #'vimish-fold-delete)
-  (global-set-key (kbd "C-c @ U") #'vimish-fold-unfold-all))
+  (use-package vimish-fold
+    :config
+    (vimish-fold-global-mode 1)
+    (global-set-key (kbd "C-c @ a") #'vimish-fold-avy)
+    (global-set-key (kbd "C-c @ f") #'vimish-fold)
+    (global-set-key (kbd "C-c @ v") #'vimish-fold-delete)
+    (global-set-key (kbd "C-c @ U") #'vimish-fold-unfold-all))
 #+end_src
 
 * Install Base16 Theme
@@ -642,8 +640,8 @@ which feels a little cleaner.
 Use base16-eighties from the [[https://github.com/tinted-theming/base16-emacs][base16-theme]] package.
 
 #+begin_src emacs-lisp
-(use-package base16-theme
-    :config (load-theme 'base16-eighties t))
+  (use-package base16-theme
+      :config (load-theme 'base16-eighties t))
 #+end_src
 
 * Install docker.el
@@ -670,7 +668,7 @@ Use [[https://github.com/spotify/dockerfile-mode][dockerfile-mode]]
 to enable Dockerfile syntax highlighting.
 
 #+begin_src emacs-lisp
-(use-package dockerfile-mode)
+  (use-package dockerfile-mode)
 #+end_src
 
 * Install undo-tree
@@ -682,14 +680,14 @@ Move undo data to ~.emacs.d/backups/undo-tree~.
 These files were confusing org-roam.
 
 #+begin_src emacs-lisp
-(use-package undo-tree
-  :defer t
-  :init
-  (global-undo-tree-mode)
-  :config
-  (progn
-    (evil-set-initial-state 'undo-tree-visualizer-mode 'emacs)
-    (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/backups/undo-tree")))))
+  (use-package undo-tree
+    :defer t
+    :init
+    (global-undo-tree-mode)
+    :config
+    (progn
+      (evil-set-initial-state 'undo-tree-visualizer-mode 'emacs)
+      (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/backups/undo-tree")))))
 
 #+end_src
 
@@ -701,10 +699,10 @@ An overview video of multiple-cursors is available
 [[https://emacsrocks.com/e13.html][here]].
 
 #+begin_src emacs-lisp
-(use-package multiple-cursors
-  :init
-  (global-unset-key (kbd "M-<down-mouse-1>"))
-  (global-set-key (kbd "M-<mouse-1>") 'mc/add-cursor-on-click))
+  (use-package multiple-cursors
+    :init
+    (global-unset-key (kbd "M-<down-mouse-1>"))
+    (global-set-key (kbd "M-<mouse-1>") 'mc/add-cursor-on-click))
 #+end_src
 
 * Nyan-Mode
@@ -715,7 +713,7 @@ With a little help from [[https://github.com/TeMPOraL/nyan-mode][Nyan Cat]].
 Use ~M-x nyan-mode~ to enable.
 
 #+begin_src emacs-lisp
-(use-package nyan-mode)
+  (use-package nyan-mode)
 #+end_src
 
 * Automatically Switch to Opened Window
@@ -725,7 +723,7 @@ Use ~M-x nyan-mode~ to enable.
 Requesting this behavior is as easy as setting ~help-window-select~. Perfect.
 
 #+begin_src emacs-lisp
-(setq help-window-select t)
+  (setq help-window-select t)
 #+end_src
 
 ** Automatically Switch to Opened Window After Splitting Windows
@@ -742,8 +740,8 @@ For more thougts on this tweak -- including reasons why ~advice-add~ should not 
 check out [[https://stackoverflow.com/questions/6464738/how-can-i-switch-focus-after-buffer-split-in-emacs][this Stackoverflow question]].
 
 #+begin_src emacs-lisp
-(global-set-key "\C-x2" (lambda () (interactive)(split-window-below) (other-window 1)))
-(global-set-key "\C-x3" (lambda () (interactive)(split-window-right) (other-window 1)))
+  (global-set-key "\C-x2" (lambda () (interactive)(split-window-below) (other-window 1)))
+  (global-set-key "\C-x3" (lambda () (interactive)(split-window-right) (other-window 1)))
 #+end_src
 
 * Adjust Font Size for Frame
@@ -762,29 +760,29 @@ Hitting ~z~ after the initial call to ~C-x z~ can be used as a
 shortcut for quickly repeating the previous command.
 
 #+begin_src emacs-lisp
-; Resize the whole frame, and not only a window
-;; Adapted from:
-;; https://stackoverflow.com/questions/24705984/increase-decrease-font-size-in-an-emacs-frame-not-just-buffer
-(defun jl/zoom-frame (&optional amt frame)
-  "Increaze FRAME font size by amount AMT. Defaults to selected
-frame if FRAME is nil, and to 1 if AMT is nil."
-  (interactive "p")
-  (let* ((frame (or frame (selected-frame)))
-         (font (face-attribute 'default :font frame))
-         (size (font-get font :size))
-         (size (if (eq size 0) 12 size))  ; hack to avoid case where font-get returns size of 0 on macs
-         (amt (or amt 1))
-         (new-size (+ size amt)))
-    (set-frame-font (font-spec :size new-size) t `(,frame))
-    (message "Frame's font new size: %d" new-size)))
+                                          ; Resize the whole frame, and not only a window
+  ;; Adapted from:
+  ;; https://stackoverflow.com/questions/24705984/increase-decrease-font-size-in-an-emacs-frame-not-just-buffer
+  (defun jl/zoom-frame (&optional amt frame)
+    "Increaze FRAME font size by amount AMT. Defaults to selected
+  frame if FRAME is nil, and to 1 if AMT is nil."
+    (interactive "p")
+    (let* ((frame (or frame (selected-frame)))
+           (font (face-attribute 'default :font frame))
+           (size (font-get font :size))
+           (size (if (eq size 0) 12 size))  ; hack to avoid case where font-get returns size of 0 on macs
+           (amt (or amt 1))
+           (new-size (+ size amt)))
+      (set-frame-font (font-spec :size new-size) t `(,frame))
+      (message "Frame's font new size: %d" new-size)))
 
-(defun jl/zoom-frame-out (&optional amt frame)
-  "Call `jl/zoom-frame' with negative argument."
-  (interactive "p")
-  (jl/zoom-frame (- (or amt 1)) frame))
+  (defun jl/zoom-frame-out (&optional amt frame)
+    "Call `jl/zoom-frame' with negative argument."
+    (interactive "p")
+    (jl/zoom-frame (- (or amt 1)) frame))
 
-(global-set-key (kbd "C-x C-=") 'jl/zoom-frame)
-(global-set-key (kbd "C-x C--") 'jl/zoom-frame-out)
+  (global-set-key (kbd "C-x C-=") 'jl/zoom-frame)
+  (global-set-key (kbd "C-x C--") 'jl/zoom-frame-out)
 #+end_src
 * Configure mode line
 
@@ -794,19 +792,19 @@ Update the default mode line to be shorter.
 Information on mode line variables can be found [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Mode-Line-Variables.html][here]].
 
 #+begin_src emacs-lisp
-(setq-default mode-line-format
-  '("%e"
-    evil-mode-line-tag
-    mode-line-mule-info
-    mode-line-modified
-    " "
-    mode-line-buffer-identification
-    " "
-    mode-line-position
-    mode-line-misc-info
-    (vc-mode vc-mode)
-    " "
-    mode-line-end-spaces))
+  (setq-default mode-line-format
+    '("%e"
+      evil-mode-line-tag
+      mode-line-mule-info
+      mode-line-modified
+      " "
+      mode-line-buffer-identification
+      " "
+      mode-line-position
+      mode-line-misc-info
+      (vc-mode vc-mode)
+      " "
+      mode-line-end-spaces))
 #+end_src
 
 * Set ~exec-path~ from shell path
@@ -818,21 +816,21 @@ When running ZSH on Mac, make sure that ~export PATH=...~ statements
 are placed in ~.zprofile~; ~.zshrc~ is not sourced by the function below!
 
 #+begin_src emacs-lisp
-(defun set-exec-path-from-shell-PATH ()
-  "Set up Emacs' `exec-path' and PATH environment variable to match
-that used by the user's shell.
+  (defun set-exec-path-from-shell-PATH ()
+    "Set up Emacs' `exec-path' and PATH environment variable to match
+  that used by the user's shell.
 
-This is particularly useful under Mac OS X and macOS, where GUI
-apps are not started from a shell."
-  (interactive)
-  (let ((path-from-shell (replace-regexp-in-string
-                          "[ \t\n]*$" "" (shell-command-to-string
-                                          "$SHELL --login -c 'echo $PATH'"
-                                         ))))
-    (setenv "PATH" path-from-shell)
-    (setq exec-path (split-string path-from-shell path-separator))))
+  This is particularly useful under Mac OS X and macOS, where GUI
+  apps are not started from a shell."
+    (interactive)
+    (let ((path-from-shell (replace-regexp-in-string
+                            "[ \t\n]*$" "" (shell-command-to-string
+                                            "$SHELL --login -c 'echo $PATH'"
+                                           ))))
+      (setenv "PATH" path-from-shell)
+      (setq exec-path (split-string path-from-shell path-separator))))
 
-(set-exec-path-from-shell-PATH)
+  (set-exec-path-from-shell-PATH)
 #+end_src
 * Disable auto-save files
 
@@ -844,5 +842,5 @@ Note that this does not affect [[https://www.gnu.org/software/emacs/manual/html_
 See [[https://emacshints.wordpress.com/2013/09/19/disabling-auto-save-and-backup/][this page]] for a comparison of backup and auto-save files.
 
 #+begin_src emacs-lisp
-(setq auto-save-default nil)
+  (setq auto-save-default nil)
 #+end_src
