@@ -13,8 +13,17 @@
 ;; git clone https://git.savannah.gnu.org/git/emacs/org-mode.git org
 ;; cd org; make autoloads
 ;;
-;; This file loads Org and then loads the rest of our Emacs initialization from Emacs lisp
-;; embedded in literate Org files.
+;;   Note that on Mac OSX, you will need to put `/Applications/Emacs.app/Contents/MacOS/Emacs`
+;;   on your path as `emacs` in order for `make autoloads` to run successfully.
+;;   This can be done using the following steps:
+;;
+;;   mkdir ~/bin
+;;   cd ~/bin
+;;   ln -s /Applications/Emacs.app/Contents/MacOS/Emacs emacs
+;;   export PATH="~/bin;$PATH"
+;;
+;; This file -- init.el -- loads Org and then loads the rest of our
+;; Emacs initialization from Emacs lisp embedded in literate Org files.
 
 ;; Load up Org Mode and (now included) Org Babel for elisp embedded in Org Mode files
 (setq dotfiles-dir (file-name-directory (or (buffer-file-name) load-file-name)))
