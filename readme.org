@@ -69,6 +69,7 @@ Add [[https://melpa.org/#/][Milkypostman's Emacs Lisp Package Archive (MELPA)]] 
 This was first introduced in order to install [[https://www.orgroam.com/manual.html#A-Brief-Introduction-to-the-Zettelkasten-Method][Org-roam]].
 
 #+begin_src emacs-lisp
+(require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
 #+end_src
