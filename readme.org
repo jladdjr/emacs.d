@@ -282,9 +282,11 @@ newer versions of Emacs packages are installed
 #+begin_src emacs-lisp
   (use-package org-roam
     :ensure t
-    :bind (("C-c n l" . org-roam-buffer-toggle)
-           ("C-c n f" . org-roam-node-find)
-           ("C-c n i" . org-roam-node-insert))
+    :bind (("C-c h" . org-roam-buffer-toggle)
+           ("C-c f" . org-roam-node-find)
+           ("C-c i" . org-roam-node-insert)
+           ("C-c u" . org-roam-dailies-goto-today)
+           ("C-c r" . org-roam-dailies-capture-today))
     :config
     (setq org-roam-completion-everywhere t))
 #+end_src
@@ -520,7 +522,7 @@ There is likely a better approach (as suggested [[https://stackoverflow.com/ques
   (global-set-key (kbd "C-c L") 'counsel-git-log)
   (global-set-key (kbd "C-c k") 'counsel-rg)
   (global-set-key (kbd "C-c m") 'counsel-linux-app)
-  (global-set-key (kbd "C-c f") 'counsel-fzf)
+  ;(global-set-key (kbd "C-c f") 'counsel-fzf)
   (global-set-key (kbd "C-x l") 'counsel-locate)
   (global-set-key (kbd "C-c J") 'counsel-file-jump)
   (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
