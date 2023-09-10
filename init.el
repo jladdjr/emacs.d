@@ -58,8 +58,18 @@
                          "lisp" (expand-file-name
                                  "contrib" (expand-file-name
                                             ".." org-dir)))))
-  (add-to-list 'load-path org-dir)
-  (add-to-list 'load-path org-contrib-dir)
+  ; (add-to-list 'load-path org-dir)
+  ; (add-to-list 'load-path org-contrib-dir)
+
+  ; Workaround for org-roam issue:
+  ; https://github.com/org-roam/org-roam/issues/2384
+
+  ; cd ~/.emacs.d/straight/repos/org/
+  ; git co release_9.6.7
+  ; cd ~/.emacs.d/straight/build-cache.el
+  ; rm -rf *** ENSURE YOU ARE IN THE ABOVE DIRECTORY BEFORE EXECUTING THIS! ***
+  ( add-to-list 'load-path "/Users/jamesladd/.emacs.d/straight/repos/org/lisp")
+
   ;; load up Org and Org-babel
   (require 'org)
   (require 'ob-tangle))
