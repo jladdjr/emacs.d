@@ -678,13 +678,19 @@ to enable Dockerfile syntax highlighting.
 [[https://www.emacswiki.org/emacs/UndoTree][Undo Tree]] provides a convenient tool for mapping out previous undo steps.
 It also restructures undos / redos as a tree, instead of as a linear series of events.
 
+Move undo data to ~.emacs.d/backups/undo-tree~.
+These files were confusing org-roam.
+
 #+begin_src emacs-lisp
 (use-package undo-tree
   :defer t
   :init
   (global-undo-tree-mode)
   :config
-  (evil-set-initial-state 'undo-tree-visualizer-mode 'emacs))
+  (progn
+    (evil-set-initial-state 'undo-tree-visualizer-mode 'emacs)
+    (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/backups/undo-tree")))))
+
 #+end_src
 
 * Install multiple-cursors
