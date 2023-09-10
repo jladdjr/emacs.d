@@ -5,11 +5,13 @@
 ;;; init.el --- Where all the magic begins
 ;;
 ;; Before starting emacs, must copy source of org-mode to ~/.emacs.d/src
+;; and build the source.
 ;;
 ;; cd ~/.emacs.d
 ;; mkdir src
 ;; cd src
-;; git clone https://git.savannah.gnu.org/git/emacs/org-mode.git
+;; git clone https://git.savannah.gnu.org/git/emacs/org-mode.git org
+;; cd org; make autoloads
 ;;
 ;; This file loads Org and then loads the rest of our Emacs initialization from Emacs lisp
 ;; embedded in literate Org files.
@@ -24,9 +26,9 @@
        (org-contrib-dir (expand-file-name
                          "lisp" (expand-file-name
                                  "contrib" (expand-file-name
-                                            ".." org-dir))))
-       (load-path (append (list org-dir org-contrib-dir)
-                          (or load-path nil))))
+                                            ".." org-dir)))))
+       (add-to-list 'load-path org-dir)
+       (add-to-list 'load-path org-contrib-dir)
   ;; load up Org and Org-babel
   (require 'org)
   (require 'ob-tangle))
