@@ -195,6 +195,19 @@ Update regex filter used to omit files so that Emacs [[https://www.gnu.org/softw
 org-mode code blocks may seem to have improper indenting.
 Remember to use [[https://orgmode.org/manual/Editing-Source-Code.html][C-c ']] to get proper indenting.
 
+#+begin_src emacs-lisp
+  (straight-use-package
+   '(org
+     :type git
+     :repo "https://git.savannah.gnu.org/git/emacs/org-mode.git"
+     :local-repo "org"
+     :depth full
+     :pre-build (straight-recipes-org-elpa--build)
+     :build (:not autoloads)
+     :files (:defaults "lisp/*.el" ("etc/styles/" "etc/styles/*")))
+   )
+#+end_src
+
 Create [[https://orgmode.org/manual/Activation.html#Activation][recommended]] keybindings for org-mode.
 
 #+begin_src emacs-lisp
