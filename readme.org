@@ -282,7 +282,11 @@ otherwise we can run into [[https://emacs.stackexchange.com/a/73429][issues]].
 #+end_src
 
 #+begin_src emacs-lisp
-(use-package org-roam :ensure t)
+(use-package org-roam
+  :ensure t
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n i" . org-roam-node-insert)))
 #+end_src
 
 Create and configure default Org-roam directory.
@@ -516,7 +520,7 @@ There is likely a better approach (as suggested [[https://stackoverflow.com/ques
 (global-set-key (kbd "C-c L") 'counsel-git-log)
 (global-set-key (kbd "C-c k") 'counsel-rg)
 (global-set-key (kbd "C-c m") 'counsel-linux-app)
-(global-set-key (kbd "C-c n") 'counsel-fzf)
+(global-set-key (kbd "C-c f") 'counsel-fzf)
 (global-set-key (kbd "C-x l") 'counsel-locate)
 (global-set-key (kbd "C-c J") 'counsel-file-jump)
 (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
