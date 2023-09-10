@@ -62,6 +62,17 @@ There are options for configuring packages with straight.el, too:
 
 See the straight.el [[https://github.com/jwiegley/use-package#getting-started][getting started guide]] for more documentation on how to load and configure packages with straight.el.
 
+* Add Melpa as Package Source
+
+Add [[https://melpa.org/#/][Milkypostman's Emacs Lisp Package Archive (MELPA)]] as a package archive.
+
+This was first introduced in order to install [[https://www.orgroam.com/manual.html#A-Brief-Introduction-to-the-Zettelkasten-Method][Org-roam]].
+
+#+begin_src emacs-lisp
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/") t)
+#+end_src
+
 * Global Preferences
 ** Disable GUI elements
 
@@ -257,6 +268,32 @@ Note that ~C-x g~ will still map to ~jl/magit-status~ (a wrapper for ~magit-stat
   :config
   (evil-set-initial-state 'git-timemachine-mode 'emacs)
   (global-set-key (kbd "C-x G") 'git-timemachine-toggle))
+#+end_src
+
+* Install org-roam
+
+Install [[https://www.orgroam.com/manual.html][Org-roam]].
+
+#+begin_src emacs-lisp
+  (use-package org-roam)
+#+end_src
+
+Create and configure default Org-roam directory.
+
+#+begin_src emacs-lisp
+  (make-directory "~/org-roam" t)
+  (setq org-roam-directory (file-truename "~/org-roam"))
+#+end_src
+
+Prompt Org-roam indexing.
+This may take some time during the first run.
+Subsequent runs should be much faster,
+as they will only process modified files.
+
+Can call ~M-x org-roam-db-sync~ interactively to re-index.
+
+#+begin_src emacs-lisp
+  (org-roam-db-autosync-mode)
 #+end_src
 
 * Install YASnippet
