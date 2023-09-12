@@ -286,7 +286,9 @@ newer versions of Emacs packages are installed
            ("C-c f" . org-roam-node-find)
            ("C-c i" . org-roam-node-insert)
            ("C-c u" . org-roam-dailies-goto-today)
-           ("C-c r" . org-roam-dailies-capture-today))
+           ("C-c r" . org-roam-dailies-capture-today)
+           ("C-c y" . org-roam-dailies-goto-yesterday)
+           ("C-c n" . org-roam-dailies-goto-tomorrow))
     :config
     (setq org-roam-completion-everywhere t))
 #+end_src
