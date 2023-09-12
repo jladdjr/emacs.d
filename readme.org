@@ -101,6 +101,7 @@ Never, ever use [[https://www.emacswiki.org/emacs/IndentationBasics#h5o-1][tabs]
   (setq confirm-kill-emacs 'y-or-n-p)
   (setq inhibit-startup-message t)
   (setq initial-scratch-message "")
+  (fset 'yes-or-no-p 'y-or-n-p)
 #+end_src
 
 Allow [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html][narrowing]] to a region (~C-x n n~)
