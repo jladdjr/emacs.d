@@ -849,3 +849,37 @@ See [[https://emacshints.wordpress.com/2013/09/19/disabling-auto-save-and-backup
 #+begin_src emacs-lisp
   (setq auto-save-default nil)
 #+end_src
+
+* Start server
+
+After Emacs starts, start the Emacs server
+so that we can quickly open new sessions with ~emacsclient~.
+
+#+begin_src emacs-lisp
+  (server-start)
+#+end_src
+
+Previous attempts to start an emacs server from the commandline
+using ~emacs --daemon~ have been unsuccessful up to this point;
+the command loads init files very differently for some reason.
+It begins with the site-wide init files (under ~/etc~),
+and when it finishes with that and tries loading init files in
+~HOME/emacs.d~ it does not start with ~init.el~.
+
+* Create convenience script for starting emacsclient
+
+Create a script, ~ec~, that will call ~emacsclient~
+and note that the command should create a new frame.
+
+#+begin_src emacs-lisp
+  (let* ((bin_dir "~/bin")
+         (ec_script (concat bin_dir "/ec")))
+      (make-directory bin_dir t)
+      (if (not (file-exists-p ec_script))
+          (progn
+              (find-file "~/bin/ec")
+              (insert "#!/bin/bash\nemacsclient -c")
+              (save-buffer)
+              (kill-buffer)
+              (set-file-modes ec_script #o755))))
+#+end_src
