@@ -301,7 +301,8 @@ Create and configure default Org-roam directory.
   (setq org-roam-directory (file-truename "~/org-roam"))
 #+end_src
 
-Prompt Org-roam indexing.
+** Prompt Org-roam indexing
+
 This may take some time during the first run.
 Subsequent runs should be much faster,
 as they will only process modified files.
@@ -310,6 +311,28 @@ Can call ~M-x org-roam-db-sync~ interactively to re-index.
 
 #+begin_src emacs-lisp
   (org-roam-db-autosync-mode)
+#+end_src
+
+** Configure org-roam capture templates
+
+#+begin_src emacs-lisp
+  (setq org-roam-capture-templates
+    '(("d" "default" plain "%?"
+        :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}
+  ")
+        :unnarrowed t)
+      ("c" "common template" plain "* Overview
+%?
+
+\* Key Links
+
+\* History
+
+\* See Also
+
+"       :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}
+")
+        :unnarrowed t)))
 #+end_src
 
 * Install YASnippet
