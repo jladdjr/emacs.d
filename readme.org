@@ -494,6 +494,42 @@ using projectile variables or function arguments).
     (with-eval-after-load 'evil-maps (define-key evil-normal-state-map (kbd "C-n") (lambda () (interactive) (call-interactively 'projectile-ag) (other-window 1)))))
 #+end_src
 
+Create a custom initial project view
+that will be used when invoking ~projectile-switch-project~.
+
+#+begin_src emacs-lisp
+  (defun jl/default-project-view ()
+    ""
+    (interactive)
+
+    (if (one-window-p)
+      ; if only one window is open, proceed with opening a full project workspace
+      (progn
+         ; clear all other windows
+         (delete-other-windows)
+
+         ; in first window, show directory
+         (let* ((project-abs-path (cdr (project-current)))
+               (project-name (file-name-nondirectory (directory-file-name
+                                                      (expand-file-name project-abs-path)))))
+           (dired (cdr (project-current)))
+
+           ; in next window, show terminal
+           (split-window-right)
+           (other-window 1)
+           (projectile-run-vterm)
+
+           ; in next window open org-roam node if it exists
+           (split-window-below)
+           (other-window 1)
+           (if (org-roam-node-p (org-roam-node-from-title-or-alias project-name))
+                   (org-roam-node-visit (org-roam-node-from-title-or-alias project-name) nil)
+             (delete-window))))
+      ; otherwise, open dired, pointing at the root directory of the project
+      (dired (cdr (project-current)))))
+  (setq projectile-switch-project-action #'jl/default-project-view)
+#+end_src
+
 * Install counsel, ivy, swiper
 
 #+begin_src emacs-lisp
