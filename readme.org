@@ -524,7 +524,8 @@ that will be used when invoking ~projectile-switch-project~.
            (other-window 1)
            (if (org-roam-node-p (org-roam-node-from-title-or-alias project-name))
                    (org-roam-node-visit (org-roam-node-from-title-or-alias project-name) nil)
-             (delete-window))))
+             (delete-window)))
+           (other-window 1))
       ; otherwise, open dired, pointing at the root directory of the project
       (dired (cdr (project-current)))))
   (setq projectile-switch-project-action #'jl/default-project-view)
