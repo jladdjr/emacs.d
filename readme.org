@@ -916,7 +916,8 @@ After Emacs starts, start the Emacs server
 so that we can quickly open new sessions with ~emacsclient~.
 
 #+begin_src emacs-lisp
-  (server-start)
+  (if (not server-process)
+    (server-start))
 #+end_src
 
 Previous attempts to start an emacs server from the commandline
