@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # Abort if emacs is running
-if pgrep emacs > /dev/null; then 
-	echo "️🛑 Cannot copy development files into $HOME/.emacs.d directory while emacs is running"; 
+if pgrep -x emacs > /dev/null; then
+	echo "️🛑 Cannot copy development files into $HOME/.emacs.d directory while emacs is running";
 	exit 1
 fi
 
-if [ -d "$HOME/.emacs.d" ]; then 
+if [ -d "$HOME/.emacs.d" ]; then
 	echo "📂 Found existing $HOME/.emacs.d"
 	echo "🔥 Deleting generated readme.el"
 	rm $HOME/.emacs.d/readme.el
@@ -14,8 +14,8 @@ if [ -d "$HOME/.emacs.d" ]; then
 	cp init.el readme.org jim.org steph.org $HOME/.emacs.d
 else
 	echo "👻 No existing $HOME/.emacs.d"
-fi 
+fi
 
 echo "️️️️️️️🤘 Done!"
 echo ""
-ls -l $HOME/.emacs.d; 
+ls -l $HOME/.emacs.d;
