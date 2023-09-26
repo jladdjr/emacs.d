@@ -916,8 +916,20 @@ After Emacs starts, start the Emacs server
 so that we can quickly open new sessions with ~emacsclient~.
 
 #+begin_src emacs-lisp
-  (if (not server-process)
-    (server-start))
+  (defun sole-emacs-process ()
+    "Determine if this is the only emacs process that is running."
+    (let ((output-buffer (generate-new-buffer "*emacs-process-count*")))
+      (call-process "pgrep" nil output-buffer nil "--exact" "--count" "emacs")
+      (save-excursion
+        (with-current-buffer "*emacs-process-count*"
+          (end-of-buffer)
+          (join-line)
+          (let ((buffer-contents (buffer-substring-no-properties (point-min) (point-max))))
+            (kill-buffer output-buffer)
+            (string= buffer-contents "1"))))))
+
+      (if (sole-emacs-process)
+        (server-start))
 #+end_src
 
 Previous attempts to start an emacs server from the commandline
