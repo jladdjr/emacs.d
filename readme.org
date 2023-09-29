@@ -783,7 +783,7 @@ Use ~M-x nyan-mode~ to enable.
 
 * Insert Time
 
-Insert timestamp using ~C-c C-p~.
+Insert timestamp using ~C-c p~.
 
 #+begin_src emacs-lisp
 (defun insert-current-date ()
@@ -791,7 +791,7 @@ Insert timestamp using ~C-c C-p~.
   (interactive)
   (insert (format-time-string "%Y-%m-%d")))
 
-(global-set-key (kbd "C-c C-p") 'insert-current-date)
+(global-set-key (kbd "C-c p") 'insert-current-date)
 #+end_src
 
 * Automatically Switch to Opened Window
