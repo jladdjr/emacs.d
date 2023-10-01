@@ -406,6 +406,16 @@ of Emacs.
   (use-package json-navigator
     :requires hierarchy)
 #+end_src
+* Install VLF
+
+Install [[https://github.com/m00natic/vlfi][VLF]], a mode for reading very large files in batch.
+
+To view a large file, use ~M-x vlf~ and then enter the file's path.
+
+#+begin_src emacs-lisp
+  (use-package vlf)
+#+end_src
+
 * Install typescript-mode
 
 A minimal setup for working with TypeScript.
