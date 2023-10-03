@@ -689,9 +689,18 @@ To enable flycheck in a buffer, call ~M-x flycheck-mode~.
 
 [[https://company-mode.github.io/][company-mode]] offers very helpful auto-completion.
 
+company-mode [[https://emacs.stackexchange.com/questions/10837/how-to-make-company-mode-be-case-sensitive-on-plain-text][ignores case by default]].
+The configuration below ensures case is preserved.
+
 #+begin_src emacs-lisp
   (use-package company
-      :config (add-hook 'after-init-hook 'global-company-mode))
+      :config
+      (add-hook 'after-init-hook 'global-company-mode)
+      (setq company-dabbrev-downcase nil)
+      (setq company-dabbrev-ignore-case nil)
+      (setq company-keywords-ignore-case nil)
+      (setq company-dabbrev-code-ignore-case nil)
+      (setq company-etags-ignore-case nil))
 #+end_src
 
 * Install vimish-fold
