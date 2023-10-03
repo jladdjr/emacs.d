@@ -195,6 +195,37 @@ Add support for links that open PDFs to a given page.
   (org-add-link-type "pdf" 'org-pdf-open nil)
 #+end_src
 
+* Install org-download
+
+Install [[https://github.com/abo-abo/org-download][org-download]].
+
+Instruct org to always display inline images.
+
+Configure org-download to store images in an ~images~ directory
+located in the current directory of the Org file.
+
+Finally, instruct org-download to _not_ use the org-mode heading
+to help organize images on the file system
+(e.g. do not create a sub-directory with the current heading's name).
+
+Bind ~org-download-clipboard~
+-- which "pastes" the contents of the clipboard into the current org file --
+to ~M-g~.
+
+
+#+begin_src emacs-lisp
+          ; Ensure org-pictures directory exists
+  (use-package org-download
+    :config
+    (add-hook 'dired-mode-hook 'org-download-enable)
+    :custom
+    (org-startup-with-inline-images t)
+    (org-download-image-dir "images")
+    (org-download-heading-lvl nil)
+    :bind
+    ("M-g" . org-download-clipboard))
+#+end_src
+
 * Install evil
 
 See [[https://evil.readthedocs.io/en/latest/index.html][this page]] for information on how to get started with evil mode.
