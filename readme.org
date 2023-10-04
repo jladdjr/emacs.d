@@ -845,6 +845,34 @@ Insert timestamp using ~C-c p~.
 (global-set-key (kbd "C-c p") 'insert-current-date)
 #+end_src
 
+** Clear all buffers except *scratch*, all other windows/frames, too
+
+Function ~fresh-start~ helps clear any buffers, windows, or frames
+that have been opened during the current session. The function does
+preserve the ~*scratch*~ buffer, however.
+
+#+begin_src emacs-lisp
+  ; Code generated with the assistance of ChatGPT, version 3.5, developed by OpenAI
+  ; More information: https://www.openai.com/chatgpt
+  ; Generated on: October 4, 2023
+
+  ; Jim Ladd updated snippet to use ~delete-other-frames~
+  ; and to move ~delete-other-windows~ outside of ~let~.
+
+  (defun fresh-start ()
+    "Kill all buffers except for *scratch*, close all other windows, and delete all other frames."
+    (interactive)
+    ;; Close all other frames
+    (delete-other-frames)
+    (delete-other-windows)
+    (let ((buffer-list (buffer-list)))
+      ;; Close all other windows
+      (dolist (buffer buffer-list)
+        (unless (string-equal (buffer-name buffer) "*scratch*")
+          (kill-buffer buffer)))
+      (message "Fresh start: All buffers except *scratch*, other windows, and frames have been closed.")))
+#+end_src
+
 * Automatically Switch to Opened Window
 
 ** Automatically Switch to Help Window
