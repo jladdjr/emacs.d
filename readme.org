@@ -673,6 +673,16 @@ There is likely a better approach (as suggested [[https://stackoverflow.com/ques
     (global-set-key (kbd "M-l") 'avy-goto-char-timer))
 #+end_src
 
+* Install zygospore
+
+[[https://github.com/louiskottmann/zygospore.el][Zygospore]] temporarily hides all but the currently active window.
+
+#+begin_src emacs-lisp
+  (use-package zygospore
+    :config
+    (global-set-key (kbd "C-x 1") 'zygospore-toggle-delete-other-windows))
+#+end_src
+
 * Install Hydra
 Collapse a series of keybindings into single keystrokes using [[https://github.com/abo-abo/hydra][Hydra]].
 
