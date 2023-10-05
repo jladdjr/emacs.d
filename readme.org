@@ -93,6 +93,19 @@ Never, ever use [[https://www.emacswiki.org/emacs/IndentationBasics#h5o-1][tabs]
   (setq-default indent-tabs-mode nil)
 #+end_src
 
+** Highlight current line
+
+It's easy to lose track of where the cursor is.
+Globally enable line highlighting.
+
+Continue to highlight a line even when focus has moved to
+another window.
+
+#+begin_src emacs-lisp
+ (global-hl-line-mode 1)
+ (setq global-hl-line-sticky-flag t)
+#+end_src
+
 ** Misc
 
 #+begin_src emacs-lisp
@@ -259,11 +272,16 @@ Start vterm-mode in Emacs mode;
 in Normal mode the user is limited to navigating a read-only buffer.
 Refer to Evil mode for an explanation of Emacs mode versus Vim modes.
 
+Disable highlighting (which is quirky when applied to the terminal).
+
 #+begin_src emacs-lisp
   (use-package vterm
     :ensure t
     :config
-    (evil-set-initial-state 'vterm-mode 'emacs))
+    (evil-set-initial-state 'vterm-mode 'emacs)
+    (add-hook 'vterm-mode-hook
+              (lambda ()
+              (set (make-local-variable 'global-hl-line-mode) nil))))
 #+end_src
 
 * Install magit
