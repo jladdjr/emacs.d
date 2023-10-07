@@ -149,7 +149,6 @@ Create [[https://orgmode.org/manual/Activation.html#Activation][recommended]] ke
 #+begin_src emacs-lisp
   (global-set-key (kbd "C-c l") #'org-store-link)
   (global-set-key (kbd "C-c a") #'org-agenda)
-  (global-set-key (kbd "C-c c") #'org-capture)
 #+end_src
 
 Add support for TODO, DOING, and DONE states when working with [[https://orgmode.org/manual/TODO-Basics.html][TODO items]].
@@ -381,7 +380,12 @@ Can call ~M-x org-roam-db-sync~ interactively to re-index.
 
 "       :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}
 ")
-        :unnarrowed t)))
+        :unnarrowed t)
+        ("h" "history note" plain "** %<%Y-%m-%d>\n\n%?"
+         :target (file+head+olp "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}"
+                                ("History"))
+         :empty-lines 1)))
+  (global-set-key (kbd "C-c c") #'org-roam-capture)
 #+end_src
 
 * Install YASnippet
