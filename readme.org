@@ -561,6 +561,20 @@ Create a custom initial project view
 that will be used when invoking ~projectile-switch-project~.
 
 #+begin_src emacs-lisp
+  (defun open-last-modified-scm-file ()
+    "Determine most recently modified file according to Git"
+    (interactive)
+    (let ((my-output-buffer (generate-new-buffer "*git-last-modified-file*"))
+          (my-project-directory (cdr (project-current))))
+      (call-process "git" nil my-output-buffer nil "-C" my-project-directory "log" "-1" "--name-only" "--format=oneline")
+      (save-excursion
+        (with-current-buffer my-output-buffer
+          (goto-char (point-max))
+          (join-line)
+          (setq my-last-modified-scm-file (concat my-project-directory (buffer-substring (point-at-bol) (point-at-eol))))
+          (kill-buffer my-output-buffer))))
+    (find-file my-last-modified-scm-file))
+
   (defun jl/default-project-view ()
     ""
     (interactive)
@@ -576,6 +590,7 @@ that will be used when invoking ~projectile-switch-project~.
                (project-name (file-name-nondirectory (directory-file-name
                                                       (expand-file-name project-abs-path)))))
            (dired (cdr (project-current)))
+           (open-last-modified-scm-file)
 
            ; in next window, show terminal
            (split-window-right)
