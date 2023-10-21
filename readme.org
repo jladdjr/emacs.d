@@ -106,6 +106,14 @@ another window.
  (setq global-hl-line-sticky-flag t)
 #+end_src
 
+** Show trailing whitespace
+
+Otherwise, don't notice this until it's time to commit changes.
+
+#+begin_src emacs-lisp
+  (setq show-trailing-whitespace t)
+#+end_src
+
 ** Misc
 
 #+begin_src emacs-lisp
