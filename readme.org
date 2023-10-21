@@ -111,7 +111,7 @@ another window.
 Otherwise, don't notice this until it's time to commit changes.
 
 #+begin_src emacs-lisp
-  (setq show-trailing-whitespace t)
+  (setq-default show-trailing-whitespace t)
 #+end_src
 
 ** Misc
