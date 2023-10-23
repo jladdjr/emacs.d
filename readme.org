@@ -288,7 +288,8 @@ Disable highlighting (which is quirky when applied to the terminal).
     (evil-set-initial-state 'vterm-mode 'emacs)
     (add-hook 'vterm-mode-hook
               (lambda ()
-              (set (make-local-variable 'global-hl-line-mode) nil))))
+                (set (make-local-variable 'global-hl-line-mode) nil)
+                (setq show-trailing-whitespace nil))))
 #+end_src
 
 * Install magit
