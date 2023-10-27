@@ -150,6 +150,12 @@ Enabled [[https://www.emacswiki.org/emacs/DiredOmitMode][Dired Omit Mode]] to hi
   (add-hook 'dired-mode-hook (lambda () (dired-omit-mode)))
 #+end_src
 
+Omit Emacs [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Backup-Names.html#Backup-Names][backup files]].
+
+#+begin_src emacs-lisp
+  (setq dired-omit-files (concat dired-omit-files "\\|~$"))
+#+end_src
+
 * Configure org-mode
 
 Create [[https://orgmode.org/manual/Activation.html#Activation][recommended]] keybindings for org-mode.
