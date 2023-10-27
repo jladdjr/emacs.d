@@ -145,15 +145,12 @@ Globally replace ~M-x~ with ~C-m~.
 * Configure Dired
 
 Enabled [[https://www.emacswiki.org/emacs/DiredOmitMode][Dired Omit Mode]] to hide uninteresting files.
+Update regex filter used to omit files so that Emacs [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Backup-Names.html#Backup-Names][backup files]] are excluded, too.
 
 #+begin_src emacs-lisp
-  (add-hook 'dired-mode-hook (lambda () (dired-omit-mode)))
-#+end_src
-
-Omit Emacs [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Backup-Names.html#Backup-Names][backup files]].
-
-#+begin_src emacs-lisp
-  (setq dired-omit-files (concat dired-omit-files "\\|~$"))
+  (add-hook 'dired-mode-hook (lambda ()
+                               (dired-omit-mode)
+                               (setq dired-omit-files (concat dired-omit-files "\\|~$"))))
 #+end_src
 
 * Configure org-mode
