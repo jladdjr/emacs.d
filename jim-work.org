@@ -1,0 +1,10 @@
+# Jim's Emacs Configuration for Work
+
+* Initial Frame Positioning
+
+#+begin_src emacs-lisp
+  (let ((my-frame (selected-frame)))
+    (set-frame-position my-frame 1038 35)
+    (set-frame-width my-frame 168)
+    (set-frame-height my-frame 80))
+#+end_src
