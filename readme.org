@@ -272,7 +272,8 @@ Taking things a step further, we also use ~with-eval-after-load~ to forcefully u
     (setq evil-want-C-i-jump nil)
     (with-eval-after-load 'evil-maps (define-key evil-motion-state-map (kbd "TAB") nil))
     (with-eval-after-load 'evil-maps (define-key evil-motion-state-map (kbd "C-b") 'org-roam-node-find))
-    (with-eval-after-load 'evil-maps (define-key evil-motion-state-map (kbd "C-r") 'org-roam-capture))
+    (with-eval-after-load 'evil-maps (define-key evil-normal-state-map (kbd "C-r") 'org-roam-capture))
+    (with-eval-after-load 'evil-maps (define-key evil-normal-state-map (kbd "C-d") 'avy-goto-char-timer))
     (with-eval-after-load 'evil-maps (define-key evil-normal-state-map (kbd "C-p") 'projectile-command-map)))
 #+end_src
 
@@ -654,19 +655,6 @@ Adopting suggested keybindings from [[https://oremacs.com/swiper/#global-key-bin
   (global-set-key (kbd "C-c V") 'ivy-pop-view)
 #+end_src
 
-Remap ~C-r~ to ~swiper-isearch-backward~.
-
-Note:
-
-Attempting to remap ~C-r~ using ~global-set-key~ had no effect.
-For now, going with [[https://stackoverflow.com/a/44480586][this approach]]
-where the change is applied specifically to ~evil-normal-state-map~.
-There is likely a better approach (as suggested [[https://stackoverflow.com/questions/44480585/how-to-rebind-c-r-undo-tree-redo-in-emacs-with-evil-mode#comment75966087_44480586][here]]).
-
-#+begin_src emacs-lisp
-  (define-key evil-normal-state-map (kbd "C-r") 'swiper-isearch-backward)
-#+end_src
-
 *** Ivy-based interface to standard commands
 
 #+begin_src emacs-lisp
@@ -700,8 +688,7 @@ There is likely a better approach (as suggested [[https://stackoverflow.com/ques
 #+begin_src emacs-lisp
   (use-package avy
     :config
-    (global-set-key (kbd "C-l") 'avy-goto-line)
-    (global-set-key (kbd "M-l") 'avy-goto-char-timer))
+    (global-set-key (kbd "C-l") 'avy-goto-line))
 #+end_src
 
 * Install zygospore
