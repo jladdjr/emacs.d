@@ -273,7 +273,7 @@ Taking things a step further, we also use ~with-eval-after-load~ to forcefully u
     (with-eval-after-load 'evil-maps (define-key evil-motion-state-map (kbd "TAB") nil))
     (with-eval-after-load 'evil-maps (define-key evil-motion-state-map (kbd "C-b") 'org-roam-node-find))
     (with-eval-after-load 'evil-maps (define-key evil-normal-state-map (kbd "C-r") 'org-roam-capture))
-    (with-eval-after-load 'evil-maps (define-key evil-normal-state-map (kbd "C-d") 'avy-goto-char-timer))
+    (with-eval-after-load 'evil-maps (define-key evil-normal-state-map (kbd "C-/") 'avy-goto-char-timer))
     (with-eval-after-load 'evil-maps (define-key evil-normal-state-map (kbd "C-p") 'projectile-command-map)))
 #+end_src
 
