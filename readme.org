@@ -272,6 +272,7 @@ Taking things a step further, we also use ~with-eval-after-load~ to forcefully u
     (setq evil-want-C-i-jump nil)
     (with-eval-after-load 'evil-maps (define-key evil-motion-state-map (kbd "TAB") nil))
     (with-eval-after-load 'evil-maps (define-key evil-motion-state-map (kbd "C-b") 'org-roam-node-find))
+    (with-eval-after-load 'evil-maps (define-key evil-motion-state-map (kbd "C-r") 'org-roam-capture))
     (with-eval-after-load 'evil-maps (define-key evil-normal-state-map (kbd "C-p") 'projectile-command-map)))
 #+end_src
 
@@ -347,7 +348,6 @@ newer versions of Emacs packages are installed
     :bind (("C-c h" . (lambda () (interactive) (call-interactively 'org-roam-buffer-toggle) (other-window 1)))
            ("C-c i" . org-roam-node-insert)
            ("C-c u" . org-roam-dailies-goto-today)
-           ("C-c r" . org-roam-dailies-capture-today)
            ("C-c y" . org-roam-dailies-goto-yesterday)
            ("C-c n" . org-roam-dailies-goto-tomorrow))
     :config
