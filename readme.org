@@ -142,6 +142,15 @@ Globally replace ~M-x~ with ~C-m~.
   (keyboard-translate ?\C-m ?\M-x)
 #+end_src
 
+** Map ~C-k~ to ~kill-buffer~
+
+I need to kill buffers all. the. time.
+Let's make it easier.
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-k") #'kill-buffer)
+#+end_src
+
 * Configure Dired
 
 Enabled [[https://www.emacswiki.org/emacs/DiredOmitMode][Dired Omit Mode]] to hide uninteresting files.
