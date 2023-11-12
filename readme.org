@@ -151,6 +151,14 @@ Let's make it easier.
   (global-set-key (kbd "C-k") #'kill-current-buffer)
 #+end_src
 
+** Map ~C-.~ to ~delete-window~
+
+I also need to kill windows all the time.
+Let's make that easier, too.
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-.") #'delete-window)
+#+end_src
 * Configure Dired
 
 Enabled [[https://www.emacswiki.org/emacs/DiredOmitMode][Dired Omit Mode]] to hide uninteresting files.
@@ -283,7 +291,8 @@ Taking things a step further, we also use ~with-eval-after-load~ to forcefully u
     (with-eval-after-load 'evil-maps (define-key evil-motion-state-map (kbd "C-b") 'org-roam-node-find))
     (with-eval-after-load 'evil-maps (define-key evil-normal-state-map (kbd "C-r") 'org-roam-capture))
     (with-eval-after-load 'evil-maps (define-key evil-motion-state-map (kbd "C-d") 'avy-goto-char-timer))
-    (with-eval-after-load 'evil-maps (define-key evil-normal-state-map (kbd "C-p") 'projectile-command-map)))
+    (with-eval-after-load 'evil-maps (define-key evil-normal-state-map (kbd "C-p") 'projectile-command-map))
+    (with-eval-after-load 'evil-maps (define-key evil-normal-state-map (kbd "C-.") 'delete-window)))
 #+end_src
 
 * Install vterm
