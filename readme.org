@@ -148,7 +148,7 @@ I need to kill buffers all. the. time.
 Let's make it easier.
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "C-k") #'kill-buffer)
+  (global-set-key (kbd "C-k") #'kill-current-buffer)
 #+end_src
 
 * Configure Dired
