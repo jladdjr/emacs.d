@@ -12,3 +12,11 @@ Ignore any errors that occur (e.g. if font cannot be found).
 (ignore-errors
   (set-frame-font "Menlo-20" t t))
 #+end_src
+
+** Position Frame
+
+#+begin_src emacs-lisp
+(set-frame-width (selected-frame) 100)
+(set-frame-height (selected-frame) 42)
+(set-frame-position (selected-frame) 230 0)
+#+end_src
