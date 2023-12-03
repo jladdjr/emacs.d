@@ -789,6 +789,21 @@ So to exit the hydra, the user can press ~C-w~.
     ("w"   evil-window-next))
 #+end_src
 
+* Install key-chord
+
+[[https://github.com/emacsorphanage/key-chord][Key Chord Mode]] lets you execute a command by pressing two keys down at the same time.
+
+The [[https://www.emacswiki.org/emacs/KeyChord][Emacs Wiki]] has some helpful tips on using this mode.
+
+#+begin_src emacs-lisp
+  (use-package key-chord)
+  (key-chord-mode 1)
+
+  (key-chord-define-global "et" 'vterm)
+  (key-chord-define-global "on" 'save-buffer)
+  (key-chord-define-global "pg" 'projectile-switch-project)
+  (key-chord-define-global "kl" 'fresh-start)
+#+end_src
 * Install flycheck
 
 While we won't enable flycheck globally (via ~(global-flycheck-mode)~),
