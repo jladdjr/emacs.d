@@ -650,6 +650,7 @@ that will be used when invoking ~projectile-switch-project~.
            ; in next window, show terminal
            (split-window-right)
            (other-window 1)
+           (call-interactively 'magit-fetch-all)
            (projectile-run-vterm)
 
            ; in next window open org-roam node if it exists
