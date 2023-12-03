@@ -799,10 +799,12 @@ The [[https://www.emacswiki.org/emacs/KeyChord][Emacs Wiki]] has some helpful ti
   (use-package key-chord)
   (key-chord-mode 1)
 
+  ; If this is too long, then there are noticeable typing delays
+  ; If it is too short, then two-key chords are nearly impossible to invoke
+  ; https://github.com/emacsorphanage/key-chord/blob/e724def60fdf6473858f2962ae276cf4413473eb/key-chord.el#L37
+  (setq key-chord-two-keys-delay 0.015)
+
   (key-chord-define-global "et" 'vterm)
-  (key-chord-define-global "on" 'save-buffer)
-  (key-chord-define-global "pg" 'projectile-switch-project)
-  (key-chord-define-global "kl" 'fresh-start)
 #+end_src
 * Install flycheck
 
