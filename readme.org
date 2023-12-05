@@ -621,7 +621,7 @@ that will be used when invoking ~projectile-switch-project~.
     (interactive)
     (let ((my-output-buffer (generate-new-buffer "*git-last-modified-file*"))
           (my-project-directory (cdr (project-current))))
-      (call-process "git" nil my-output-buffer nil "-C" my-project-directory "log" "-1" "--name-only" "--format=oneline")
+      (call-process "git" nil my-output-buffer nil "-C" my-project-directory "log" "-1" "--name-only" "--format=oneline" "--no-merges")
       (save-excursion
         (with-current-buffer my-output-buffer
           (goto-char (point-max))
