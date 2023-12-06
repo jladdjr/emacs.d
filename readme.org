@@ -533,18 +533,6 @@ A minimal setup for working with TypeScript.
   (use-package typescript-mode)
 #+end_src
 
-* Install csharp-mode
-
-Installs [[https://github.com/emacs-csharp/csharp-mode][csharp-mode]].
-
-Note that this mode has been [[https://github.com/emacs-csharp/csharp-mode#obsoletion-warning][moved into Emacs core]].
-Once Emacs 29 is generally available in most package managers,
-this should be dropped.
-
-#+begin_src emacs-lisp
-  (use-package csharp-mode)
-#+end_src
-
 * Install groovy-mode
 
 Installs [[https://github.com/Groovy-Emacs-Modes/groovy-emacs-modes][groovy-mode]].
