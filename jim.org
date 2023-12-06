@@ -23,3 +23,14 @@ Ignore any errors that occur (e.g. if font cannot be found).
 (ignore-errors
   (set-frame-font "FiraMono Nerd Font Mono-14" t t))
 #+end_src
+
+** Configure Printer
+
+Configure basic [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Printing.html][printing settings]].
+
+#+begin_src emacs-lisp
+  (setq lpr-command "lp")
+  ; The lp command can run without switches
+  ; (and fails when default switches are used)
+  (setq lpr-add-switches nil)
+#+end_src
