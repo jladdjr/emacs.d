@@ -172,6 +172,9 @@ Update regex filter used to omit files so that Emacs [[https://www.gnu.org/softw
 
 * Configure org-mode
 
+org-mode code blocks may seem to have improper indenting.
+Remember to use [[https://orgmode.org/manual/Editing-Source-Code.html][C-c ']] to get proper indenting.
+
 Create [[https://orgmode.org/manual/Activation.html#Activation][recommended]] keybindings for org-mode.
 
 #+begin_src emacs-lisp
