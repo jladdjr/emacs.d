@@ -906,6 +906,9 @@ to get started.
     :after kubernetes)
 
   (fset 'k8s 'kubernetes-overview)
+  (evil-set-initial-state 'kubernetes-mode 'emacs)
+  (evil-set-initial-state 'kubernetes-logs 'emacs)
+  (evil-set-initial-state 'kubernetes-log-line 'emacs)
 #+end_src
 
 * Install undo-tree
