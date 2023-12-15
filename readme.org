@@ -886,6 +886,28 @@ to enable Dockerfile syntax highlighting.
   (use-package dockerfile-mode)
 #+end_src
 
+* Install kubernetes-el
+
+See [[https://kubernetes-el.github.io/kubernetes-el/getting-started/][kubernetes-el]] for more information.
+
+Call ~kubernetes-overview~ (or its alias, ~k8s~)
+to get started.
+
+#+begin_src emacs-lisp
+  (use-package kubernetes
+    :ensure t
+    :commands (kubernetes-overview)
+    :config
+    (setq kubernetes-poll-frequency 3600
+          kubernetes-redraw-frequency 3600))
+
+  (use-package kubernetes-evil
+    :ensure t
+    :after kubernetes)
+
+  (fset 'k8s 'kubernetes-overview)
+#+end_src
+
 * Install undo-tree
 
 [[https://www.emacswiki.org/emacs/UndoTree][Undo Tree]] provides a convenient tool for mapping out previous undo steps.
