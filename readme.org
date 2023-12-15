@@ -911,6 +911,14 @@ to get started.
   (evil-set-initial-state 'kubernetes-log-line 'emacs)
 #+end_src
 
+* Install keepass-mode
+
+[[https://github.com/ifosch/keepass-mode][keepass-mode]] lets you interact with your [[https://keepassxc.org/][KeePassXC Database]].
+
+#+begin_src emacs-lisp
+  (use-package keepass-mode)
+#+end_src
+
 * Install undo-tree
 
 [[https://www.emacswiki.org/emacs/UndoTree][Undo Tree]] provides a convenient tool for mapping out previous undo steps.
