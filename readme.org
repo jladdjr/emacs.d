@@ -916,7 +916,9 @@ to get started.
 [[https://github.com/ifosch/keepass-mode][keepass-mode]] lets you interact with your [[https://keepassxc.org/][KeePassXC Database]].
 
 #+begin_src emacs-lisp
-  (use-package keepass-mode)
+  (use-package keepass-mode
+    :config
+    (evil-set-initial-state 'keepass-mode 'emacs))
 #+end_src
 
 * Install undo-tree
