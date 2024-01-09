@@ -1019,6 +1019,21 @@ preserve the ~*scratch*~ buffer, however.
       (message "Fresh start: All buffers except *scratch*, other windows, and frames have been closed.")))
 #+end_src
 
+** Edit yaml files with long values (e.g. .kube/config)
+
+#+begin_src emacs-lisp
+  (defun jl/edit-yaml-with-long-values ()
+    "Edit yaml files with long values"
+    (interactive)
+    ; hacky test to see if yaml-mode is on
+    ; (couldn't find anything more obvious to key off of)
+    (unless (equal font-lock-defaults '(yaml-font-lock-keywords))
+      (yaml-mode))
+
+    ; truncate long lines
+    (toggle-truncate-lines 1))
+#+end_src
+
 * Automatically Switch to Opened Window
 
 ** Automatically Switch to Help Window
