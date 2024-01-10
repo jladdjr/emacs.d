@@ -831,7 +831,7 @@ The configuration below ensures case is preserved.
       (setq company-keywords-ignore-case nil)
       (setq company-dabbrev-code-ignore-case nil)
       (setq company-etags-ignore-case nil)
-      (setq company-idle-delay 0.3))
+      (setq company-idle-delay 0.4))
 #+end_src
 
 * Install vimish-fold
