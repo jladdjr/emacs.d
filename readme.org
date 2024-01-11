@@ -1034,6 +1034,37 @@ preserve the ~*scratch*~ buffer, however.
     (toggle-truncate-lines 1))
 #+end_src
 
+** Unfill region
+
+Sometimes it can be helpful to do the opposite of [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Fill-Commands.html][fill-region]].
+
+#+begin_src emacs-lisp
+  (defun jl/unfill-paragraph (beg end)
+    "Unfill the paragraph, joining text into a single logical line"
+
+    (interactive "r")
+    (let ((fill-column (point-max)))
+      (fill-region beg end)))
+
+  (defun jl/unfill-region (beg end)
+    "Unfill region, joining text in each paragraph into a single logical line"
+    (interactive "r")
+    (save-excursion
+      (save-restriction
+        (narrow-to-region beg end)
+        (goto-char (point-min))
+        (while (search-forward-regexp "\n[[:space:]]*\n" nil t)
+          (backward-char)
+          (let ((start (point)))
+            (search-forward-regexp "\n[[:space:]]*\n" nil t)
+            (backward-char 2)
+            (jl/unfill-paragraph start (point)))))))
+#+end_src
+
+(search-forward-regexp "\n[[:space:]]*\n" nil t)
+
+This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line.
+
 * Automatically Switch to Opened Window
 
 ** Automatically Switch to Help Window
