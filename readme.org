@@ -1037,7 +1037,10 @@ preserve the ~*scratch*~ buffer, however.
 ** Fill region Shortcut
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "C-c C-x f") #'fill-region)
+  (eval-after-load 'org
+    '(progn
+       (unbind-key "C-c C-x f" org-mode-map)
+       (global-set-key (kbd "C-c C-x f") #'fill-region)))
 #+end_src
 
 ** Unfill region
