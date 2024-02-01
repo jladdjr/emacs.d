@@ -298,27 +298,6 @@ Taking things a step further, we also use ~with-eval-after-load~ to forcefully u
     (with-eval-after-load 'evil-maps (define-key evil-normal-state-map (kbd "C-.") 'delete-window)))
 #+end_src
 
-* Install vterm
-
-Be sure to follow the [[https://github.com/akermu/emacs-libvterm#installation][installation instructions]] before using vterm.
-
-Start vterm-mode in Emacs mode;
-in Normal mode the user is limited to navigating a read-only buffer.
-Refer to Evil mode for an explanation of Emacs mode versus Vim modes.
-
-Disable highlighting (which is quirky when applied to the terminal).
-
-#+begin_src emacs-lisp
-  (use-package vterm
-    :ensure t
-    :config
-    (evil-set-initial-state 'vterm-mode 'emacs)
-    (add-hook 'vterm-mode-hook
-              (lambda ()
-                (set (make-local-variable 'global-hl-line-mode) nil)
-                (setq show-trailing-whitespace nil))))
-#+end_src
-
 * Install magit
 
 We can't go anywhere without [[https://magit.vc/][Magit]]!
@@ -340,20 +319,6 @@ Make the Magit status window the only window in view when it opens.
     (magit-status)
     (delete-other-windows))
   (define-key (current-global-map) [remap magit-status] 'jl/magit-status)
-#+end_src
-
-* Install Git time machine
-
-[[https://github.com/emacsmirror/git-timemachine][Git time machine]] looks like a very useful way of walking through a file's version history.
-
-Map ~git-timemachine-toggle~ to ~C-x G~.
-Note that ~C-x g~ will still map to ~jl/magit-status~ (a wrapper for ~magit-status~).
-
-#+begin_src emacs-lisp
-  (use-package git-timemachine
-    :config
-    (evil-set-initial-state 'git-timemachine-mode 'emacs)
-    (global-set-key (kbd "C-x G") 'git-timemachine-toggle))
 #+end_src
 
 * Install org-roam
@@ -423,29 +388,6 @@ Can call ~M-x org-roam-db-sync~ interactively to re-index.
   (global-set-key (kbd "C-r") #'org-roam-capture)
 #+end_src
 
-* Install org-brain
-
-#+begin_src emacs-lisp
-(use-package org-brain :ensure t
-  :init
-  (setq org-brain-path "~/.emacs.d/brain")
-  ;; For Evil users
-  (with-eval-after-load 'evil
-    (evil-set-initial-state 'org-brain-visualize-mode 'emacs))
-  :config
-  (bind-key "C-c b" 'org-brain-prefix-map org-mode-map)
-  (setq org-id-track-globally t)
-  ;(setq org-id-locations-file "~/.emacs.d/.org-id-locations")
-  (add-hook 'before-save-hook #'org-brain-ensure-ids-in-buffer)
-  (push '("b" "Brain" plain (function org-brain-goto-end)
-          "* %i%?" :empty-lines 1)
-        org-capture-templates)
-  (setq org-brain-visualize-default-choices 'all)
-  (setq org-brain-title-max-length 40)
-  (setq org-brain-include-file-entries nil
-        org-brain-file-entries-use-title nil))
-#+end_src
-
 * Install YASnippet
 
 Install [[https://www.emacswiki.org/emacs/Yasnippet][YASnippet]].
@@ -461,14 +403,6 @@ Walkthrough of using snippets available [[https://blog.alex-miller.co/emacs/spac
     (setq yas-indent-line 'fixed))
 #+end_src
 
-* Install markdown-mode
-
-Install [[https://github.com/jrblevin/markdown-mode][markdown-mode]].
-
-#+begin_src emacs-lisp
-  (use-package markdown-mode)
-#+end_src
-
 * Install yaml-mode
 
 Install [[https://github.com/yoshiki/yaml-mode][yaml-mode]].
@@ -479,69 +413,6 @@ More information on yaml-mode is available [[https://www.emacswiki.org/emacs/Yam
   (use-package yaml-mode
     :config
     (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
-#+end_src
-
-* Install json-mode
-
-Install [[https://github.com/json-emacs/json-mode][json-mode]].
-
-#+begin_src emacs-lisp
-  (use-package json-mode)
-#+end_src
-
-* Install json-navigator
-
-Install [[https://github.com/DamienCassou/json-navigator][json-navigator]].
-
-Note:
-If Emacs complains about a void variable while trying to load the hierarchy package,
-it is likely due to a [[https://github.com/ahungry/md4rd/issues/32#issuecomment-1469697100][dependency pointing to the old version of hierarchy]].
-
-In my case, I noticed that in
-~.emacs.d/straight/repos/melpa/recipes/hierarchy~,
-there was the following definition:
-
-~(hierarchy :fetcher github :repo "DamienCassou/hierarchy")~.
-
-Deleting this file cleared up the errors I was seeing.
-
-The hierarchy package became a part of Emacs core, so dependency
-definitions like this should eventually be purged
-or marked as only applying to older versions of Emacs.
-
-More specifically, it seems like [[https://github.com/melpa/melpa/blob/master/recipes/hierarchy][this recipe for hierarchy]]
-should either be removed or marked as only applying to older versions
-of Emacs.
-
-#+begin_src emacs-lisp
-  (use-package json-navigator
-    :requires hierarchy)
-#+end_src
-* Install VLF
-
-Install [[https://github.com/m00natic/vlfi][VLF]], a mode for reading very large files in batch.
-
-To view a large file, use ~M-x vlf~ and then enter the file's path.
-
-#+begin_src emacs-lisp
-  (use-package vlf)
-#+end_src
-
-* Install typescript-mode
-
-A minimal setup for working with TypeScript.
-[[https://www.emacswiki.org/emacs/TypeScript][typescript-mode]] provides highlight modes for TypeScript.
-
-#+begin_src emacs-lisp
-  (use-package typescript-mode)
-#+end_src
-
-* Install groovy-mode
-
-Installs [[https://github.com/Groovy-Emacs-Modes/groovy-emacs-modes][groovy-mode]].
-
-#+begin_src emacs-lisp
-  (use-package groovy-mode)
 #+end_src
 
 * Install perspective
@@ -656,64 +527,6 @@ that will be used when invoking ~projectile-switch-project~.
   (setq projectile-switch-project-action #'jl/default-project-view)
 #+end_src
 
-* Install counsel, ivy, swiper
-
-#+begin_src emacs-lisp
-  (use-package counsel
-    :config
-    (ivy-mode 1)
-    (setq ivy-use-virtual-buffers t)
-    (setq ivy-count-format "(%d/%d) "))
-#+end_src
-
-** Add Keybindings
-
-*** Ivy-based interface to standard commands
-
-Adopting suggested keybindings from [[https://oremacs.com/swiper/#global-key-bindings][here]].
-
-#+begin_src emacs-lisp
-  (global-set-key (kbd "C-s") 'swiper-isearch)
-  (global-set-key (kbd "M-x") 'counsel-M-x)
-  (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-  (global-set-key (kbd "M-y") 'counsel-yank-pop)
-  (global-set-key (kbd "<f1> f") 'counsel-describe-function)
-  (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-  (global-set-key (kbd "<f1> l") 'counsel-find-library)
-  (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-  (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-  (global-set-key (kbd "<f2> j") 'counsel-set-variable)
-  (global-set-key (kbd "C-x b") 'ivy-switch-buffer)
-  (global-set-key (kbd "C-c v") 'ivy-push-view)
-  (global-set-key (kbd "C-c V") 'ivy-pop-view)
-#+end_src
-
-*** Ivy-based interface to standard commands
-
-#+begin_src emacs-lisp
-  (global-set-key (kbd "C-c g") 'counsel-git)
-  (global-set-key (kbd "C-c j") 'counsel-git-grep)
-  (global-set-key (kbd "C-c L") 'counsel-git-log)
-  (global-set-key (kbd "C-c k") 'counsel-rg)
-  (global-set-key (kbd "C-c m") 'counsel-linux-app)
-  ;(global-set-key (kbd "C-c f") 'counsel-fzf)
-  (global-set-key (kbd "C-x l") 'counsel-locate)
-  (global-set-key (kbd "C-c J") 'counsel-file-jump)
-  (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
-  (global-set-key (kbd "C-c w") 'counsel-wmctrl)
-#+end_src
-
-*** Ivy-based interface to standard commands
-
-#+begin_src emacs-lisp
-  (global-set-key (kbd "C-c C-r") 'ivy-resume)
-  (global-set-key (kbd "C-c b") 'counsel-bookmark)
-  (global-set-key (kbd "C-c g") 'counsel-git)
-  (global-set-key (kbd "C-c o") 'counsel-outline)
-  (global-set-key (kbd "C-c t") 'counsel-load-theme)
-  (global-set-key (kbd "C-c F") 'counsel-org-file)
-#+end_src
-
 * Install avy
 
 [[https://github.com/abo-abo/avy][Avy]] provides an efficient, character / tree-based approach to jumping to a line or matching substring.
@@ -722,16 +535,6 @@ Adopting suggested keybindings from [[https://oremacs.com/swiper/#global-key-bin
   (use-package avy
     :config
     (global-set-key (kbd "C-l") 'avy-goto-line))
-#+end_src
-
-* Install zygospore
-
-[[https://github.com/louiskottmann/zygospore.el][Zygospore]] temporarily hides all but the currently active window.
-
-#+begin_src emacs-lisp
-  (use-package zygospore
-    :config
-    (global-set-key (kbd "C-x 1") 'zygospore-toggle-delete-other-windows))
 #+end_src
 
 * Install Hydra
@@ -781,26 +584,6 @@ So to exit the hydra, the user can press ~C-w~.
     ("w"   evil-window-next))
 #+end_src
 
-* Install key-chord
-
-[[https://github.com/emacsorphanage/key-chord][Key Chord Mode]] lets you execute a command by pressing two keys down at the same time.
-
-The [[https://www.emacswiki.org/emacs/KeyChord][Emacs Wiki]] has some helpful tips on using this mode.
-
-#+begin_src emacs-lisp
-  (use-package key-chord)
-  (key-chord-mode 1)
-
-  ; If this is too long, then there are noticeable typing delays
-  ; If it is too short, then two-key chords are nearly impossible to invoke
-  ; https://github.com/emacsorphanage/key-chord/blob/e724def60fdf6473858f2962ae276cf4413473eb/key-chord.el#L37
-  (setq key-chord-two-keys-delay 0.025)
-
-  (key-chord-define-global "ts" 'save-buffer)
-  (key-chord-define-global "et" 'evil-avy-goto-char-timer)
-  (key-chord-define-global "on" 'vterm)
-  (key-chord-define-global "as" 'zygospore-toggle-delete-other-windows)
-#+end_src
 * Install flycheck
 
 While we won't enable flycheck globally (via ~(global-flycheck-mode)~),
@@ -834,7 +617,235 @@ The configuration below ensures case is preserved.
       (setq company-idle-delay 0.4))
 #+end_src
 
-* Install vimish-fold
+* Install Base16 Theme
+
+Use base16-eighties from the [[https://github.com/tinted-theming/base16-emacs][base16-theme]] package.
+
+#+begin_src emacs-lisp
+  (use-package base16-theme
+      :config (load-theme 'base16-eighties t))
+#+end_src
+
+
+* Advanced Developer Configuration
+** Install vterm
+
+Be sure to follow the [[https://github.com/akermu/emacs-libvterm#installation][installation instructions]] before using vterm.
+
+Start vterm-mode in Emacs mode;
+in Normal mode the user is limited to navigating a read-only buffer.
+Refer to Evil mode for an explanation of Emacs mode versus Vim modes.
+
+Disable highlighting (which is quirky when applied to the terminal).
+
+#+begin_src emacs-lisp
+  (use-package vterm
+    :ensure t
+    :config
+    (evil-set-initial-state 'vterm-mode 'emacs)
+    (add-hook 'vterm-mode-hook
+              (lambda ()
+                (set (make-local-variable 'global-hl-line-mode) nil)
+                (setq show-trailing-whitespace nil))))
+#+end_src
+
+** Install Git time machine
+
+[[https://github.com/emacsmirror/git-timemachine][Git time machine]] looks like a very useful way of walking through a file's version history.
+
+Map ~git-timemachine-toggle~ to ~C-x G~.
+Note that ~C-x g~ will still map to ~jl/magit-status~ (a wrapper for ~magit-status~).
+
+#+begin_src emacs-lisp
+  (use-package git-timemachine
+    :config
+    (evil-set-initial-state 'git-timemachine-mode 'emacs)
+    (global-set-key (kbd "C-x G") 'git-timemachine-toggle))
+#+end_src
+
+** Install org-brain
+
+#+begin_src emacs-lisp
+(use-package org-brain :ensure t
+  :init
+  (setq org-brain-path "~/.emacs.d/brain")
+  ;; For Evil users
+  (with-eval-after-load 'evil
+    (evil-set-initial-state 'org-brain-visualize-mode 'emacs))
+  :config
+  (bind-key "C-c b" 'org-brain-prefix-map org-mode-map)
+  (setq org-id-track-globally t)
+  ;(setq org-id-locations-file "~/.emacs.d/.org-id-locations")
+  (add-hook 'before-save-hook #'org-brain-ensure-ids-in-buffer)
+  (push '("b" "Brain" plain (function org-brain-goto-end)
+          "* %i%?" :empty-lines 1)
+        org-capture-templates)
+  (setq org-brain-visualize-default-choices 'all)
+  (setq org-brain-title-max-length 40)
+  (setq org-brain-include-file-entries nil
+        org-brain-file-entries-use-title nil))
+#+end_src
+
+** Install markdown-mode
+
+Install [[https://github.com/jrblevin/markdown-mode][markdown-mode]].
+
+#+begin_src emacs-lisp
+  (use-package markdown-mode)
+#+end_src
+
+** Install json-mode
+
+Install [[https://github.com/json-emacs/json-mode][json-mode]].
+
+#+begin_src emacs-lisp
+  (use-package json-mode)
+#+end_src
+
+** Install json-navigator
+
+Install [[https://github.com/DamienCassou/json-navigator][json-navigator]].
+
+Note:
+If Emacs complains about a void variable while trying to load the hierarchy package,
+it is likely due to a [[https://github.com/ahungry/md4rd/issues/32#issuecomment-1469697100][dependency pointing to the old version of hierarchy]].
+
+In my case, I noticed that in
+~.emacs.d/straight/repos/melpa/recipes/hierarchy~,
+there was the following definition:
+
+~(hierarchy :fetcher github :repo "DamienCassou/hierarchy")~.
+
+Deleting this file cleared up the errors I was seeing.
+
+The hierarchy package became a part of Emacs core, so dependency
+definitions like this should eventually be purged
+or marked as only applying to older versions of Emacs.
+
+More specifically, it seems like [[https://github.com/melpa/melpa/blob/master/recipes/hierarchy][this recipe for hierarchy]]
+should either be removed or marked as only applying to older versions
+of Emacs.
+
+#+begin_src emacs-lisp
+  (use-package json-navigator
+    :requires hierarchy)
+#+end_src
+** Install VLF
+
+Install [[https://github.com/m00natic/vlfi][VLF]], a mode for reading very large files in batch.
+
+To view a large file, use ~M-x vlf~ and then enter the file's path.
+
+#+begin_src emacs-lisp
+  (use-package vlf)
+#+end_src
+
+** Install typescript-mode
+
+A minimal setup for working with TypeScript.
+[[https://www.emacswiki.org/emacs/TypeScript][typescript-mode]] provides highlight modes for TypeScript.
+
+#+begin_src emacs-lisp
+  (use-package typescript-mode)
+#+end_src
+
+** Install groovy-mode
+
+Installs [[https://github.com/Groovy-Emacs-Modes/groovy-emacs-modes][groovy-mode]].
+
+#+begin_src emacs-lisp
+  (use-package groovy-mode)
+#+end_src
+
+** Install counsel, ivy, swiper
+
+#+begin_src emacs-lisp
+  (use-package counsel
+    :config
+    (ivy-mode 1)
+    (setq ivy-use-virtual-buffers t)
+    (setq ivy-count-format "(%d/%d) "))
+#+end_src
+
+*** Add Keybindings
+
+**** Ivy-based interface to standard commands
+
+Adopting suggested keybindings from [[https://oremacs.com/swiper/#global-key-bindings][here]].
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-s") 'swiper-isearch)
+  (global-set-key (kbd "M-x") 'counsel-M-x)
+  (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+  (global-set-key (kbd "M-y") 'counsel-yank-pop)
+  (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+  (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+  (global-set-key (kbd "<f1> l") 'counsel-find-library)
+  (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+  (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+  (global-set-key (kbd "<f2> j") 'counsel-set-variable)
+  (global-set-key (kbd "C-x b") 'ivy-switch-buffer)
+  (global-set-key (kbd "C-c v") 'ivy-push-view)
+  (global-set-key (kbd "C-c V") 'ivy-pop-view)
+#+end_src
+
+**** Ivy-based interface to standard commands
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-c g") 'counsel-git)
+  (global-set-key (kbd "C-c j") 'counsel-git-grep)
+  (global-set-key (kbd "C-c L") 'counsel-git-log)
+  (global-set-key (kbd "C-c k") 'counsel-rg)
+  (global-set-key (kbd "C-c m") 'counsel-linux-app)
+  ;(global-set-key (kbd "C-c f") 'counsel-fzf)
+  (global-set-key (kbd "C-x l") 'counsel-locate)
+  (global-set-key (kbd "C-c J") 'counsel-file-jump)
+  (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+  (global-set-key (kbd "C-c w") 'counsel-wmctrl)
+#+end_src
+
+**** Ivy-based interface to standard commands
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-c C-r") 'ivy-resume)
+  (global-set-key (kbd "C-c b") 'counsel-bookmark)
+  (global-set-key (kbd "C-c g") 'counsel-git)
+  (global-set-key (kbd "C-c o") 'counsel-outline)
+  (global-set-key (kbd "C-c t") 'counsel-load-theme)
+  (global-set-key (kbd "C-c F") 'counsel-org-file)
+#+end_src
+
+** Install zygospore
+
+[[https://github.com/louiskottmann/zygospore.el][Zygospore]] temporarily hides all but the currently active window.
+
+#+begin_src emacs-lisp
+  (use-package zygospore
+    :config
+    (global-set-key (kbd "C-x 1") 'zygospore-toggle-delete-other-windows))
+#+end_src
+
+** Install key-chord
+
+[[https://github.com/emacsorphanage/key-chord][Key Chord Mode]] lets you execute a command by pressing two keys down at the same time.
+
+The [[https://www.emacswiki.org/emacs/KeyChord][Emacs Wiki]] has some helpful tips on using this mode.
+
+#+begin_src emacs-lisp
+  (use-package key-chord)
+  (key-chord-mode 1)
+
+  ; If this is too long, then there are noticeable typing delays
+  ; If it is too short, then two-key chords are nearly impossible to invoke
+  ; https://github.com/emacsorphanage/key-chord/blob/e724def60fdf6473858f2962ae276cf4413473eb/key-chord.el#L37
+  (setq key-chord-two-keys-delay 0.025)
+
+  (key-chord-define-global "ts" 'save-buffer)
+  (key-chord-define-global "et" 'evil-avy-goto-char-timer)
+  (key-chord-define-global "on" 'vterm)
+  (key-chord-define-global "as" 'zygospore-toggle-delete-other-windows)
+#+end_src
+** Install vimish-fold
 
 [[https://github.com/matsievskiysv/vimish-fold][vimish-fold]] lets you fold a region, or lets you fold down to a point specified using avy.
 It calls out the folded region using the left sidebar (instead of ellipses)
@@ -850,16 +861,7 @@ which feels a little cleaner.
     (global-set-key (kbd "C-c @ U") #'vimish-fold-unfold-all))
 #+end_src
 
-* Install Base16 Theme
-
-Use base16-eighties from the [[https://github.com/tinted-theming/base16-emacs][base16-theme]] package.
-
-#+begin_src emacs-lisp
-  (use-package base16-theme
-      :config (load-theme 'base16-eighties t))
-#+end_src
-
-* Install docker.el
+** Install docker.el
 
 [[https://github.com/Silex/docker.el][docker.el]] provides support for managing docker containers, images, volumes, networks, contexts and docker-compose.
 
@@ -877,7 +879,7 @@ whenever ~C-c d~ is pressed.
   )
 #+end_src
 
-* Install dockerfile-mode
+** Install dockerfile-mode
 
 Use [[https://github.com/spotify/dockerfile-mode][dockerfile-mode]]
 to enable Dockerfile syntax highlighting.
@@ -886,7 +888,7 @@ to enable Dockerfile syntax highlighting.
   (use-package dockerfile-mode)
 #+end_src
 
-* Install kubernetes-el
+** Install kubernetes-el
 
 See [[https://kubernetes-el.github.io/kubernetes-el/getting-started/][kubernetes-el]] for more information.
 
@@ -911,7 +913,7 @@ to get started.
   (evil-set-initial-state 'kubernetes-log-line 'emacs)
 #+end_src
 
-* Install keepass-mode
+** Install keepass-mode
 
 [[https://github.com/ifosch/keepass-mode][keepass-mode]] lets you interact with your [[https://keepassxc.org/][KeePassXC Database]].
 
