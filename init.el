@@ -22,6 +22,14 @@
 ;;   ln -s /Applications/Emacs.app/Contents/MacOS/Emacs emacs
 ;;   export PATH="~/bin;$PATH"
 ;;
+;;   After some experimentation, also found that you need to replace
+;;   the org package included in the Emacs application with the version
+;;   built by straight:
+;;
+;;     cd /Applications/Emacs.app/Contents/Resources/lisp
+;;     mv org org.bak
+;;     ln -s ~/.emacs.d/straight/build/org/ org
+;;
 ;; This file -- init.el -- loads Org and then loads the rest of our
 ;; Emacs initialization from Emacs lisp embedded in literate Org files.
 
