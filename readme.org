@@ -14,6 +14,13 @@ installing developpment-focused packages.
     (setq skip-dev-config nil))
 #+end_src
 
+Uncomment to profile loading profile.
+
+#+begin_src emacs-lisp
+  ;(require 'profiler)
+  ;(profiler-start 'cpu)
+#+end_src
+
 * Bootstrap Package Manager
 
 Using [[https://github.com/jwiegley/use-package#getting-started][straight.el]] and use-package.
@@ -1295,4 +1302,11 @@ and note that the command should create a new frame.
               (save-buffer)
               (kill-buffer)
               (set-file-modes ec_script #o755))))
+#+end_src
+
+* Finish profiling
+
+#+begin_src emacs-lisp
+  ;(profiler-stop)
+  ;(profiler-report)
 #+end_src
