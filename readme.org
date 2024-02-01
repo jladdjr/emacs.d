@@ -626,6 +626,61 @@ Use base16-eighties from the [[https://github.com/tinted-theming/base16-emacs][b
       :config (load-theme 'base16-eighties t))
 #+end_src
 
+* Install undo-tree
+
+[[https://www.emacswiki.org/emacs/UndoTree][Undo Tree]] provides a convenient tool for mapping out previous undo steps.
+It also restructures undos / redos as a tree, instead of as a linear series of events.
+
+Move undo data to ~.emacs.d/backups/undo-tree~.
+These files were confusing org-roam.
+
+#+begin_src emacs-lisp
+  (use-package undo-tree
+    :defer t
+    :init
+    (global-undo-tree-mode)
+    :config
+    (progn
+      (evil-set-initial-state 'undo-tree-visualizer-mode 'emacs)
+      (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/backups/undo-tree")))))
+
+#+end_src
+
+* Install multiple-cursors
+
+Add support for [[https://github.com/magnars/multiple-cursors.el#readme][multiple cursors]].
+
+An overview video of multiple-cursors is available
+[[https://emacsrocks.com/e13.html][here]].
+
+#+begin_src emacs-lisp
+  (use-package multiple-cursors
+    :init
+    (global-unset-key (kbd "M-<down-mouse-1>"))
+    (global-set-key (kbd "M-<mouse-1>") 'mc/add-cursor-on-click))
+#+end_src
+
+* Install cframe
+
+[[https://github.com/plandes/cframe][cframe]] lets you save and restore a frames position and dimensions
+(using ~cframe-save~ and ~cframe-restore~ respectively).
+
+#+begin_src emacs-lisp
+  (use-package cframe
+    :config
+    (global-set-key "\C-x9" 'cframe-restore))
+#+end_src
+
+* Nyan-Mode
+
+An analog indicator of your position in the buffer.
+With a little help from [[https://github.com/TeMPOraL/nyan-mode][Nyan Cat]].
+
+Use ~M-x nyan-mode~ to enable.
+
+#+begin_src emacs-lisp
+  (use-package nyan-mode)
+#+end_src
 
 * Advanced Developer Configuration
 ** Install vterm
@@ -921,62 +976,6 @@ to get started.
   (use-package keepass-mode
     :config
     (evil-set-initial-state 'keepass-mode 'emacs))
-#+end_src
-
-* Install undo-tree
-
-[[https://www.emacswiki.org/emacs/UndoTree][Undo Tree]] provides a convenient tool for mapping out previous undo steps.
-It also restructures undos / redos as a tree, instead of as a linear series of events.
-
-Move undo data to ~.emacs.d/backups/undo-tree~.
-These files were confusing org-roam.
-
-#+begin_src emacs-lisp
-  (use-package undo-tree
-    :defer t
-    :init
-    (global-undo-tree-mode)
-    :config
-    (progn
-      (evil-set-initial-state 'undo-tree-visualizer-mode 'emacs)
-      (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/backups/undo-tree")))))
-
-#+end_src
-
-* Install multiple-cursors
-
-Add support for [[https://github.com/magnars/multiple-cursors.el#readme][multiple cursors]].
-
-An overview video of multiple-cursors is available
-[[https://emacsrocks.com/e13.html][here]].
-
-#+begin_src emacs-lisp
-  (use-package multiple-cursors
-    :init
-    (global-unset-key (kbd "M-<down-mouse-1>"))
-    (global-set-key (kbd "M-<mouse-1>") 'mc/add-cursor-on-click))
-#+end_src
-
-* Install cframe
-
-[[https://github.com/plandes/cframe][cframe]] lets you save and restore a frames position and dimensions
-(using ~cframe-save~ and ~cframe-restore~ respectively).
-
-#+begin_src emacs-lisp
-  (use-package cframe
-    :config
-    (global-set-key "\C-x9" 'cframe-restore))
-#+end_src
-
-* Nyan-Mode
-
-An analog indicator of your position in the buffer.
-With a little help from [[https://github.com/TeMPOraL/nyan-mode][Nyan Cat]].
-
-Use ~M-x nyan-mode~ to enable.
-
-#+begin_src emacs-lisp
-  (use-package nyan-mode)
 #+end_src
 
 * Miscellaneous Functions
