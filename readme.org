@@ -1266,6 +1266,13 @@ so that we can quickly open new sessions with ~emacsclient~.
   (defun sole-emacs-process ()
     "Determine if this is the only emacs process that is running."
     (let ((output-buffer (generate-new-buffer "*emacs-process-count*")))
+      ; TODO: Mac version cannot use any "--" flags
+      ; Instead it should use something like pgrep Emacs
+      ; and then count the number of lines returned
+      ; Should probably take a similar approach for linux
+      ; if it's possible to take the same approach on both OSes
+      ;(call-process "pgrep" nil output-buffer nil "--exact" "--count" "emacs")
+
       (call-process "pgrep" nil output-buffer nil "--exact" "--count" "emacs")
       (save-excursion
         (with-current-buffer "*emacs-process-count*"
