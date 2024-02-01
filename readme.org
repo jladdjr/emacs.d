@@ -56,6 +56,7 @@ use-package allows for you to install and configure a package in one step.
 *** Configure use-package to use straight.el by default
 
 #+begin_src emacs-lisp
+  (message "load straight")
   (use-package straight
       :custom (straight-use-package-by-default t))
 #+end_src
@@ -270,6 +271,7 @@ to ~M-g~.
 
 #+begin_src emacs-lisp
           ; Ensure org-pictures directory exists
+  (message "load org-download")
   (use-package org-download
     :config
     (add-hook 'dired-mode-hook 'org-download-enable)
@@ -294,6 +296,7 @@ Taking things a step further, we also use ~with-eval-after-load~ to forcefully u
 (Found this approach [[https://github.com/emacs-evil/evil/issues/1604][here]].)
 
 #+begin_src emacs-lisp
+  (message "load evil")
   (use-package evil
     :config
     (evil-mode)
@@ -317,6 +320,7 @@ We can't go anywhere without [[https://magit.vc/][Magit]]!
 Include a hook that drops the user into emacs mode when prompted for a Git commit message.
 
 #+begin_src emacs-lisp
+  (message "load magit")
   (use-package magit
     :config
     (add-hook 'git-commit-mode-hook 'evil-emacs-state))
@@ -342,6 +346,7 @@ newer versions of Emacs packages are installed
 (e.g. org-mode, magit).
 
 #+begin_src emacs-lisp
+  (message "load org-roam")
   (use-package org-roam
     :ensure t
     :bind (("C-c h" . (lambda () (interactive) (call-interactively 'org-roam-buffer-toggle) (other-window 1)))
@@ -409,6 +414,7 @@ Snippet examples available [[https://github.com/AndreaCrotti/yasnippet-snippets/
 Walkthrough of using snippets available [[https://blog.alex-miller.co/emacs/spacemacs/2017/05/28/yasnippets.html][here]].
 
 #+begin_src emacs-lisp
+  (message "load yasnippet")
   (use-package yasnippet
     :config
     (yas-global-mode)
@@ -422,6 +428,7 @@ Install [[https://github.com/yoshiki/yaml-mode][yaml-mode]].
 More information on yaml-mode is available [[https://www.emacswiki.org/emacs/YamlMode][here]].
 
 #+begin_src emacs-lisp
+  (message "load yaml-mode")
   (use-package yaml-mode
     :config
     (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
@@ -439,6 +446,7 @@ Key Perspective commands are outlined [[https://github.com/nex3/perspective-el#u
 The Perspective prefix key is set to ~C-c~ ~C-z~ below.
 
 #+begin_src emacs-lisp
+  (message "load perspective")
   (use-package perspective
     :custom
     (persp-mode-prefix-key (kbd "C-c C-z"))
@@ -458,6 +466,7 @@ We map this in ~evil-normal-state-map~ specifically so that ~C-f~ is not shadowe
 where it is less likely to be used anyways.
 
 #+begin_src emacs-lisp
+  (message "load projectile")
   (use-package projectile
     :init
     (setq projectile-project-search-path '("~/git/" "~/org/" "~/.emacs.d"))
@@ -481,6 +490,7 @@ that automatically switches us over to the other window.
 using projectile variables or function arguments).
 
 #+begin_src emacs-lisp
+  (message "load ag")
   (use-package ag
     :init
     (with-eval-after-load 'evil-maps (define-key evil-normal-state-map (kbd "C-n") (lambda () (interactive) (call-interactively 'projectile-ag) (other-window 1)))))
@@ -544,6 +554,7 @@ that will be used when invoking ~projectile-switch-project~.
 [[https://github.com/abo-abo/avy][Avy]] provides an efficient, character / tree-based approach to jumping to a line or matching substring.
 
 #+begin_src emacs-lisp
+  (message "load avy")
   (use-package avy
     :config
     (global-set-key (kbd "C-l") 'avy-goto-line))
@@ -561,6 +572,7 @@ but the ~C-w~ head is marked as blue.
 So to exit the hydra, the user can press ~C-w~.
 
 #+begin_src emacs-lisp
+  (message "load hydra")
   (use-package hydra)
 
   ; From https://blog.genenakagaki.com/en/my-emacs-life-is-better-with-hydra.html
@@ -605,6 +617,7 @@ we don't want the ability to check syntax across various modes.
 The quickstart guide for Flycheck is available [[https://www.flycheck.org/en/latest/user/quickstart.html][here]].
 
 #+begin_src emacs-lisp
+  (message "load flycheck")
   (use-package flycheck)
 #+end_src
 
@@ -618,6 +631,7 @@ company-mode [[https://emacs.stackexchange.com/questions/10837/how-to-make-compa
 The configuration below ensures case is preserved.
 
 #+begin_src emacs-lisp
+  (message "load company")
   (use-package company
       :config
       (add-hook 'after-init-hook 'global-company-mode)
@@ -634,6 +648,7 @@ The configuration below ensures case is preserved.
 Use base16-eighties from the [[https://github.com/tinted-theming/base16-emacs][base16-theme]] package.
 
 #+begin_src emacs-lisp
+  (message "load base16-theme")
   (use-package base16-theme
       :config (load-theme 'base16-eighties t))
 #+end_src
@@ -647,6 +662,7 @@ Move undo data to ~.emacs.d/backups/undo-tree~.
 These files were confusing org-roam.
 
 #+begin_src emacs-lisp
+  (message "load undo-tree")
   (use-package undo-tree
     :defer t
     :init
@@ -666,6 +682,7 @@ An overview video of multiple-cursors is available
 [[https://emacsrocks.com/e13.html][here]].
 
 #+begin_src emacs-lisp
+  (message "load multiple-cursors")
   (use-package multiple-cursors
     :init
     (global-unset-key (kbd "M-<down-mouse-1>"))
@@ -678,6 +695,7 @@ An overview video of multiple-cursors is available
 (using ~cframe-save~ and ~cframe-restore~ respectively).
 
 #+begin_src emacs-lisp
+  (message "load cframe")
   (use-package cframe
     :config
     (global-set-key "\C-x9" 'cframe-restore))
@@ -691,6 +709,7 @@ With a little help from [[https://github.com/TeMPOraL/nyan-mode][Nyan Cat]].
 Use ~M-x nyan-mode~ to enable.
 
 #+begin_src emacs-lisp
+  (message "load nyan-mode")
   (use-package nyan-mode)
 #+end_src
 
@@ -707,6 +726,7 @@ Disable highlighting (which is quirky when applied to the terminal).
 
 #+begin_src emacs-lisp
   (unless skip-dev-config
+    (message "load vterm")
     (use-package vterm
         :ensure t
         :config
@@ -726,6 +746,7 @@ Note that ~C-x g~ will still map to ~jl/magit-status~ (a wrapper for ~magit-stat
 
 #+begin_src emacs-lisp
   (unless skip-dev-config
+    (message "load git-timemachine")
     (use-package git-timemachine
         :config
         (evil-set-initial-state 'git-timemachine-mode 'emacs)
@@ -736,6 +757,7 @@ Note that ~C-x g~ will still map to ~jl/magit-status~ (a wrapper for ~magit-stat
 
 #+begin_src emacs-lisp
   (unless skip-dev-config
+    (message "load org-brain")
     (use-package org-brain :ensure t
         :init
         (setq org-brain-path "~/.emacs.d/brain")
@@ -762,6 +784,7 @@ Install [[https://github.com/jrblevin/markdown-mode][markdown-mode]].
 
 #+begin_src emacs-lisp
   (unless skip-dev-config
+    (message "load markdown-mode")
     (use-package markdown-mode))
 #+end_src
 
@@ -771,6 +794,7 @@ Install [[https://github.com/json-emacs/json-mode][json-mode]].
 
 #+begin_src emacs-lisp
   (unless skip-dev-config
+    (message "load json-mode")
     (use-package json-mode))
 #+end_src
 
@@ -800,6 +824,7 @@ of Emacs.
 
 #+begin_src emacs-lisp
   (unless skip-dev-config
+    (message "load json-navigator")
     (use-package json-navigator
         :requires hierarchy))
 #+end_src
@@ -812,6 +837,7 @@ To view a large file, use ~M-x vlf~ and then enter the file's path.
 
 #+begin_src emacs-lisp
   (unless skip-dev-config
+    (message "load vlf")
     (use-package vlf))
 #+end_src
 
@@ -822,6 +848,7 @@ A minimal setup for working with TypeScript.
 
 #+begin_src emacs-lisp
   (unless skip-dev-config
+    (message "load typescript-mode")
     (use-package typescript-mode))
 #+end_src
 
@@ -831,12 +858,14 @@ Installs [[https://github.com/Groovy-Emacs-Modes/groovy-emacs-modes][groovy-mode
 
 #+begin_src emacs-lisp
   (unless skip-dev-config
+    (message "load groovy-mode")
     (use-package groovy-mode))
 #+end_src
 
 * Install counsel, ivy, swiper
 
 #+begin_src emacs-lisp
+  (message "load counsel")
   (use-package counsel
     :config
     (ivy-mode 1)
@@ -897,6 +926,7 @@ Adopting suggested keybindings from [[https://oremacs.com/swiper/#global-key-bin
 [[https://github.com/louiskottmann/zygospore.el][Zygospore]] temporarily hides all but the currently active window.
 
 #+begin_src emacs-lisp
+  (message "load zygospore")
   (use-package zygospore
     :config
     (global-set-key (kbd "C-x 1") 'zygospore-toggle-delete-other-windows))
@@ -909,6 +939,7 @@ Adopting suggested keybindings from [[https://oremacs.com/swiper/#global-key-bin
 The [[https://www.emacswiki.org/emacs/KeyChord][Emacs Wiki]] has some helpful tips on using this mode.
 
 #+begin_src emacs-lisp
+  (message "load key-chord")
   (use-package key-chord)
   (key-chord-mode 1)
 
@@ -929,6 +960,7 @@ It calls out the folded region using the left sidebar (instead of ellipses)
 which feels a little cleaner.
 
 #+begin_src emacs-lisp
+  (message "load vimish-fold")
   (use-package vimish-fold
     :config
     (vimish-fold-global-mode 1)
@@ -948,6 +980,7 @@ whenever ~C-c d~ is pressed.
 (Normal mode masks most, if not all, docker.el bindings).
 
 #+begin_src emacs-lisp
+  (message "load docker")
   (use-package docker
   :ensure t
   :bind ("C-c d" . docker)
@@ -962,6 +995,7 @@ Use [[https://github.com/spotify/dockerfile-mode][dockerfile-mode]]
 to enable Dockerfile syntax highlighting.
 
 #+begin_src emacs-lisp
+  (message "load dockerfile-mode")
   (use-package dockerfile-mode)
 #+end_src
 
@@ -973,6 +1007,7 @@ Call ~kubernetes-overview~ (or its alias, ~k8s~)
 to get started.
 
 #+begin_src emacs-lisp
+  (message "load kubernetes")
   (use-package kubernetes
     :ensure t
     :commands (kubernetes-overview)
@@ -980,6 +1015,7 @@ to get started.
     (setq kubernetes-poll-frequency 3600
           kubernetes-redraw-frequency 3600))
 
+  (message "load kubernetes-evil")
   (use-package kubernetes-evil
     :ensure t
     :after kubernetes)
@@ -995,6 +1031,7 @@ to get started.
 [[https://github.com/ifosch/keepass-mode][keepass-mode]] lets you interact with your [[https://keepassxc.org/][KeePassXC Database]].
 
 #+begin_src emacs-lisp
+  (message "load keepass-mode")
   (use-package keepass-mode
     :config
     (evil-set-initial-state 'keepass-mode 'emacs))
