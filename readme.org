@@ -2,6 +2,18 @@
 
 * Introduction
 
+* Pre-flight steps
+
+Initialize ~skip-dev-config~ (if necessary).
+This variable indicates whether to skip sections focused on
+installing developpment-focused packages.
+
+#+begin_src emacs-lisp
+; initialize skip-dev-config if not defined
+(if (not (boundp 'skip-dev-config))
+    (setq skip-dev-config nil))
+#+end_src
+
 * Bootstrap Package Manager
 
 Using [[https://github.com/jwiegley/use-package#getting-started][straight.el]] and use-package.
@@ -694,14 +706,15 @@ Refer to Evil mode for an explanation of Emacs mode versus Vim modes.
 Disable highlighting (which is quirky when applied to the terminal).
 
 #+begin_src emacs-lisp
-  (use-package vterm
-    :ensure t
-    :config
-    (evil-set-initial-state 'vterm-mode 'emacs)
-    (add-hook 'vterm-mode-hook
-              (lambda ()
-                (set (make-local-variable 'global-hl-line-mode) nil)
-                (setq show-trailing-whitespace nil))))
+  (unless skip-dev-config
+    (use-package vterm
+        :ensure t
+        :config
+        (evil-set-initial-state 'vterm-mode 'emacs)
+        (add-hook 'vterm-mode-hook
+                (lambda ()
+                    (set (make-local-variable 'global-hl-line-mode) nil)
+                    (setq show-trailing-whitespace nil)))))
 #+end_src
 
 ** Install Git time machine
@@ -712,33 +725,35 @@ Map ~git-timemachine-toggle~ to ~C-x G~.
 Note that ~C-x g~ will still map to ~jl/magit-status~ (a wrapper for ~magit-status~).
 
 #+begin_src emacs-lisp
-  (use-package git-timemachine
-    :config
-    (evil-set-initial-state 'git-timemachine-mode 'emacs)
-    (global-set-key (kbd "C-x G") 'git-timemachine-toggle))
+  (unless skip-dev-config
+    (use-package git-timemachine
+        :config
+        (evil-set-initial-state 'git-timemachine-mode 'emacs)
+        (global-set-key (kbd "C-x G") 'git-timemachine-toggle)))
 #+end_src
 
 ** Install org-brain
 
 #+begin_src emacs-lisp
-(use-package org-brain :ensure t
-  :init
-  (setq org-brain-path "~/.emacs.d/brain")
-  ;; For Evil users
-  (with-eval-after-load 'evil
-    (evil-set-initial-state 'org-brain-visualize-mode 'emacs))
-  :config
-  (bind-key "C-c b" 'org-brain-prefix-map org-mode-map)
-  (setq org-id-track-globally t)
-  ;(setq org-id-locations-file "~/.emacs.d/.org-id-locations")
-  (add-hook 'before-save-hook #'org-brain-ensure-ids-in-buffer)
-  (push '("b" "Brain" plain (function org-brain-goto-end)
-          "* %i%?" :empty-lines 1)
-        org-capture-templates)
-  (setq org-brain-visualize-default-choices 'all)
-  (setq org-brain-title-max-length 40)
-  (setq org-brain-include-file-entries nil
-        org-brain-file-entries-use-title nil))
+  (unless skip-dev-config
+    (use-package org-brain :ensure t
+        :init
+        (setq org-brain-path "~/.emacs.d/brain")
+        ;; For Evil users
+        (with-eval-after-load 'evil
+        (evil-set-initial-state 'org-brain-visualize-mode 'emacs))
+        :config
+        (bind-key "C-c b" 'org-brain-prefix-map org-mode-map)
+        (setq org-id-track-globally t)
+        ;(setq org-id-locations-file "~/.emacs.d/.org-id-locations")
+        (add-hook 'before-save-hook #'org-brain-ensure-ids-in-buffer)
+        (push '("b" "Brain" plain (function org-brain-goto-end)
+                "* %i%?" :empty-lines 1)
+            org-capture-templates)
+        (setq org-brain-visualize-default-choices 'all)
+        (setq org-brain-title-max-length 40)
+        (setq org-brain-include-file-entries nil
+            org-brain-file-entries-use-title nil)))
 #+end_src
 
 ** Install markdown-mode
@@ -746,7 +761,8 @@ Note that ~C-x g~ will still map to ~jl/magit-status~ (a wrapper for ~magit-stat
 Install [[https://github.com/jrblevin/markdown-mode][markdown-mode]].
 
 #+begin_src emacs-lisp
-  (use-package markdown-mode)
+  (unless skip-dev-config
+    (use-package markdown-mode))
 #+end_src
 
 ** Install json-mode
@@ -754,7 +770,8 @@ Install [[https://github.com/jrblevin/markdown-mode][markdown-mode]].
 Install [[https://github.com/json-emacs/json-mode][json-mode]].
 
 #+begin_src emacs-lisp
-  (use-package json-mode)
+  (unless skip-dev-config
+    (use-package json-mode))
 #+end_src
 
 ** Install json-navigator
@@ -782,9 +799,11 @@ should either be removed or marked as only applying to older versions
 of Emacs.
 
 #+begin_src emacs-lisp
-  (use-package json-navigator
-    :requires hierarchy)
+  (unless skip-dev-config
+    (use-package json-navigator
+        :requires hierarchy))
 #+end_src
+
 ** Install VLF
 
 Install [[https://github.com/m00natic/vlfi][VLF]], a mode for reading very large files in batch.
@@ -792,7 +811,8 @@ Install [[https://github.com/m00natic/vlfi][VLF]], a mode for reading very large
 To view a large file, use ~M-x vlf~ and then enter the file's path.
 
 #+begin_src emacs-lisp
-  (use-package vlf)
+  (unless skip-dev-config
+    (use-package vlf))
 #+end_src
 
 ** Install typescript-mode
@@ -801,7 +821,8 @@ A minimal setup for working with TypeScript.
 [[https://www.emacswiki.org/emacs/TypeScript][typescript-mode]] provides highlight modes for TypeScript.
 
 #+begin_src emacs-lisp
-  (use-package typescript-mode)
+  (unless skip-dev-config
+    (use-package typescript-mode))
 #+end_src
 
 ** Install groovy-mode
@@ -809,10 +830,11 @@ A minimal setup for working with TypeScript.
 Installs [[https://github.com/Groovy-Emacs-Modes/groovy-emacs-modes][groovy-mode]].
 
 #+begin_src emacs-lisp
-  (use-package groovy-mode)
+  (unless skip-dev-config
+    (use-package groovy-mode))
 #+end_src
 
-** Install counsel, ivy, swiper
+* Install counsel, ivy, swiper
 
 #+begin_src emacs-lisp
   (use-package counsel
@@ -822,9 +844,9 @@ Installs [[https://github.com/Groovy-Emacs-Modes/groovy-emacs-modes][groovy-mode
     (setq ivy-count-format "(%d/%d) "))
 #+end_src
 
-*** Add Keybindings
+** Add Keybindings
 
-**** Ivy-based interface to standard commands
+*** Ivy-based interface to standard commands
 
 Adopting suggested keybindings from [[https://oremacs.com/swiper/#global-key-bindings][here]].
 
@@ -844,7 +866,7 @@ Adopting suggested keybindings from [[https://oremacs.com/swiper/#global-key-bin
   (global-set-key (kbd "C-c V") 'ivy-pop-view)
 #+end_src
 
-**** Ivy-based interface to standard commands
+*** Ivy-based interface to standard commands
 
 #+begin_src emacs-lisp
   (global-set-key (kbd "C-c g") 'counsel-git)
@@ -859,7 +881,7 @@ Adopting suggested keybindings from [[https://oremacs.com/swiper/#global-key-bin
   (global-set-key (kbd "C-c w") 'counsel-wmctrl)
 #+end_src
 
-**** Ivy-based interface to standard commands
+*** Ivy-based interface to standard commands
 
 #+begin_src emacs-lisp
   (global-set-key (kbd "C-c C-r") 'ivy-resume)
