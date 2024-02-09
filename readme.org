@@ -344,6 +344,24 @@ Make the Magit status window the only window in view when it opens.
   (define-key (current-global-map) [remap magit-status] 'jl/magit-status)
 #+end_src
 
+* Install browse-at-remote
+
+[[https://github.com/rmuslimov/browse-at-remote][browse-at-remote]] opens the GitHub page
+corresponding to current location in buffer.
+
+
+#+begin_src emacs-lisp
+  (use-package browse-at-remote)
+  (global-set-key (kbd "C-c g g") 'browse-at-remote)
+
+  ; When working with Enterprise GitHub, let browse-at-remote
+  ; know that the remote represents a Git Hub repository by running:
+  ; > git config --add browseAtRemote.type "github"
+
+  ; If all remotes use github, you can apply this setting globally with:
+  ; > git config --global --add browseAtRemote.type "github"
+#+end_src
+
 * Install org-roam
 
 Install [[https://www.orgroam.com/manual.html][Org-roam]].
@@ -905,7 +923,6 @@ Adopting suggested keybindings from [[https://oremacs.com/swiper/#global-key-bin
 *** Ivy-based interface to standard commands
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "C-c g") 'counsel-git)
   (global-set-key (kbd "C-c j") 'counsel-git-grep)
   (global-set-key (kbd "C-c L") 'counsel-git-log)
   (global-set-key (kbd "C-c k") 'counsel-rg)
@@ -922,7 +939,6 @@ Adopting suggested keybindings from [[https://oremacs.com/swiper/#global-key-bin
 #+begin_src emacs-lisp
   (global-set-key (kbd "C-c C-r") 'ivy-resume)
   (global-set-key (kbd "C-c b") 'counsel-bookmark)
-  (global-set-key (kbd "C-c g") 'counsel-git)
   (global-set-key (kbd "C-c o") 'counsel-outline)
   (global-set-key (kbd "C-c t") 'counsel-load-theme)
   (global-set-key (kbd "C-c F") 'counsel-org-file)
