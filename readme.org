@@ -412,7 +412,9 @@ Can call ~M-x org-roam-db-sync~ interactively to re-index.
         :unnarrowed t)
       ("c" "common template" plain "* Overview
 
-\* Key Links
+\* Reference
+
+\* Links
 
 %?
 
