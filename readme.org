@@ -864,13 +864,15 @@ Installs [[https://github.com/Groovy-Emacs-Modes/groovy-emacs-modes][groovy-mode
     (use-package groovy-mode))
 #+end_src
 
-** Configure [[https://github.com/mooz/js2-mode/][js2-mode]]
+** Install [[https://github.com/mooz/js2-mode/][js2-mode]]
 
-Enable js2-mode for ~*.js~ files.
+Install js2-mode
+and enable for ~*.js~ files.
 
 More tips on how to configure js2-mode and friends is available [[https://web.archive.org/web/20231009082516/https://emacs.cafe/emacs/javascript/setup/2017/04/23/emacs-setup-javascript.html][here]].
 
 #+begin_src emacs-lisp
+  (use-package js2-mode)
   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 #+end_src
 
