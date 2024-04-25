@@ -716,18 +716,6 @@ An overview video of multiple-cursors is available
     (global-set-key (kbd "M-<mouse-1>") 'mc/add-cursor-on-click))
 #+end_src
 
-* Install cframe
-
-[[https://github.com/plandes/cframe][cframe]] lets you save and restore a frames position and dimensions
-(using ~cframe-save~ and ~cframe-restore~ respectively).
-
-#+begin_src emacs-lisp
-  (message "load cframe")
-  (use-package cframe
-    :config
-    (global-set-key "\C-x9" 'cframe-restore))
-#+end_src
-
 * Nyan-Mode
 
 An analog indicator of your position in the buffer.

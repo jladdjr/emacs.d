@@ -3,8 +3,14 @@
 * Initial Frame Positioning
 
 #+begin_src emacs-lisp
+  ; external monitor
   (let ((my-frame (selected-frame)))
     (set-frame-position my-frame 1038 35)
     (set-frame-width my-frame 168)
     (set-frame-height my-frame 80))
+  ; laptop
+  ;(let ((my-frame (selected-frame)))
+  ;  (set-frame-position my-frame 200 35)
+  ;  (set-frame-width my-frame 168)
+  ;  (set-frame-height my-frame 80))
 #+end_src
