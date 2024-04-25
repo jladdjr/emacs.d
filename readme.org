@@ -1261,6 +1261,16 @@ See [[https://emacshints.wordpress.com/2013/09/19/disabling-auto-save-and-backup
   (setq auto-save-default nil)
 #+end_src
 
+* Store backup files in central location
+
+When looking at directories outside of Emacs (e.g. using a regular shell),
+directory contents can quickly become congested by Emacs backup files.
+Move them to ~/.emacs.d/backups/emacs~ instead.
+
+#+begin_src emacs-lisp
+  (setq backup-directory-alist `(("." . "~/.emacs.d/backups/emacs")))
+#+end_src
+
 * Start server
 
 After Emacs starts, start the Emacs server
