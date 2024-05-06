@@ -520,7 +520,13 @@ using projectile variables or function arguments).
   (message "load ag")
   (use-package ag
     :init
-    (with-eval-after-load 'evil-maps (define-key evil-normal-state-map (kbd "C-n") (lambda () (interactive) (call-interactively 'projectile-ag) (other-window 1)))))
+    (with-eval-after-load 'evil-maps
+      (define-key evil-normal-state-map (kbd "C-n")
+        (lambda () (interactive)
+          (call-interactively 'projectile-ag)
+          (other-window 1))))
+    :config
+    (add-hook 'ag-mode-hook 'evil-emacs-state))
 #+end_src
 
 Create a custom initial project view
