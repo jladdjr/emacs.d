@@ -734,6 +734,27 @@ Use ~M-x nyan-mode~ to enable.
   (use-package nyan-mode)
 #+end_src
 
+* Show the weather with [[https://wttr.in][wttr.in]]
+
+Install [[https://github.com/bcbcarl/emacs-wttrin][wttr.el]].
+
+Use [[https://github.com/etiago/emacs-wttrin/tree/user-agent-fix][etiago's patch]] to fix an [[https://github.com/bcbcarl/emacs-wttrin/issues/16][issue]] where raw html is shown.
+
+#+begin_src emacs-lisp
+  (use-package wttrin
+    :straight (:type git
+                     :host nil
+                     :repo "git@github.com:etiago/emacs-wttrin.git"
+                     :branch "user-agent-fix")
+    :custom
+    (wttrin-default-cities '("Portland")))
+
+  (advice-add 'wttrin
+              :after
+              (lambda (&rest args)
+                (setq show-trailing-whitespace nil)))
+#+end_src
+
 * Advanced Developer Configuration
 ** Install vterm
 
