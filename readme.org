@@ -524,9 +524,7 @@ using projectile variables or function arguments).
       (define-key evil-normal-state-map (kbd "C-n")
         (lambda () (interactive)
           (call-interactively 'projectile-ag)
-          (other-window 1)
-          ; move down to first match
-          (compilation-next-error))))
+          (other-window 1))))
     :config
     (add-hook 'ag-mode-hook 'evil-emacs-state))
 #+end_src
