@@ -752,7 +752,8 @@ Use [[https://github.com/etiago/emacs-wttrin/tree/user-agent-fix][etiago's patch
   (advice-add 'wttrin
               :after
               (lambda (&rest args)
-                (setq show-trailing-whitespace nil)))
+                (setq show-trailing-whitespace nil)
+                (evil-emacs-state)))
 #+end_src
 
 * Advanced Developer Configuration
