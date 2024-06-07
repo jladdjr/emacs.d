@@ -941,7 +941,6 @@ Adopting suggested keybindings from [[https://oremacs.com/swiper/#global-key-bin
   (global-set-key (kbd "C-x l") 'counsel-locate)
   (global-set-key (kbd "C-c J") 'counsel-file-jump)
   (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
-  (global-set-key (kbd "C-c w") 'counsel-wmctrl)
 #+end_src
 
 *** Ivy-based interface to standard commands
