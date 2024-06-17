@@ -722,6 +722,20 @@ An overview video of multiple-cursors is available
     (global-set-key (kbd "M-<mouse-1>") 'mc/add-cursor-on-click))
 #+end_src
 
+* Install pomm (for pomodoro and third-time techniques)
+
+See [[https://sqrtminusone.xyz/packages/pomm/][pomm]] for overview of features, commands, and configuration
+options.
+
+Note that this requires an up-to-date version of transient.el
+(provided by [[https://github.com/magit/magit][Magit]]).
+
+#+begin_src emacs-lisp
+  (use-package pomm
+    :straight t
+    :commands (pomm pomm-third-time))
+#+end_src
+
 * Nyan-Mode
 
 An analog indicator of your position in the buffer.
