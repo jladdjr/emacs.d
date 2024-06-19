@@ -496,7 +496,7 @@ where it is less likely to be used anyways.
   (message "load projectile")
   (use-package projectile
     :init
-    (setq projectile-project-search-path '("~/git/" "~/org/" "~/.emacs.d"))
+    (setq projectile-project-search-path '("~/git/" "~/org/" "~/.emacs.d" ("~/johnny" . 3)))
     (projectile-mode)
     (with-eval-after-load 'evil-maps (define-key evil-normal-state-map (kbd "C-f") 'projectile-find-file))
     :bind
