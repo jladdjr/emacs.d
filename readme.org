@@ -796,7 +796,7 @@ Disable highlighting (which is quirky when applied to the terminal).
     (define-key vterm-mode-map (kbd "C-b") 'org-roam-node-find)
     (define-key vterm-mode-map (kbd "C-p") 'projectile-command-map)
     (define-key vterm-mode-map (kbd "C-.") 'delete-window))
-
+  (setq vterm-keymap-exceptions (append vterm-keymap-exceptions '("C-w")))
 #+end_src
 
 ** Install Git time machine
@@ -924,8 +924,10 @@ To install sbcl on Debian 12, run:
     (message "load slime")
     (use-package slime
       :requires slime-autoloads
+      :init
+      (setq inferior-lisp-program "/usr/bin/sbcl")
       :config
-      (setq inferior-lisp-program "/usr/bin/sbcl")))
+      (require 'slime-autoloads)))
 #+end_src
 
 One of slime's dependencies, [[https://github.com/joddie/macrostep/blob/master/README.org][macrostep]], has been archived according to
