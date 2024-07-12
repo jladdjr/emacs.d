@@ -947,6 +947,19 @@ error.
   (load-file "~/.emacs.d/hacky-contrib/macrostep.el")
 #+end_src
 
+** Load quicklisp!
+
+Note that this requires [[https://www.quicklisp.org/beta/#installation][installing quicklisp]].
+
+#+begin_src
+  ;;; The following lines added by ql:add-to-init-file:
+  #-quicklisp
+  (let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
+                                         (user-homedir-pathname))))
+    (when (probe-file quicklisp-init)
+      (load quicklisp-init)))
+#+end_src
+
 * Install counsel, ivy, swiper
 
 #+begin_src emacs-lisp
