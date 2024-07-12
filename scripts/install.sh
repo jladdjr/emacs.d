@@ -1,16 +1,16 @@
 #!/bin/bash
 
 # Abort if emacs is running
-if pgrep emacs > /dev/null; then 
-	echo "️🛑 Cannot install $HOME/.emacs.d directory while emacs is running"; 
+if pgrep emacs > /dev/null; then
+	echo "️🛑 Cannot install $HOME/.emacs.d directory while emacs is running";
 	exit 1
 fi
 
 # Backup .emacs.d if it exists
-if [ -d "$HOME/.emacs.d" ]; then 
+if [ -d "$HOME/.emacs.d" ]; then
 	echo "📂 Found existing $HOME/.emacs.d"
-	if [ -d "$HOME/.emacs.d.bak" ]; then 
-		echo "❌️️️ $HOME/.emacs.d.bak already exists. Aborting.."; 
+	if [ -d "$HOME/.emacs.d.bak" ]; then
+		echo "❌️️️ $HOME/.emacs.d.bak already exists. Aborting..";
 		exit 2
 	fi
 	# Moving existing .emacs.d to .emacs.d.bak
@@ -18,13 +18,14 @@ if [ -d "$HOME/.emacs.d" ]; then
 	mv $HOME/.emacs.d $HOME/.emacs.d.bak
 else
 	echo "👻 No existing $HOME/.emacs.d"
-fi 
+fi
 
 # Install development version of .emacs.d
 echo "️️️️️️️🤘 Creating $HOME/.emacs.d with development files"
-mkdir $HOME/.emacs.d; 
-cp init.el readme.org jim.org steph.org $HOME/.emacs.d;
+mkdir $HOME/.emacs.d;
+cp init.el readme.org jim.org steph.org $HOME/.emacs.d
+cp -r hacky-contrib $HOME/.emacs.d
 
-echo "🎉 Installed!"; 
+echo "🎉 Installed!";
 echo ""
-ls -l $HOME/.emacs.d; 
+ls -l $HOME/.emacs.d;

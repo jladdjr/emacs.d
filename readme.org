@@ -911,6 +911,42 @@ More tips on how to configure js2-mode and friends is available [[https://web.ar
   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 #+end_src
 
+** Install slime
+
+Install [[https://slime.common-lisp.dev/][slime]].
+Configure slime to use [[http://www.sbcl.org/][Steel Bank Common Lisp]]! 💪
+
+To install sbcl on Debian 12, run:
+> sudo apt install sbcl sbcl-doc
+
+#+begin_src emacs-lisp
+  (unless skip-dev-config
+    (message "load slime")
+    (use-package slime
+      :requires slime-autoloads
+      :config
+      (setq inferior-lisp-program "/usr/bin/sbcl")))
+#+end_src
+
+One of slime's dependencies, [[https://github.com/joddie/macrostep/blob/master/README.org][macrostep]], has been archived according to
+it's readme (on 2024-07-11).
+
+Based on [[https://github.com/emacsorphanage/macrostep/commit/4939d88779761e8b5461b4cf73f86600172987db][this commit]] in the emacsorphanage clone of macrostep,
+it looks like the repo may have a new maintainer.
+
+In the meantime, I cannot find macrostep in MELPA,
+and calling M-x slime results in the error:
+
+> Symbol's value as variable is void: macrostep-mode-map
+
+To work around this, I have a copy of macrostep.el taken from
+[[https://github.com/joddie/macrostep/blob/master/macrostep.el][here]]. Based on my testing, loading this file resolves the macrostep
+error.
+
+#+begin_src emacs-lisp
+  (load-file "~/.emacs.d/hacky-contrib/macrostep.el")
+#+end_src
+
 * Install counsel, ivy, swiper
 
 #+begin_src emacs-lisp
