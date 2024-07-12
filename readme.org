@@ -913,7 +913,8 @@ More tips on how to configure js2-mode and friends is available [[https://web.ar
 
 ** Install slime
 
-Install [[https://slime.common-lisp.dev/][slime]].
+Clone [[https://slime.common-lisp.dev/][slime]] to ~/git/slime.
+
 Configure slime to use [[http://www.sbcl.org/][Steel Bank Common Lisp]]! 💪
 
 To install sbcl on Debian 12, run:
@@ -922,12 +923,9 @@ To install sbcl on Debian 12, run:
 #+begin_src emacs-lisp
   (unless skip-dev-config
     (message "load slime")
-    (use-package slime
-      :requires slime-autoloads
-      :init
-      (setq inferior-lisp-program "/usr/bin/sbcl")
-      :config
-      (require 'slime-autoloads)))
+    (add-to-list 'load-path "~/git/slime")
+    (require 'slime-autoloads)
+    (setq inferior-lisp-program "/usr/bin/sbcl"))
 #+end_src
 
 One of slime's dependencies, [[https://github.com/joddie/macrostep/blob/master/README.org][macrostep]], has been archived according to
