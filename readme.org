@@ -926,6 +926,10 @@ To install sbcl on Debian 12, run:
     (add-to-list 'load-path "~/git/slime")
     (require 'slime-autoloads)
     (setq inferior-lisp-program "/usr/bin/sbcl"))
+    ; TODO: apply correct path to sbcl based on platform
+    ;
+    ; On macs, with brew installs of sbcl, path should be:
+    ; (setq inferior-lisp-program "/opt/homebrew/bin/sbcl"))
 #+end_src
 
 One of slime's dependencies, [[https://github.com/joddie/macrostep/blob/master/README.org][macrostep]], has been archived according to
