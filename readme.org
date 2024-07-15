@@ -917,8 +917,20 @@ Clone [[https://slime.common-lisp.dev/][slime]] to ~/git/slime.
 
 Configure slime to use [[http://www.sbcl.org/][Steel Bank Common Lisp]]! 💪
 
+There are currently two manual steps required before this section will
+work:
+
+1. Install Steal Bank Common Lisp
+2. Clone the slime repository
+
 To install sbcl on Debian 12, run:
 > sudo apt install sbcl sbcl-doc
+
+To install sbcl on Mac, run:
+> brew install sbcl
+
+To clone the slime repo, run:
+> git clone git@github.com:slime/slime.org ~/git/slime
 
 #+begin_src emacs-lisp
   (unless skip-dev-config
