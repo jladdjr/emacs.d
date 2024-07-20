@@ -378,7 +378,7 @@ newer versions of Emacs packages are installed
            ("C-c i" . org-roam-node-insert)
            ("C-c u" . org-roam-dailies-goto-today)
            ("C-c y" . org-roam-dailies-goto-yesterday)
-           ("C-c n" . org-roam-dailies-goto-tomorrow))
+           ("C-c n" . jl/org-roam-goto-week-by-number))
     :config
     (setq org-roam-completion-everywhere t))
 #+end_src
@@ -1159,6 +1159,47 @@ Insert timestamp using ~C-c p~.
   (insert (format-time-string "%Y-%m-%d")))
 
 (global-set-key (kbd "C-c p") 'insert-current-date)
+#+end_src
+
+** Open org-roam node for (ISO) week of the year
+
+#+begin_src emacs-lisp
+  (defun jl/first-day-of-year ()
+    "Get first day of year as list (D M Y)"
+    (let ((today (calendar-current-date)))
+      (setq first-day-of-year (copy-sequence today))
+      (setf (nth 0 first-day-of-year) 1)
+      (setf (nth 1 first-day-of-year) 1)
+      first-day-of-year))
+
+  (defun jl/days-since-start-of-year ()
+    "Get number of days since the start of the year"
+    (let ((today (calendar-current-date))
+          (first-day-of-year (jl/first-day-of-year)))
+     (setq today-abs (calendar-absolute-from-gregorian today))
+     (setq first-day-of-year-abs
+           (calendar-absolute-from-gregorian first-day-of-year))
+     (setq days-since-start-of-year
+           (- today-abs
+              first-day-of-year-abs))))
+
+  (defun jl/day-of-week-iso (date)
+    "Given a date in list form (D M Y) returns the day of the week by number, with Monday being 0"
+    (% (+ (1- (calendar-day-of-week date)) 8) 7))
+
+  (defun jl/days-since-first-monday-of-first-week ()
+    "Get number of days since the start of the year"
+    (+ (jl/days-since-start-of-year)
+       (jl/day-of-week-iso (jl/first-day-of-year))))
+
+  (defun jl/week-number ()
+    "Get current week number"
+    (1+ (/ (jl/days-since-first-monday-of-first-week) 7)))
+
+  (defun jl/org-roam-goto-week-by-number ()
+      "Visit org-roam node with titile 'Week #'"
+    (interactive)
+    (org-roam-node-find t (format "Week %s" (jl/week-number))))
 #+end_src
 
 ** Clear all buffers except *scratch*, all other windows/frames, too
