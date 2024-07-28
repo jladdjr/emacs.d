@@ -967,6 +967,10 @@ With that in place, let's setup slime.
 
 #+begin_src emacs-lisp
   (slime-setup '(slime-fancy slime-quicklisp slime-asdf slime-mrepl))
+
+  ; Need to call (ql:quickload "quicklisp-slime-helper")
+  ; then this file will get created for you and you can load it.
+  (load (expand-file-name "~/quicklisp/slime-helper.el"))
 #+end_src
 
 * Install counsel, ivy, swiper
