@@ -16,7 +16,7 @@ Ignore any errors that occur (e.g. if font cannot be found).
 ** Position Frame
 
 #+begin_src emacs-lisp
-(set-frame-width (selected-frame) 50)
-(set-frame-height (selected-frame) 38)
-(set-frame-position (selected-frame) 260 0)
+(set-frame-width (selected-frame) 122)
+(set-frame-height (selected-frame) 42)
+(set-frame-position (selected-frame) 230 0)
 #+end_src
