@@ -963,7 +963,11 @@ error.
   (load-file "~/.emacs.d/hacky-contrib/macrostep.el")
 #+end_src
 
+* Configure slime to use Quicklisp (and friends)
+
 With that in place, let's setup slime.
+
+You will need to [[https://www.quicklisp.org/beta/#installation][install quicklisp]] for this next part to work.
 
 #+begin_src emacs-lisp
   (slime-setup '(slime-fancy slime-quicklisp slime-asdf slime-mrepl))
