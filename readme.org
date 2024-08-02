@@ -911,17 +911,13 @@ More tips on how to configure js2-mode and friends is available [[https://web.ar
   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 #+end_src
 
-** Install slime
+** Install Steel Bank Common Lisp and slime
 
-Clone [[https://slime.common-lisp.dev/][slime]] to ~/git/slime.
-
-Configure slime to use [[http://www.sbcl.org/][Steel Bank Common Lisp]]! 💪
+What better way to code in Lisp than to use
+[[http://www.sbcl.org/][Steel Bank Common Lisp]] and [[https://slime.common-lisp.dev/][slime]]? 😁
 
 There are currently two manual steps required before this section will
 work:
-
-1. Install Steal Bank Common Lisp
-2. Clone the slime repository
 
 To install sbcl on Debian 12, run:
 > sudo apt install sbcl sbcl-doc
@@ -967,7 +963,20 @@ error.
 
 With that in place, let's setup slime.
 
-You will need to [[https://www.quicklisp.org/beta/#installation][install quicklisp]] for this next part to work.
+You will need to [[https://www.quicklisp.org/beta/#installation][install quicklisp]] and the quicklisp slime-helper
+for this next part to work.
+
+The basic steps for doing so include:
+
+1. Downloading [[https://www.quicklisp.org/beta/#installation][quicklisp.lisp]]
+2. Loading this file with:
+   sbcl --load quicklisp.lisp
+3. Installing quicklisp (in the sbcl session) with:
+   (quicklisp-quickstart:install)
+4. Loading the quicklisp setup (TODO: is this necessary? if so, why?)
+   (load "~/quicklisp/setup.lisp")
+5. Installing quicklisp-slime-helper with:
+  (ql:quickload "quicklisp-slime-helper")
 
 #+begin_src emacs-lisp
   (slime-setup '(slime-fancy slime-quicklisp slime-asdf slime-mrepl))
