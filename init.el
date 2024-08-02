@@ -22,13 +22,23 @@
 ;;   ln -s /Applications/Emacs.app/Contents/MacOS/Emacs emacs
 ;;   export PATH="~/bin;$PATH"
 ;;
-;;   After some experimentation, also found that you need to replace
-;;   the org package included in the Emacs application with the version
-;;   built by straight:
+;;   After some experimentation, also found that you need to pre-populate
+;;   straight's build folder for org with core version of org included
+;;   with emacs.
 ;;
-;;     cd /Applications/Emacs.app/Contents/Resources/lisp
-;;     mv org org.bak
-;;     ln -s ~/.emacs.d/straight/build/org/ org
+;;   If emacs was built from source, you can do this with:
+;;
+;;   mkdir -p ~/.emacs.d/straight/build/
+;;   cp -r /usr/local/share/emacs/29.4/lisp/org ~/.emacs.d/straight/build
+;;
+;;   On a Mac, this would probably be:
+;;
+;;   mkdir -p ~/.emacs.d/straight/build/
+;;   cp -r /Applications/Emacs.app/Contents/Resources/lisp/org ~/.emacs.d/straight/build
+;;
+;;   TODO: Could you just make the local version of org -- in ~/.emacs.d/src/org --
+;;   a copy of the version of org included with emacs, too, so that all three copies
+;;   are the same? Is there really any need to have this copy of org?
 ;;
 ;; This file -- init.el -- loads Org and then loads the rest of our
 ;; Emacs initialization from Emacs lisp embedded in literate Org files.
