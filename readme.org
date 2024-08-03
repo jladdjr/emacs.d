@@ -428,7 +428,10 @@ Can call ~M-x org-roam-db-sync~ interactively to re-index.
         ("h" "history note" plain "** %<%Y-%m-%d %H:%M> %?"
          :target (file+head+olp "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}"
                                 ("History"))
-         :empty-lines 1)))
+         :empty-lines 1)
+        ("y" "year note" plain "* %<%Y>"
+         :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}
+"))))
   (global-set-key (kbd "C-r") #'org-roam-capture)
 #+end_src
 
