@@ -1193,8 +1193,7 @@ Insert timestamp using ~C-c p~.
      (setq first-day-of-year-abs
            (calendar-absolute-from-gregorian first-day-of-year))
      (setq days-since-start-of-year
-           (- today-abs
-              first-day-of-year-abs))))
+           (1+ (- today-abs first-day-of-year-abs)))))
 
   (defun jl/day-of-week-iso (date)
     "Given a date in list form (D M Y) returns the day of the week by number, with Monday being 0"
