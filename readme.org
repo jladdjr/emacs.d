@@ -577,15 +577,7 @@ that will be used when invoking ~projectile-switch-project~.
            (split-window-right)
            (other-window 1)
            (call-interactively 'magit-fetch-all)
-           (projectile-run-vterm)
-
-           ; in next window open org-roam node if it exists
-           (split-window-below)
-           (other-window 1)
-           (if (org-roam-node-p (org-roam-node-from-title-or-alias project-name))
-                   (org-roam-node-visit (org-roam-node-from-title-or-alias project-name) nil)
-             (delete-window)))
-           (other-window 1))
+           (projectile-run-vterm)))
       ; otherwise, open dired, pointing at the root directory of the project
       (dired (cdr (project-current)))))
   (setq projectile-switch-project-action #'jl/default-project-view)
