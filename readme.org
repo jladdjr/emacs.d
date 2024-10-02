@@ -867,6 +867,25 @@ of Emacs.
         :requires hierarchy))
 #+end_src
 
+** Install terraform-mode
+
+Installs [[https://github.com/hcl-emacs/terraform-mode][terraform-mode]]
+
+Includes support for [[https://www.emacswiki.org/emacs/OutlineMinorMode][outline-minor-mode]].
+
+#+begin_src emacs-lisp
+  (unless skip-dev-config
+    (message "load terraform-mode")
+    (use-package terraform-mode
+    :straight t
+    :custom (terraform-indent-level 2)
+    :config
+    (defun my-terraform-mode-init ()
+        (outline-minor-mode 1))
+
+    (add-hook 'terraform-mode-hook 'my-terraform-mode-init)))
+#+end_src
+
 ** Install VLF
 
 Install [[https://github.com/m00natic/vlfi][VLF]], a mode for reading very large files in batch.
