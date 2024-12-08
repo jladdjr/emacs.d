@@ -386,8 +386,42 @@ newer versions of Emacs packages are installed
 Create and configure default Org-roam directory.
 
 #+begin_src emacs-lisp
-  (make-directory "~/org-roam" t)
-  (setq org-roam-directory (file-truename "~/org-roam"))
+  (defvar jl-org-roam-default-dir "~/org-roam/")
+  (defvar jl-org-roam-default-db "~/.emacs.d/org-roam-default.db")
+
+  (make-directory jl-org-roam-default-dir t)
+
+  (setq org-roam-directory (file-truename jl-org-roam-default-dir))
+  (setq org-roam-db-location (file-truename jl-org-roam-default-db))
+
+  (defvar jl-org-roam-current-dir 'default "Current Org-roam directory in use.")
+#+end_src
+
+Add support for second org-roam database for offensive security notes
+
+#+begin_src emacs-lisp
+  (defvar jl-org-roam-offsec-dir "~/org-roam-offsec/")
+  (defvar jl-org-roam-offsec-db "~/.emacs.d/org-roam-offsec.db")
+
+  (make-directory jl-org-roam-offsec-dir t)
+
+  (defun offsec-notes ()
+    "Switch between default and offensive security org-roam notes"
+    (interactive)
+
+    (if (eq jl-org-roam-current-dir 'default)
+        (progn
+          (setq org-roam-directory jl-org-roam-offsec-dir)
+          (setq org-roam-db-location jl-org-roam-offsec-db)
+          (setq jl-org-roam-current-dir 'offsec)
+          (message "Switched to Org-roam directory: %s" jl-org-roam-offsec-dir))
+      (progn
+        (setq org-roam-directory jl-org-roam-default-dir)
+        (setq org-roam-db-location jl-org-roam-default-db)
+        (setq jl-org-roam-current-dir 'default)
+        (message "Switched to Org-roam directory: %s" jl-org-roam-default-dir))))
+
+  (global-set-key (kbd "C-c o") 'offsec-notes)
 #+end_src
 
 ** Prompt Org-roam indexing
@@ -1058,7 +1092,6 @@ Adopting suggested keybindings from [[https://oremacs.com/swiper/#global-key-bin
 
 #+begin_src emacs-lisp
   (global-set-key (kbd "C-c C-r") 'ivy-resume)
-  (global-set-key (kbd "C-c o") 'counsel-outline)
   (global-set-key (kbd "C-c t") 'counsel-load-theme)
   (global-set-key (kbd "C-c F") 'counsel-org-file)
 #+end_src
