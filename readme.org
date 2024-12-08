@@ -503,6 +503,7 @@ where it is less likely to be used anyways.
           '("~/git/" "~/org/" "~/.emacs.d"
             ("~/johnny-bookkeeper" . 5)
             ("~/johnny-do-your-work" . 5)
+            ("~/johnny-hacker" . 5)
             ("~/johnny-inventory" . 5)
             ("~/johnny-jim" . 5)
             ("~/johnny-shared" . 5)
