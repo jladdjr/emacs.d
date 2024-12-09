@@ -832,10 +832,10 @@ Disable highlighting (which is quirky when applied to the terminal).
   (with-eval-after-load 'vterm
     (define-key vterm-mode-map (kbd "C-b") 'org-roam-node-find)
     (define-key vterm-mode-map (kbd "C-p") 'projectile-command-map)
+    (define-key vterm-mode-map (kbd "C-.") 'delete-window)
 
     ; Close vterm buffer even if the shell session is still active
     ; https://github.com/akermu/emacs-libvterm/issues/668#issuecomment-1502860025
-    (define-key vterm-mode-map (kbd "C-.") 'delete-window)
     (setq kill-buffer-query-functions nil))
   (setq vterm-keymap-exceptions (append vterm-keymap-exceptions '("C-w")))
 #+end_src
