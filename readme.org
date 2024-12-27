@@ -1408,6 +1408,13 @@ shortcut for quickly repeating the previous command.
   (global-set-key (kbd "C-x C-=") 'jl/zoom-frame)
   (global-set-key (kbd "C-x C--") 'jl/zoom-frame-out)
 #+end_src
+* Enable frame transparency
+
+#+begin_src emacs-lisp
+(set-frame-parameter (selected-frame) 'alpha '(97 . 97))
+(add-to-list 'default-frame-alist '(alpha . (97 . 97)))
+#+end_src
+
 * Configure mode line
 
 The default mode line is long and gets cut off when the frame is split.
