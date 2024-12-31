@@ -1360,7 +1360,7 @@ This is such a long line. This is such a long line. This is such a long line. Th
   ; Save the file to /Users/jamesladd/bin/open_iterm_to_path.scpt
 
 
-  ; (defun jl/open-iterm-in-current-dir
+  ; (defun jl/open-iterm-in-current-dir ()
   ;     "Open a new iTerm2 window in the current buffer's directory."
   ;   (interactive)
   ;   (let ((current-dir (file-name-directory (or (buffer-file-name) default-directory))))
