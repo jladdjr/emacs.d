@@ -1340,6 +1340,37 @@ Sometimes it can be helpful to do the opposite of [[https://www.gnu.org/software
 
 This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line.
 
+* Mac OS X Convenience Functions
+
+#+begin_src emacs-lisp
+  ; Before enabling the function below, create a file called
+  ; open_iterm_to_path.scpt using Mac OS X's Script Editor.
+  ; The script should be defined as:
+  ;
+  ; on run argv
+  ;     set targetDir to item 1 of argv
+  ;     tell appliaciotn "iTerm"
+  ;         create window with default profile
+  ;         tell current session of current window
+  ;             write text "cd " & targetDir
+  ;         end tell
+  ;     end tell
+  ; end run
+  ;
+  ; Save the file to /Users/jamesladd/bin/open_iterm_to_path.scpt
+
+
+  ; (defun jl/open-iterm-in-current-dir
+  ;     "Open a new iTerm2 window in the current buffer's directory."
+  ;   (interactive)
+  ;   (let ((current-dir (file-name-directory (or (buffer-file-name) default-directory))))
+  ;     (if current-dir
+  ;         (start-process "open-iterm" nil "osascript"
+  ;                        "/Users/jamesladd/bin/open_iterm_to_path.scpt"
+  ;                        current-dir)
+  ;       (message "Could not determine the current directory."))))
+#+end_src
+
 * Automatically Switch to Opened Window
 
 ** Automatically Switch to Help Window
