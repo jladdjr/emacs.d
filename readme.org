@@ -1447,8 +1447,8 @@ shortcut for quickly repeating the previous command.
 * Enable frame transparency
 
 #+begin_src emacs-lisp
-(set-frame-parameter (selected-frame) 'alpha '(97 . 97))
-(add-to-list 'default-frame-alist '(alpha . (97 . 97)))
+(set-frame-parameter (selected-frame) 'alpha '(98 . 98))
+(add-to-list 'default-frame-alist '(alpha . (98 . 98)))
 #+end_src
 
 * Configure mode line
