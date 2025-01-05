@@ -1129,7 +1129,12 @@ The [[https://www.emacswiki.org/emacs/KeyChord][Emacs Wiki]] has some helpful ti
 
   (key-chord-define-global "ts" 'save-buffer)
   (key-chord-define-global "et" 'evil-avy-goto-char-timer)
-  (key-chord-define-global "on" 'vterm)
+  (key-chord-define-global "on"
+                           (lambda ()
+                             (interactive)
+                             (let ((vterm-buffer-name
+                                    (concat "*vterm* " (buffer-file-name))))
+                               (vterm 'new))))
   (key-chord-define-global "as" 'zygospore-toggle-delete-other-windows)
 #+end_src
 ** Install vimish-fold
