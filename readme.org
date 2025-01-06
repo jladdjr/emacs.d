@@ -613,7 +613,9 @@ that will be used when invoking ~projectile-switch-project~.
            (split-window-right)
            (other-window 1)
            (call-interactively 'magit-fetch-all)
-           (projectile-run-vterm)))
+           (projectile-run-vterm)
+           (other-window 1))
+         (hydra-window/body))
       ; otherwise, open dired, pointing at the root directory of the project
       (dired (cdr (project-current)))))
   (setq projectile-switch-project-action #'jl/default-project-view)
