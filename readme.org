@@ -235,6 +235,18 @@ Include org files in agenda if they are in ~\~/org/agenda~.
       (setq org-default-notes-file (expand-file-name "notes.org" agenda-dir)))
 #+end_src
 
+Customize org-agenda layout.
+
+#+begin_src emacs-lisp
+  (setq org-agenda-prefix-format
+        (quote
+         ((agenda . "%s   %?-12t %e ")
+          (timeline . "  %s")
+          (todo . " %i %-40:c ")
+          (tags . " %i %e ")
+          (search . " %i %e "))))
+#+end_src
+
 Enable [[https://www.emacswiki.org/emacs/AutoFillMode][auto-fill-mode]] for org-mode.
 Set ~fill-column~ to ~80~.
 
