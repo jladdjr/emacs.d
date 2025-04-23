@@ -14,3 +14,13 @@
   ;  (set-frame-width my-frame 168)
   ;  (set-frame-height my-frame 80))
 #+end_src
+
+* Custom set of org-agenda files
+
+#+begin_src emacs-lisp
+  (setq org-directory (expand-file-name "~/org"))
+
+  (let ((agenda-dir (expand-file-name "agenda" org-directory)))
+    (setq org-agenda-files (append (list agenda-dir) (directory-files-recursively "~/j-te" "\\.org")))
+    (setq org-default-notes-file (expand-file-name "notes.org" agenda-dir)))
+#+end_src
