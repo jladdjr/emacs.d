@@ -242,7 +242,7 @@ Customize org-agenda layout.
         (quote
          ((agenda . "%s   %?-12t %e ")
           (timeline . "  %s")
-          (todo . " %i %-40:c ")
+          (todo . " ")                 ; using org-super-agenda header instead of filename
           (tags . " %i %e ")
           (search . " %i %e "))))
 #+end_src
@@ -268,6 +268,23 @@ Add support for links that open PDFs to a given page.
       (start-process "view-pdf" nil "evince" "--page-index" page pdf-file)))
 
   (org-add-link-type "pdf" 'org-pdf-open nil)
+#+end_src
+
+* Configure org-super-mode
+
+Use org-super-mode to add support for using headings with org-agenda.
+
+#+begin_src emacs-lisp
+  (use-package org-super-agenda
+    :after org-agenda
+    :config
+    (org-super-agenda-mode))
+
+  (setq org-agenda-custom-commands
+        '(("g" "Grouped TODOs"
+           ((alltodo ""
+                     ((org-super-agenda-groups
+                       '((:auto-group t)))))))))
 #+end_src
 
 * Install org-download
