@@ -284,7 +284,17 @@ Use org-super-mode to add support for using headings with org-agenda.
         '(("g" "Grouped TODOs"
            ((alltodo ""
                      ((org-super-agenda-groups
-                       '((:auto-group t)))))))))
+                       '((:auto-group t)))))))
+          ("p" "Priority A tasks"
+           ((alltodo ""
+                     ((org-agenda-skip-function
+                       '(org-agenda-skip-entry-if 'notregexp "\\[#A\\]"))
+                      (org-agenda-overriding-header "🔥 High Priority Tasks")))))
+          ("q" "Priority B tasks"
+           ((alltodo ""
+                     ((org-agenda-skip-function
+                       '(org-agenda-skip-entry-if 'notregexp "\\[#B\\]"))
+                      (org-agenda-overriding-header "🔥 Medium Priority Tasks")))))))
 #+end_src
 
 * Install org-download
