@@ -4,6 +4,10 @@
 
 ;;; init.el --- Where all the magic begins
 ;;
+;; Before starting emacs, must install the following:
+;; - libsqlite3-dev
+;; - libsqlite3-0
+;;
 ;; Before starting emacs, must copy source of org-mode to ~/.emacs.d/src
 ;; and build the source.
 ;;
