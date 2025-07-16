@@ -643,29 +643,8 @@ that will be used when invoking ~projectile-switch-project~.
   (defun jl/default-project-view ()
     ""
     (interactive)
-
-    (if (one-window-p)
-      ; if only one window is open, proceed with opening a full project workspace
-      (progn
-         ; clear all other windows
-         (delete-other-windows)
-
-         ; in first window, show directory
-         (let* ((project-abs-path (cdr (project-current)))
-               (project-name (file-name-nondirectory (directory-file-name
-                                                      (expand-file-name project-abs-path)))))
-           (dired (cdr (project-current)))
-           (open-last-modified-scm-file)
-
-           ; in next window, show terminal
-           (split-window-right)
-           (other-window 1)
-           (call-interactively 'magit-fetch-all)
-           (projectile-run-vterm)
-           (other-window 1))
-         (hydra-window/body))
-      ; otherwise, open dired, pointing at the root directory of the project
-      (dired (cdr (project-current)))))
+    (open-last-modified-scm-file)
+    (call-interactively 'magit-fetch-all))
   (setq projectile-switch-project-action #'jl/default-project-view)
 #+end_src
 
