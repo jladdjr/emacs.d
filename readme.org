@@ -588,6 +588,7 @@ where it is less likely to be used anyways.
             ("~/johnny-infosec" . 5)
             ("~/johnny-inventory" . 5)
             ("~/johnny-jim" . 5)
+            ("~/johnny-job-search" . 5)
             ("~/johnny-shared" . 5)
             ("~/johnny-steph" . 5)))
     (projectile-mode)
