@@ -40,8 +40,8 @@ Configure basic [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Prin
 Install [[https://github.com/abrochard/emacs-habitica][emacs-habitica]].
 
 #+begin_src emacs-lisp
-  (message "load emacs-habitica")
-  (use-package emacs-habitica
+  (message "load habitica")
+  (use-package habitica
     :ensure t
     :config
     (setq habitica-uid "123")
