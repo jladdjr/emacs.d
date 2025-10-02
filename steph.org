@@ -2,15 +2,11 @@
 
 ** Adjust Font Size
 
-Use default Mac font.
-Increase font size to 20.
-Attempt to preserve size of window when applying new font.
-
-Ignore any errors that occur (e.g. if font cannot be found).
+Bump font up two sizes.
 
 #+begin_src emacs-lisp
-(ignore-errors
-  (set-frame-font "Menlo-20" t t))
+  (ignore-errors
+    (jl/zoom-frame 2))
 #+end_src
 
 ** Position Frame
