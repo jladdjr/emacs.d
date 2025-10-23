@@ -791,6 +791,10 @@ These files were confusing org-roam.
       (evil-set-initial-state 'undo-tree-visualizer-mode 'emacs)
       (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/backups/undo-tree")))))
 
+  ; undo-tree hangs when saving history for xml files
+  (add-hook 'nxml-mode-hook
+            (lambda ()
+              (undo-tree-mode -1)))
 #+end_src
 
 * Install multiple-cursors
