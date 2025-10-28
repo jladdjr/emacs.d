@@ -1180,8 +1180,6 @@ The [[https://www.emacswiki.org/emacs/KeyChord][Emacs Wiki]] has some helpful ti
   ; https://github.com/emacsorphanage/key-chord/blob/e724def60fdf6473858f2962ae276cf4413473eb/key-chord.el#L37
   (setq key-chord-two-keys-delay 0.025)
 
-  (key-chord-define-global "ts" 'save-buffer)
-  (key-chord-define-global "et" 'evil-avy-goto-char-timer)
   (key-chord-define-global "on"
                            (lambda ()
                              (interactive)
