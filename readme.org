@@ -428,7 +428,8 @@ newer versions of Emacs packages are installed
            ("C-c y" . org-roam-dailies-goto-yesterday)
            ("C-c n" . jl/org-roam-goto-week-by-number))
     :config
-    (setq org-roam-completion-everywhere t))
+    (setq org-roam-completion-everywhere t)
+    (evil-set-initial-state 'org-roam 'emacs))
 #+end_src
 
 Create and configure default Org-roam directory.
