@@ -61,7 +61,13 @@ Install [[https://github.com/skeeto/elfeed][Elfeed]].
                          "https://netflixtechblog.com/feed"
                          "https://dropbox.tech/feed"
                          "https://raw.githubusercontent.com/Olshansk/rss-feeds/refs/heads/main/feeds/feed_anthropic.xml"
-                         "https://slack.engineering/rss"))
+                         "https://slack.engineering/rss"
+                         "https://aws.amazon.com/blogs/aws/feed/"
+                         "https://medium.com/feed/airbnb-engineering"
+                         "https://slack.engineering/rss"
+                         "https://engineering.atspotify.com/feed"
+                         "https://stackoverflow.blog/feed"
+                         "https://medium.engineering/feed"))
     (evil-set-initial-state 'elfeed 'emacs)
     (evil-set-initial-state 'elfeed-show-mode 'emacs)
     (evil-set-initial-state 'elfeed-search-mode 'emacs))
