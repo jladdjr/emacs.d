@@ -63,6 +63,7 @@ Install [[https://github.com/skeeto/elfeed][Elfeed]].
                          "https://raw.githubusercontent.com/Olshansk/rss-feeds/refs/heads/main/feeds/feed_anthropic.xml"
                          "https://slack.engineering/rss"
                          "https://aws.amazon.com/blogs/aws/feed/"
+                         "https://aws.amazon.com/blogs/machine-learning/feed"
                          "https://medium.com/feed/airbnb-engineering"
                          "https://slack.engineering/rss"
                          "https://engineering.atspotify.com/feed"
