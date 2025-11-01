@@ -47,38 +47,3 @@ Install [[https://github.com/abrochard/emacs-habitica][emacs-habitica]].
     (setq habitica-uid "123")
     (setq habitica-token "456"))
 #+end_src
-
-* Elfeed
-
-Install [[https://github.com/skeeto/elfeed][Elfeed]].
-
-#+begin_src emacs-lisp
-  (message "load elfeed")
-  (use-package elfeed
-    :ensure t
-    :config
-    (setq elfeed-feeds '("https://github.blog/engineering.atom"
-                         "https://netflixtechblog.com/feed"
-                         "https://dropbox.tech/feed"
-                         "https://raw.githubusercontent.com/Olshansk/rss-feeds/refs/heads/main/feeds/feed_anthropic.xml"
-                         "https://slack.engineering/rss"
-                         "https://aws.amazon.com/blogs/aws/feed/"
-                         "https://aws.amazon.com/blogs/machine-learning/feed"
-                         "https://medium.com/feed/airbnb-engineering"
-                         "https://slack.engineering/rss"
-                         "https://engineering.atspotify.com/feed"
-                         "https://stackoverflow.blog/feed"
-                         "https://medium.engineering/feed"))
-    (evil-set-initial-state 'elfeed 'emacs)
-    (evil-set-initial-state 'elfeed-show-mode 'emacs)
-    (evil-set-initial-state 'elfeed-search-mode 'emacs))
-
-  (defun my/elfeed-disable-whitespace ()
-    "Disable trailing whitespace and hl-line in Elfeed buffers."
-    (setq show-trailing-whitespace nil)
-    (hl-line-mode 0))
-
-  (add-hook 'elfeed-show-mode-hook #'my/elfeed-disable-whitespace)
-  (add-hook 'elfeed-search-mode-hook #'my/elfeed-disable-whitespace)
-  (global-set-key (kbd "C-x w") 'elfeed)
-#+end_src
