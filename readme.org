@@ -957,6 +957,16 @@ Install [[https://github.com/jrblevin/markdown-mode][markdown-mode]].
     (use-package markdown-mode))
 #+end_src
 
+** Install gemtext-mode
+
+Install [[https://github.com/emacsmirror/gemtext-mode][gemtext-mode]].
+
+#+begin_src emacs-lisp
+  (unless skip-dev-config
+    (message "load markdown-mode")
+    (use-package gemtext-mode))
+#+end_src
+
 ** Install json-mode
 
 Install [[https://github.com/json-emacs/json-mode][json-mode]].
