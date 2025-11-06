@@ -859,7 +859,10 @@ Install [[https://github.com/skeeto/elfeed][Elfeed]].
                          "https://slack.engineering/rss"
                          "https://engineering.atspotify.com/feed"
                          "https://stackoverflow.blog/feed"
-                         "https://medium.engineering/feed"))
+                         "https://medium.engineering/feed"
+                         "https://zserge.com/rss.xml"
+                         "https://100r.ca/links/rss.xml"
+                         "https://www.youtube.com/feeds/videos.xml?channel_id=UCoSPSd6Or4F_vpjo4SmyoEA"))
     (evil-set-initial-state 'elfeed 'emacs)
     (evil-set-initial-state 'elfeed-show-mode 'emacs)
     (evil-set-initial-state 'elfeed-search-mode 'emacs))
