@@ -16,18 +16,26 @@ Globally replace ~C-x~ with ~C-t~ (and vice-versa).
 
 Enable the [[https://sourcefoundry.org/hack/][Hack font]], ignoring any errors that occur (e.g. if font cannot be found).
 
-# To install Hack on Debian:
-# sudo apt install fonts-hack
+# To install Hack (from Nerd Fonts) on Debian:
+
+#+begin_src bash
+cd ~/Downloads
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip
+unzip Hack.zip -d hack-nerd
+mkdir -p ~/.local/share/fonts
+cp hack-nerd/*.ttf ~/.local/share/fonts/
+fc-cache -fv
+#+end_src
 
 #+begin_src emacs-lisp
   (ignore-errors
-    (set-face-attribute 'default nil :family "Hack" :height 146))
+    (set-face-attribute 'default nil :family "Hack Nerd Font" :height 146))
 #+end_src
 
 A word on coding with beautiful fonts:
 
 Beautifully designed fonts look amazing at high resolution. If you
-drop the resolution -- if you're trying to max out the number of
+drop the resolution -- when trying to max out the number of
 characters on your screen, for example -- you can lose a lot of
 that beauty.
 
@@ -38,16 +46,6 @@ I went with the Hack font because, as the font designers point out:
 Sure enough, at height 146 -- the size needed to fit two 80-character
 windows side-by-side on my System76 Lemur Pro 10 laptop -- the font
 still holds up.
-
-** Enable fallback font for Unicode ranges
-
-To install Noto Color
-# sudo apt install fonts-noto-color-emoji
-
-#+begin_src emacs-lisp
-;; Emoji fallback
-(set-fontset-font t 'emoji "Noto Color Emoji" nil 'prepend)
-#+end_src
 
 ** Configure Printer
 
