@@ -57,16 +57,3 @@ Configure basic [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Prin
   ; (and fails when default switches are used)
   (setq lpr-add-switches nil)
 #+end_src
-
-* Habitica
-
-Install [[https://github.com/abrochard/emacs-habitica][emacs-habitica]].
-
-#+begin_src emacs-lisp
-  (message "load habitica")
-  (use-package habitica
-    :ensure t
-    :config
-    (setq habitica-uid "123")
-    (setq habitica-token "456"))
-#+end_src
