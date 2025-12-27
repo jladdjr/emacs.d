@@ -954,7 +954,9 @@ Install [[https://github.com/jrblevin/markdown-mode][markdown-mode]].
 #+begin_src emacs-lisp
   (unless skip-dev-config
     (message "load markdown-mode")
-    (use-package markdown-mode))
+    (use-package markdown-mode
+      :config
+      (setq markdown-command "markdown_py -x toc")))
 #+end_src
 
 ** Install gemtext-mode
