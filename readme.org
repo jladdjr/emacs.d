@@ -744,25 +744,6 @@ The configuration below ensures case is preserved.
       (setq company-idle-delay 0.4))
 #+end_src
 
-* Install GPTel
-
-Install [[https://github.com/karthink/gptel][GPTel]], an LLM client for Emacs.
-
-See [[https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key][this page]] for tips on getting an OpenAI API key.
-Retrieve your API key from [[https://platform.openai.com/api-keys][this page]].
-See [[https://github.com/karthink/gptel?tab=readme-ov-file#chatgpt][these notes]] for tips on retrieving your API key
-from your Emacs config.
-
-#+begin_src emacs-lisp
-  ;; Add to their existing configuration
-  (use-package gptel
-    :config
-    (setq gptel-api-key (getenv "OPENAI_API_KEY")
-          gptel-model "gpt-4.1-mini")
-    (global-set-key (kbd "C-c a") 'gptel)
-    (global-set-key (kbd "C-c A") 'gptel-send))
-#+end_src
-
 * Install Base16 Theme
 
 Use base16-eighties from the [[https://github.com/tinted-theming/base16-emacs][base16-theme]] package.
