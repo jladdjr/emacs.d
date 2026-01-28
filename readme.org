@@ -1206,30 +1206,6 @@ Adopting suggested keybindings from [[https://oremacs.com/swiper/#global-key-bin
     (global-set-key (kbd "C-x 1") 'zygospore-toggle-delete-other-windows))
 #+end_src
 
-** Install key-chord
-
-[[https://github.com/emacsorphanage/key-chord][Key Chord Mode]] lets you execute a command by pressing two keys down at the same time.
-
-The [[https://www.emacswiki.org/emacs/KeyChord][Emacs Wiki]] has some helpful tips on using this mode.
-
-#+begin_src emacs-lisp
-  (message "load key-chord")
-  (use-package key-chord)
-  (key-chord-mode 1)
-
-  ; If this is too long, then there are noticeable typing delays
-  ; If it is too short, then two-key chords are nearly impossible to invoke
-  ; https://github.com/emacsorphanage/key-chord/blob/e724def60fdf6473858f2962ae276cf4413473eb/key-chord.el#L37
-  (setq key-chord-two-keys-delay 0.025)
-
-  (key-chord-define-global "on"
-                           (lambda ()
-                             (interactive)
-                             (let ((vterm-buffer-name
-                                    (concat "*vterm* " (buffer-file-name))))
-                               (vterm 'new))))
-  (key-chord-define-global "as" 'zygospore-toggle-delete-other-windows)
-#+end_src
 ** Install vimish-fold
 
 [[https://github.com/matsievskiysv/vimish-fold][vimish-fold]] lets you fold a region, or lets you fold down to a point specified using avy.
