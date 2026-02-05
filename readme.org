@@ -838,7 +838,7 @@ Use [[https://github.com/etiago/emacs-wttrin/tree/user-agent-fix][etiago's patch
   (use-package wttrin
     :straight (:type git
                      :host nil
-                     :repo "git@github.com:etiago/emacs-wttrin.git"
+                     :repo "git@github.com:jladdjr/emacs-wttrin.git"
                      :branch "user-agent-fix")
     :custom
     (wttrin-default-cities '("Portland")))
