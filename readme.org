@@ -750,6 +750,16 @@ These files were confusing org-roam.
               (undo-tree-mode -1)))
 #+end_src
 
+* Install csv-mode
+
+Install [[https://elpa.gnu.org/packages/csv-mode.html][csv-mode]].
+
+#+begin_src emacs-lisp
+  (message "load csv-mode")
+
+  (use-package csv-mode)
+#+end_src
+
 * Install multiple-cursors
 
 Add support for [[https://github.com/magnars/multiple-cursors.el#readme][multiple cursors]].
