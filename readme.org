@@ -225,14 +225,6 @@ Add support for TODO, DOING, and DONE states when working with [[https://orgmode
           ))
 #+end_src
 
-Include org files in agenda if they are in ~\~/org/agenda~.
-
-Use symbolic links to map files from other directories into this location.
-
-#+begin_src emacs-lisp
-  (setq org-agenda-files '("~/org/agenda/"))
-#+end_src
-
 Customize org-agenda layout.
 
 #+begin_src emacs-lisp
@@ -281,27 +273,31 @@ TODO: What is this a prerequisite for?
 
 Use org-super-mode to add support for using headings with org-agenda.
 
+Include org files in agenda if they are in ~\~/org/agenda~.
+
+Use symbolic links to map files from other directories into this location.
+
 #+begin_src emacs-lisp
   (use-package org-super-agenda
     :after org-agenda
     :config
-    (org-super-agenda-mode))
-
-  (setq org-agenda-custom-commands
-        '(("g" "Grouped TODOs"
-           ((alltodo ""
-                     ((org-super-agenda-groups
-                       '((:auto-group t)))))))
-          ("p" "Priority A tasks"
-           ((alltodo ""
-                     ((org-agenda-skip-function
-                       '(org-agenda-skip-entry-if 'notregexp "\\[#A\\]"))
-                      (org-agenda-overriding-header "🔥 High Priority Tasks")))))
-          ("q" "Priority B tasks"
-           ((alltodo ""
-                     ((org-agenda-skip-function
-                       '(org-agenda-skip-entry-if 'notregexp "\\[#B\\]"))
-                      (org-agenda-overriding-header "🔥 Medium Priority Tasks")))))))
+    (org-super-agenda-mode)
+    (setq org-agenda-files '("~/org/agenda/"))
+    (setq org-agenda-custom-commands
+          '(("g" "Grouped TODOs"
+             ((alltodo ""
+                       ((org-super-agenda-groups
+                         '((:auto-group t)))))))
+            ("p" "Priority A tasks"
+             ((alltodo ""
+                       ((org-agenda-skip-function
+                         '(org-agenda-skip-entry-if 'notregexp "\\[#A\\]"))
+                        (org-agenda-overriding-header "🔥 High Priority Tasks")))))
+            ("q" "Priority B tasks"
+             ((alltodo ""
+                       ((org-agenda-skip-function
+                         '(org-agenda-skip-entry-if 'notregexp "\\[#B\\]"))
+                        (org-agenda-overriding-header "🔥 Medium Priority Tasks"))))))))
 #+end_src
 
 * Install org-download
