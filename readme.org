@@ -297,7 +297,12 @@ Use symbolic links to map files from other directories into this location.
              ((alltodo ""
                        ((org-agenda-skip-function
                          '(org-agenda-skip-entry-if 'notregexp "\\[#B\\]"))
-                        (org-agenda-overriding-header "🔥 Medium Priority Tasks"))))))))
+                        (org-agenda-overriding-header "🔥 Medium Priority Tasks")))))
+            ("r" "Priority C tasks"
+             ((alltodo ""
+                       ((org-agenda-skip-function
+                         '(org-agenda-skip-entry-if 'notregexp "\\[#C\\]"))
+                        (org-agenda-overriding-header "🔥 Low Priority Tasks"))))))))
 #+end_src
 
 * Install org-download
