@@ -322,7 +322,7 @@ to ~M-g~.
   (use-package org-download
     :straight (:type git
                      :host nil
-                     :repo "git@github.com:jladdjr/org-download.git"
+                     :repo "https://github.com/jladdjr/org-download.git"
                      :branch "main")
     :config
     (add-hook 'dired-mode-hook 'org-download-enable)
