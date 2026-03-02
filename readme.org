@@ -317,11 +317,13 @@ Bind ~org-download-clipboard~
 -- which "pastes" the contents of the clipboard into the current org file --
 to ~M-g~.
 
-
 #+begin_src emacs-lisp
-          ; Ensure org-pictures directory exists
   (message "load org-download")
   (use-package org-download
+    :straight (:type git
+                     :host nil
+                     :repo "git@github.com:jladdjr/org-download.git"
+                     :branch "main")
     :config
     (add-hook 'dired-mode-hook 'org-download-enable)
     :custom
