@@ -804,6 +804,20 @@ Use ~M-x nyan-mode~ to enable.
   (use-package nyan-mode)
 #+end_src
 
+* rfc-mode
+
+Install [[https://github.com/galdor/rfc-mode][rfc-mode]] for reading [[https://www.rfc-editor.org/][RFCs]].
+
+Call ~rfc-mode-browse~ to view a list of RFCs.
+
+RFCs will automotically downloaded to ~\~/rfc~).
+The destination folder can be changed by setting ~rfc-mode-directory~).
+
+#+begin_src emacs-lisp
+  (message "load rfc-mode")
+  (use-package rfc-mode)
+#+end_src
+
 * Elfeed
 
 Install [[https://github.com/skeeto/elfeed][Elfeed]].
