@@ -816,6 +816,13 @@ The destination folder can be changed by setting ~rfc-mode-directory~).
 #+begin_src emacs-lisp
   (message "load rfc-mode")
   (use-package rfc-mode)
+
+  (defun jl/rfc-mode-disable-whitespace ()
+    "Disable trailing whitespace and hl-line in Rfc-Mode buffers."
+    (setq show-trailing-whitespace nil)
+    (hl-line-mode 0))
+
+  (add-hook 'rfc-mode-hook #'jl/rfc-mode-disable-whitespace)
 #+end_src
 
 * Elfeed
