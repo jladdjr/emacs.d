@@ -423,7 +423,10 @@ newer versions of Emacs packages are installed
   (message "load org-roam")
   (use-package org-roam
     :ensure t
-    :bind (("C-c h" . (lambda () (interactive) (call-interactively 'org-roam-buffer-toggle) (other-window 1)))
+    :bind (("C-c h" . (lambda () (interactive)
+                        (call-interactively 'org-roam-buffer-toggle)
+                        (other-window 1)
+                        (call-interactively 'evil-emacs-state)))
            ("C-c i" . org-roam-node-insert)
            ("C-c u" . org-roam-dailies-goto-today)
            ("C-c y" . org-roam-dailies-goto-yesterday)
