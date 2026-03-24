@@ -179,6 +179,16 @@ Let's make that easier, too.
 #+begin_src emacs-lisp
   (global-set-key (kbd "C-.") #'delete-window)
 #+end_src
+** Do not highlight trailing whitespace when calling vc-annotate
+
+#+begin_src emacs-lisp
+ (advice-add 'vc-annotate
+             :after
+             (lambda (&rest args)
+               (setq show-trailing-whitespace nil)
+               (vc-annotate)))
+#+end_src
+
 * Configure Dired
 
 Enabled [[https://www.emacswiki.org/emacs/DiredOmitMode][Dired Omit Mode]] to hide uninteresting files.
