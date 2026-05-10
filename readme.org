@@ -403,6 +403,16 @@ Make the Magit status window the only window in view when it opens.
   (define-key (current-global-map) [remap magit-status] 'jl/magit-status)
 #+end_src
 
+* Install go-mode
+
+Install [[https://github.com/dominikh/go-mode.el][go-mode]].
+
+#+begin_src emacs-lisp
+  (unless skip-dev-config
+    (message "load go-mode")
+    (use-package go-mode))
+#+end_src
+
 * Install browse-at-remote
 
 [[https://github.com/rmuslimov/browse-at-remote][browse-at-remote]] opens the GitHub page
