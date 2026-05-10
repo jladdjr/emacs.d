@@ -918,7 +918,12 @@ Disable highlighting (which is quirky when applied to the terminal).
         (add-hook 'vterm-mode-hook
                 (lambda ()
                     (set (make-local-variable 'global-hl-line-mode) nil)
-                    (setq show-trailing-whitespace nil)))))
+                    (setq show-trailing-whitespace nil)
+                    ; Do not highlight nobreak spaces (U+OOA0)
+                    ; (such as those shown by `tree`)
+                    ; https://emacsdocs.org/docs/emacs/Text-Display
+                    ; https://unicodeplus.com/U+00A0
+                    (setq nobreak-char-display nil)))))
   (with-eval-after-load 'vterm
     (define-key vterm-mode-map (kbd "C-b") 'org-roam-node-find)
     (define-key vterm-mode-map (kbd "C-p") 'projectile-command-map)
