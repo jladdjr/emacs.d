@@ -993,6 +993,18 @@ Install [[https://github.com/json-emacs/json-mode][json-mode]].
     (use-package json-mode))
 #+end_src
 
+** Install mermaid-mode
+
+Install [[https://github.com/abrochard/mermaid-mode][mermaid-mode]].
+
+Mode is automatically activated with [[https://github.com/abrochard/mermaid-mode/blob/master/mermaid-mode.el#L271][*.mmd]] files.
+
+#+begin_src emacs-lisp
+  (unless skip-dev-config
+    (message "load mermaid-mode")
+    (use-package mermaid-mode))
+#+end_src
+
 ** Install json-navigator
 
 Install [[https://github.com/DamienCassou/json-navigator][json-navigator]].
