@@ -1448,6 +1448,22 @@ Sometimes it can be helpful to do the opposite of [[https://www.gnu.org/software
 
 This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line. This is such a long line.
 
+** Convert from Unix Epoch to Human-readable time
+
+#+begin_src emacs-lisp
+  (defun convert-epoch-at-point ()
+    (interactive)
+    (let* ((bounds (bounds-of-thing-at-point 'word))
+      (epoch (string-to-number
+              (buffer-substring-no-properties
+               (car bounds) (cdr bounds))))
+      (date (format-time-string
+             "%Y-%m-%d %H:%M:%S"
+             (seconds-to-time (/ epoch 1000)))))
+      (delete-region (car bounds) (cdr bounds))
+      (insert date)))
+#+end_src
+
 * Mac OS X Convenience Functions
 
 #+begin_src emacs-lisp
