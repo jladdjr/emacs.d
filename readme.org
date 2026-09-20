@@ -1005,6 +1005,16 @@ Mode is automatically activated with [[https://github.com/abrochard/mermaid-mode
     (use-package mermaid-mode))
 #+end_src
 
+** Install d2-mode
+
+Install [[https://github.com/andorsk/d2-mode][d2-mode]].
+
+#+begin_src emacs-lisp
+  (unless skip-dev-config
+    (message "load d2-mode")
+    (use-package d2-mode))
+#+end_src
+
 ** Install json-navigator
 
 Install [[https://github.com/DamienCassou/json-navigator][json-navigator]].
