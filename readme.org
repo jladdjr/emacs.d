@@ -270,6 +270,96 @@ Add support for links that open PDFs to a given page.
   (org-add-link-type "pdf" 'org-pdf-open nil)
 #+end_src
 
+* Add support for progress tracks
+
+#+begin_src emacs-lisp
+  (defun pom-track-string (done total &optional block-size)
+    "Return a Harvey ball progress track string.
+  DONE poms out of TOTAL, BLOCK-SIZE poms per ball (default 4)."
+    (let* ((block-size (or block-size 4))
+           (balls      (/ total block-size))
+           (full       (/ done block-size))
+           (rem        (% done block-size))
+           (empty      (- balls full (if (> rem 0) 1 0)))
+           (partial    (pcase rem
+                         (0 nil)
+                         (1 "◔")
+                         (2 "◑")
+                         (3 "◕")))
+           (full-str   (make-string full ?●))
+           (empty-str  (make-string (max 0 empty) ?○)))
+      (format "[%s%s%s]"
+              full-str
+              (or partial "")
+              empty-str)))
+
+  (defconst pom-track-regexp
+    "\\[●*[◔◑◕]?○*\\]\\s-*\\([0-9]+\\)/\\([0-9]+\\)"
+    "Matches a Harvey ball track followed by done/total count.")
+
+  (defun pom-track--parse-line ()
+    "Return (done total) by parsing the track on the current line, or nil."
+    (save-excursion
+      (beginning-of-line)
+      (when (re-search-forward pom-track-regexp (line-end-position) t)
+        (list (string-to-number (match-string 1))
+              (string-to-number (match-string 2))))))
+
+  (defun pom-track--update-line (done total)
+    "Replace the track on the current line with updated DONE/TOTAL."
+    (save-excursion
+      (beginning-of-line)
+      (when (re-search-forward pom-track-regexp (line-end-position) t)
+        (replace-match
+         (format "%s %d/%d"
+                 (pom-track-string done total)
+                 done total)))))
+
+  (defvar pom-track-transient-map
+    (let ((map (make-sparse-keymap)))
+      (define-key map (kbd "+") #'pom-track-increment)
+      (define-key map (kbd "-") #'pom-track-decrement)
+      map)
+    "Transient keymap for repeated pom track adjustments.")
+
+  (defun pom-track-increment ()
+    "Increment the pom count on the current line by 1."
+    (interactive)
+    (pcase (pom-track--parse-line)
+      (`(,done ,total)
+       (if (>= done total)
+           (message "Track complete! [any key to exit]")
+         (pom-track--update-line (1+ done) total)
+         (message "Pom recorded: %d/%d — [+/-] to continue, any other key to exit"
+                  (1+ done) total)))
+      (_ (message "No pom track found on this line.")))
+    (set-transient-map pom-track-transient-map))
+
+  (defun pom-track-decrement ()
+    "Decrement the pom count on the current line by 1."
+    (interactive)
+    (pcase (pom-track--parse-line)
+      (`(,done ,total)
+       (if (<= done 0)
+           (message "Already at zero! [any key to exit]")
+         (pom-track--update-line (1- done) total)
+         (message "Pom removed: %d/%d — [+/-] to continue, any other key to exit"
+                  (1- done) total)))
+      (_ (message "No pom track found on this line.")))
+    (set-transient-map pom-track-transient-map))
+
+  (defun pom-track-insert (total &optional block-size)
+    "Insert a fresh pom track at point for TOTAL poms."
+    (interactive "nTotal poms: ")
+    (insert (format "%s 0/%d"
+                    (pom-track-string 0 total (or block-size 4))
+                    total)))
+
+  (global-set-key (kbd "C-c x +") #'pom-track-increment)
+  (global-set-key (kbd "C-c x -") #'pom-track-decrement)
+  (global-set-key (kbd "C-c x i") #'pom-track-insert)
+#+end_src
+
 * Install sqlite3
 
 TODO: What is this a prerequisite for?
@@ -277,7 +367,6 @@ TODO: What is this a prerequisite for?
 #+begin_src emacs-lisp
   (use-package sqlite3)
 #+end_src
-
 
 * Configure org-super-mode
 
